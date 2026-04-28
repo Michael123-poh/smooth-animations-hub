@@ -126,9 +126,7 @@ export function GaiaServices() {
             <div className="service-icon">{s.icon}</div>
             <div className="service-title">{s.title}</div>
             <p className="service-desc">{s.desc}</p>
-            <div className="service-arrow" aria-hidden="true">
-              <ArrowIcon />
-            </div>
+            <div className="service-arrow" aria-hidden="true"><ArrowIcon /></div>
           </div>
         ))}
       </div>

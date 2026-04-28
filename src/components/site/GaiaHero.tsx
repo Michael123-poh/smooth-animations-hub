@@ -9,17 +9,13 @@ interface GaiaHeroProps {
 
 export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
   const navigate = useNavigate();
-  const shapeRef  = useRef<HTMLDivElement>(null);
-  const photoRef  = useRef<HTMLDivElement>(null);
+  const shapeRef = useRef<HTMLDivElement>(null);
+  const photoRef = useRef<HTMLDivElement>(null);
   const raf = useRef<number>(0);
 
   useEffect(() => {
     let lastY = 0;
-
-    function onScroll() {
-      lastY = window.scrollY;
-    }
-
+    function onScroll() { lastY = window.scrollY; }
     function tick() {
       if (shapeRef.current) {
         shapeRef.current.style.transform = `translateY(${lastY * 0.22}px) rotate(${lastY * 0.015}deg)`;
@@ -29,43 +25,28 @@ export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
       }
       raf.current = requestAnimationFrame(tick);
     }
-
     window.addEventListener("scroll", onScroll, { passive: true });
     raf.current = requestAnimationFrame(tick);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf.current);
-    };
+    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf.current); };
   }, []);
 
   return (
     <section className="gaia-hero" id="accueil" aria-label="Section héros">
-      {/* Decorative shape — parallax bas */}
-      <div
-        ref={shapeRef}
-        className="gaia-deco-shape parallax-layer"
-        aria-hidden="true"
-        style={{
-          right: "-40px",
-          bottom: "-60px",
-          width: "340px",
-          opacity: 0.1,
-          zIndex: 1,
-          transformOrigin: "center center",
-        }}
-      >
+
+      {/* Deco shape — parallax bg */}
+      <div ref={shapeRef} className="gaia-deco-shape parallax-layer" aria-hidden="true"
+        style={{ position: "absolute", right: "-40px", bottom: "-60px", width: "340px", opacity: 0.1, zIndex: 1, transformOrigin: "center center" }}>
         <img src={shape1} alt="" style={{ width: "100%", height: "auto" }} />
       </div>
 
-      {/* Left — text content */}
+      {/* ── LEFT — text ── */}
       <div className="gaia-hero-left" style={{ position: "relative", zIndex: 2 }}>
         <div className="hero-label reveal d1">
           <span className="hero-label-dot" aria-hidden="true" />
           Studio créatif · Douala, Cameroun
         </div>
 
-        <h1 className="gaia-h1 reveal d2">
+        <h1 className="gaia-h1 reveal d2" style={{ fontSize: "clamp(40px, 5.5vw, 80px)" }}>
           Derrière chaque marque,<br />
           se cache <em>une histoire</em>
         </h1>
@@ -74,6 +55,21 @@ export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
           Nous façonnons des identités visuelles qui parlent au cœur.
           Le Made in Cameroun mérite de briller — et nous sommes là pour ça.
         </p>
+
+        {/* Badges inline sur mobile (visibles uniquement sous 768px) */}
+        <div className="hero-badges-inline reveal d4">
+          <div className="hero-badge-pill">
+            <div className="float-card-dot" aria-hidden="true" />
+            Identité visuelle complète
+          </div>
+          <div className="hero-badge-pill">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8s2.91 6.5 6.5 6.5 6.5-2.91 6.5-6.5S11.59 1.5 8 1.5z" fill="#FF8A3D" fillOpacity="0.2" stroke="#FF8A3D" strokeWidth="1.2" />
+              <path d="M5 8l2 2 4-4" stroke="#FF8A3D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Made in Cameroun
+          </div>
+        </div>
 
         <div className="hero-ctas reveal d4">
           <button className="gaia-btn" onClick={() => navigate("/contact")}>
@@ -86,14 +82,8 @@ export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
             className="gaia-btn gaia-btn-ghost"
             onClick={() => navigate("/portfolio")}
             style={{ borderColor: "rgba(255,255,255,0.2)", color: "white" }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
-            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; }}
           >
             Voir nos réalisations
           </button>
@@ -109,75 +99,34 @@ export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
             <div className="hero-stat-label">Marques créées</div>
           </div>
           <div>
-            <div className="hero-stat-num">4</div>
-            <div className="hero-stat-label">Pôles de services</div>
+            <div className="hero-stat-num">98%</div>
+            <div className="hero-stat-label">Clients satisfaits</div>
           </div>
         </div>
       </div>
 
-      {/* Right — studio photo avec parallax */}
-      <div
-        className="gaia-hero-right"
-        style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 60px 40px 20px" }}
-      >
-        <div
-          ref={photoRef}
-          className="parallax-layer reveal-right d2"
-          style={{
-            position: "relative",
-            width: "100%",
-            maxWidth: 520,
-            willChange: "transform",
-          }}
-        >
-          {/* Photo principale */}
-          <div
-            style={{
-              borderRadius: 24,
-              overflow: "hidden",
-              boxShadow: "0 40px 100px rgba(11,25,41,0.6), 0 0 0 1px rgba(255,255,255,0.07)",
-              position: "relative",
-            }}
-          >
+      {/* ── RIGHT — photo + badges flottants (masqué sur mobile) ── */}
+      <div className="gaia-hero-right" style={{ position: "relative", zIndex: 2, display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 60px 40px 20px" }}>
+        <div ref={photoRef} className="parallax-layer reveal-right d2"
+          style={{ position: "relative", width: "100%", maxWidth: 520, willChange: "transform" }}>
+
+          <div style={{ borderRadius: 24, overflow: "hidden", boxShadow: "0 40px 100px rgba(11,25,41,0.6), 0 0 0 1px rgba(255,255,255,0.07)", position: "relative" }}>
             <img
               src={heroVisual}
               alt="Studio créatif Gaïa — workspace design et branding"
-              style={{
-                width: "100%",
-                height: "auto",
-                display: "block",
-                objectFit: "cover",
-                aspectRatio: "4/3",
-              }}
+              style={{ width: "100%", height: "auto", display: "block", objectFit: "cover", aspectRatio: "4/3" }}
             />
-            {/* Overlay dégradé en bas pour fondre avec le fond bleu */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "35%",
-                background: "linear-gradient(to top, rgba(11,25,41,0.7) 0%, transparent 100%)",
-              }}
-            />
+            <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "35%", background: "linear-gradient(to top, rgba(11,25,41,0.7) 0%, transparent 100%)" }} />
           </div>
 
-          {/* Badge flottant — haut droite */}
-          <div
-            className="hero-float-card card-top float-bob reveal d3"
-            style={{ top: "-18px", right: "-18px", position: "absolute" }}
-          >
+          {/* Badge flottant haut droite */}
+          <div className="hero-float-card card-top float-bob reveal d3" style={{ top: "-18px", right: "-18px", position: "absolute" }}>
             <div className="float-card-dot" aria-hidden="true" />
             <span>Identité visuelle complète</span>
           </div>
 
-          {/* Badge flottant — bas gauche */}
-          <div
-            className="hero-float-card card-bottom float-bob-delay reveal d4"
-            style={{ bottom: "20px", left: "-24px", position: "absolute" }}
-          >
+          {/* Badge flottant bas gauche */}
+          <div className="hero-float-card card-bottom float-bob-delay reveal d4" style={{ bottom: "20px", left: "-24px", position: "absolute" }}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8s2.91 6.5 6.5 6.5 6.5-2.91 6.5-6.5S11.59 1.5 8 1.5z" fill="#FF8A3D" fillOpacity="0.2" stroke="#FF8A3D" strokeWidth="1.2" />
               <path d="M5 8l2 2 4-4" stroke="#FF8A3D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -185,27 +134,17 @@ export function GaiaHero({ scrollY = 0 }: GaiaHeroProps) {
             <span>Made in Cameroun</span>
           </div>
 
-          {/* Décoration coins — cadre lumineux */}
-          {[
-            { top: -4, left: -4 },
-            { top: -4, right: -4 },
-            { bottom: -4, left: -4 },
-            { bottom: -4, right: -4 },
-          ].map((pos, idx) => (
-            <div
-              key={idx}
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                ...pos,
-                width: 20,
-                height: 20,
-                border: "2px solid rgba(255,138,61,0.5)",
-                borderRadius: 4,
-              }}
-            />
+          {/* Coins lumineux */}
+          {[{ top: -4, left: -4 }, { top: -4, right: -4 }, { bottom: -4, left: -4 }, { bottom: -4, right: -4 }].map((pos, idx) => (
+            <div key={idx} aria-hidden="true" style={{ position: "absolute", ...pos, width: 20, height: 20, border: "2px solid rgba(255,138,61,0.5)", borderRadius: 4 }} />
           ))}
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="hero-scroll-indicator" aria-hidden="true">
+        <div className="hero-scroll-line" />
+        <span>Défiler</span>
       </div>
     </section>
   );

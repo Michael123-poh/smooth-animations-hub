@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const testimonials = [
   {
@@ -42,18 +42,37 @@ const logos = [
 
 export function GaiaTestimonials() {
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const total = testimonials.length;
-  const visible = 2;
 
-  const next = useCallback(() => setActive((a) => (a + 1) % (total - visible + 1)), [total, visible]);
-  const prev = useCallback(() => setActive((a) => (a - 1 + (total - visible + 1)) % (total - visible + 1)), [total, visible]);
+  // Detect single-card mode (≤768px)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const visible = isMobile ? 1 : 2;
+  const max = total - visible;
+
+  const next = useCallback(() => setActive((a) => (a + 1) % (max + 1)), [max]);
+  const prev = useCallback(() => setActive((a) => (a - 1 + max + 1) % (max + 1)), [max]);
+
+  // Reset active when switching modes
+  useEffect(() => { setActive(0); }, [isMobile]);
 
   useEffect(() => {
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
 
-  const offset = -(active * (50 + 1.2));
+  // Card width as % of track + gap offset
+  const cardWidthPct = isMobile ? 100 : 50;
+  const gapPx = isMobile ? 0 : 24;
+  const offset = -(active * (cardWidthPct + (cardWidthPct === 100 ? 0 : 1.2)));
 
   return (
     <section className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
@@ -70,15 +89,15 @@ export function GaiaTestimonials() {
           </p>
         </div>
 
-        <div className="testi-carousel" aria-live="polite">
+        <div className="testi-carousel" ref={carouselRef} aria-live="polite">
           <div
             className="testi-track"
-            style={{ transform: `translateX(calc(${offset}% - ${active * 24}px))` }}
+            style={{ transform: `translateX(calc(${offset}% - ${active * gapPx}px))` }}
           >
             {testimonials.map((t, i) => (
               <article
                 key={i}
-                className="testi-card"
+                className={`testi-card${isMobile ? " testi-card--single" : ""}`}
                 aria-hidden={i < active || i >= active + visible}
               >
                 <div className="testi-quote-mark" aria-hidden="true">"</div>
@@ -112,7 +131,7 @@ export function GaiaTestimonials() {
             </button>
 
             <div className="testi-dots" role="tablist" aria-label="Témoignages">
-              {Array.from({ length: total - visible + 1 }).map((_, i) => (
+              {Array.from({ length: max + 1 }).map((_, i) => (
                 <button
                   key={i}
                   className={`testi-dot${active === i ? " active" : ""}`}

@@ -89,7 +89,7 @@ const projects = [
   },
 ];
 
-const filters = ["Tous", "Identité visuelle", "Image de marque", "Packaging", "Digital", "Luxe"];
+const filters = ["Tous", "Packaging", "Digital", "Luxe"];
 
 export default function Portfolio() {
   const scrollY = useScrollY();
@@ -112,53 +112,32 @@ export default function Portfolio() {
 
       <main id="main-content">
         {/* Hero */}
-        <section
-          style={{
-            background: "var(--cream)",
-            padding: "140px 80px 80px",
-            position: "relative",
-            overflow: "hidden",
-          }}
-          aria-label="Portfolio Gaïa"
-        >
+        <section className="portfolio-page-hero" aria-label="Portfolio Gaïa">
           <div style={{ position: "absolute", right: -60, top: "50%", transform: "translateY(-50%)", opacity: 0.2, pointerEvents: "none" }} aria-hidden="true">
             <GaiaCircleMotif variant="hero" size={420} />
           </div>
           <div style={{ position: "relative", zIndex: 1 }}>
             <div className="section-label">Nos réalisations</div>
-            <h1 className="gaia-h2 reveal" style={{ fontSize: "clamp(36px, 5vw, 68px)", marginBottom: 20 }}>
+            <h1 className="gaia-h2 reveal" style={{ fontSize: "clamp(32px, 5vw, 68px)", marginBottom: 20 }}>
               Des marques qui ont<br />trouvé leur <span style={{ color: "var(--orange)" }}>voix</span>
             </h1>
-            <p className="section-sub reveal d2" style={{ marginBottom: 40 }}>
+            <p className="section-sub reveal d2" style={{ marginBottom: 32 }}>
               Chaque projet est une collaboration unique. Voici quelques histoires que nous avons
               eu l'honneur de raconter.
             </p>
 
-            {/* Filters */}
+            {/* Filters — une seule ligne, 4 pills égaux */}
             <div
               role="group"
               aria-label="Filtrer par catégorie"
-              style={{ display: "flex", gap: 8, flexWrap: "wrap" }}
-              className="reveal d3"
+              className="portfolio-filters reveal d3"
             >
               {filters.map((f) => (
                 <button
                   key={f}
                   onClick={() => setActiveFilter(f)}
                   aria-pressed={activeFilter === f}
-                  style={{
-                    padding: "8px 18px",
-                    borderRadius: 100,
-                    border: "1.5px solid",
-                    borderColor: activeFilter === f ? "var(--orange)" : "var(--border)",
-                    background: activeFilter === f ? "var(--orange)" : "transparent",
-                    color: activeFilter === f ? "white" : "var(--text-mid)",
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    fontWeight: 600,
-                    fontSize: 13,
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                  }}
+                  className={`portfolio-filter-btn${activeFilter === f ? " active" : ""}`}
                 >
                   {f}
                 </button>
@@ -168,14 +147,8 @@ export default function Portfolio() {
         </section>
 
         {/* Projects grid */}
-        <section style={{ background: "var(--beige)", padding: "60px 80px 100px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-              gap: 24,
-            }}
-          >
+        <section className="portfolio-page-grid">
+          <div className="portfolio-cards-grid">
             {filtered.map((p, i) => (
               <article
                 key={p.id}

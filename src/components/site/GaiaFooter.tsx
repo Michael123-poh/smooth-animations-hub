@@ -133,9 +133,9 @@ export function GaiaFooter() {
         <div>
           <div className="footer-col-title">Contact</div>
           <ul className="footer-links">
-            <li><a href="mailto:bonjour@gaia-studio.cm">bonjour@gaia-studio.cm</a></li>
+            <li><a href="mailto:hello@gaiaimagine.com">hello@gaiaimagine.com</a></li>
+            <li><a href="tel:+237674410693">+237 674 410 693</a></li>
             <li><span style={{ color: "rgba(255,255,255,0.5)", fontSize: 14 }}>Douala, Cameroun</span></li>
-            <li><span style={{ color: "rgba(255,255,255,0.5)", fontSize: 14 }}>+237 6XX XXX XXX</span></li>
           </ul>
         </div>
       </div>
