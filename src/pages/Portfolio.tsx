@@ -112,7 +112,7 @@ export default function Portfolio() {
 
       <main id="main-content">
         {/* Hero */}
-        <section className="portfolio-page-hero" aria-label="Portfolio Gaïa">
+        <section className="portfolio-page-hero" aria-label="Portfolio Gaïa" style={{ background: "var(--beige)" }}>
           <div style={{ position: "absolute", right: -60, top: "50%", transform: "translateY(-50%)", opacity: 0.2, pointerEvents: "none" }} aria-hidden="true">
             <GaiaCircleMotif variant="hero" size={420} />
           </div>
@@ -147,114 +147,27 @@ export default function Portfolio() {
         </section>
 
         {/* Projects grid */}
-        <section className="portfolio-page-grid">
+        <section className="portfolio-page-grid" style={{ background: "var(--beige)" }}>
           <div className="portfolio-cards-grid">
             {filtered.map((p, i) => (
               <article
                 key={p.id}
-                className={`reveal d${Math.min(i + 1, 4)}`}
-                style={{
-                  background: "white",
-                  border: "1px solid var(--border)",
-                  borderRadius: 20,
-                  overflow: "hidden",
-                  transition: "transform 0.25s, box-shadow 0.25s",
-                  cursor: "pointer",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "var(--shadow-deep)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "";
-                  e.currentTarget.style.boxShadow = "";
-                }}
+                className={`port-card reveal d${Math.min(i + 1, 4)}`}
                 aria-label={`${p.name} — ${p.category}`}
               >
-                {/* Image */}
-                <div
-                  style={{
-                    height: 220,
-                    position: "relative",
-                    overflow: "hidden",
-                    background: p.color,
-                  }}
-                >
+                {/* Photo — élément principal */}
+                <div className="port-card-img" style={{ background: p.color }}>
                   <img
                     src={p.img}
                     alt={`Projet ${p.name}`}
                     loading="lazy"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.4s" }}
                     onError={(e) => { e.currentTarget.style.display = "none"; }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.05)"; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = ""; }}
                   />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 14,
-                      right: 14,
-                      background: "white",
-                      borderRadius: 6,
-                      padding: "4px 10px",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "var(--text-mid)",
-                      letterSpacing: "0.04em",
-                    }}
-                    aria-label={`Année : ${p.year}`}
-                  >
-                    {p.year}
+                  <div className="port-card-overlay">
+                    <div className="port-card-category">{p.category}</div>
+                    <div className="port-card-name">{p.name}</div>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div style={{ padding: "28px 28px 32px" }}>
-                  <div
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      color: "var(--orange)",
-                      marginBottom: 8,
-                    }}
-                  >
-                    {p.category}
-                  </div>
-                  <h2
-                    style={{
-                      fontFamily: "'Plus Jakarta Sans', sans-serif",
-                      fontSize: 19,
-                      fontWeight: 700,
-                      color: "var(--navy)",
-                      letterSpacing: "-0.2px",
-                      marginBottom: 10,
-                    }}
-                  >
-                    {p.name}
-                  </h2>
-                  <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--text-mid)", marginBottom: 18, maxWidth: "none" }}>
-                    {p.desc}
-                  </p>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    {p.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          background: "var(--beige)",
-                          color: "var(--text-mid)",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          padding: "4px 10px",
-                          borderRadius: 6,
-                          letterSpacing: "0.03em",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <div className="port-card-year" aria-label={`Année : ${p.year}`}>{p.year}</div>
                 </div>
               </article>
             ))}

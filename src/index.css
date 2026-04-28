@@ -1417,23 +1417,27 @@ textarea.form-input {
 
 /* ─── PORTFOLIO PAGE ─────────────────────────────────────── */
 .portfolio-page-hero {
-  background: var(--navy);
+  background: var(--beige);
   padding: 140px 80px 60px;
   position: relative;
   overflow: hidden;
 }
+.portfolio-page-hero .section-label { color: var(--orange); }
+.portfolio-page-hero .gaia-h2 { color: var(--text-dark); }
+.portfolio-page-hero .section-sub { color: var(--text-mid); }
+
 .portfolio-filters {
   display: flex;
   gap: 8px;
-  flex-wrap: nowrap; /* une seule ligne */
+  flex-wrap: nowrap;
 }
 .portfolio-filter-btn {
-  flex: 1;           /* tous égaux */
+  flex: 1;
   padding: 9px 12px;
   border-radius: 100px;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid var(--border);
   background: transparent;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-mid);
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -1443,53 +1447,104 @@ textarea.form-input {
   text-align: center;
 }
 .portfolio-filter-btn:hover {
-  border-color: rgba(255,138,61,0.4);
-  color: white;
+  border-color: rgba(255,138,61,0.5);
+  color: var(--navy);
 }
 .portfolio-filter-btn.active {
   background: var(--orange);
   border-color: var(--orange);
   color: white;
 }
+
 .portfolio-page-grid {
-  background: var(--navy-dark);
+  background: var(--beige);
   padding: 48px 80px 100px;
 }
 .portfolio-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
+
+/* Carte photo-first — pas de description */
+.port-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s;
+}
+.port-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(3,4,94,0.14);
+}
+.port-card-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.port-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.port-card:hover .port-card-img img {
+  transform: scale(1.06);
+}
+.port-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(3,4,94,0.82) 0%, rgba(3,4,94,0.15) 55%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.port-card:hover .port-card-overlay {
+  opacity: 1;
+}
+.port-card-category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.port-card-name {
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.2px;
+}
+.port-card-year {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+}
+
 @media (max-width: 768px) {
-  .portfolio-page-hero {
-    padding: 100px 24px 48px;
-  }
-  .portfolio-page-grid {
-    padding: 36px 24px 64px;
-  }
-  .portfolio-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
+  .portfolio-page-hero { padding: 100px 24px 48px; }
+  .portfolio-page-grid { padding: 36px 24px 64px; }
+  .portfolio-cards-grid { gap: 14px; }
 }
 @media (max-width: 480px) {
-  .portfolio-page-hero {
-    padding: 90px 20px 40px;
-  }
-  .portfolio-filters {
-    gap: 6px;
-  }
-  .portfolio-filter-btn {
-    font-size: 12px;
-    padding: 8px 8px;
-  }
-  .portfolio-page-grid {
-    padding: 28px 20px 56px;
-  }
-  .portfolio-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
+  .portfolio-page-hero { padding: 90px 20px 40px; }
+  .portfolio-filters { gap: 6px; }
+  .portfolio-filter-btn { font-size: 11px; padding: 7px 6px; }
+  .portfolio-page-grid { padding: 28px 20px 56px; }
+  .portfolio-cards-grid { gap: 10px; }
 }
 
 
