@@ -7,7 +7,7 @@ const testimonials = [
     role: "Directrice générale",
     company: "Oracle Education Consultancy",
     initials: "MN",
-    color: "#1E3A5F",
+    color: "#16166A",
   },
   {
     text: "Une collaboration remarquable. L'équipe Gaïa a su comprendre nos enjeux dès le premier échange et proposer une identité à la hauteur de nos ambitions. Professionnalisme et créativité au rendez-vous.",
@@ -15,7 +15,7 @@ const testimonials = [
     role: "Fondateur",
     company: "ILMA Consulting",
     initials: "BF",
-    color: "#2A4E7B",
+    color: "#20208A",
   },
   {
     text: "Notre packaging VITAPRO est maintenant reconnaissable en rayons. Gaïa a su capturer l'essence naturelle de notre marque dans chaque élément graphique. Un travail d'orfèvre.",
@@ -79,7 +79,7 @@ export function GaiaTestimonials() {
       <div className="testi-inner">
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 40 }}>
           <div>
-            <div className="section-label" style={{ color: "var(--orange)" }}>Témoignages</div>
+            <div className="section-label" style={{ color: "var(--orange)" }}>Notre Écho</div>
             <h2 className="gaia-h2 on-dark reveal" id="testi-heading">
               Ce que disent<br />nos clients
             </h2>

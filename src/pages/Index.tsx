@@ -160,8 +160,8 @@ const Index = () => {
         <GaiaDNA />
         <GaiaPillars />
         <GaiaPortfolio />
-        <GaiaTestimonials />
         <GaiaProcess />
+        <GaiaTestimonials />
         <GaiaCTA />
       </main>
       <GaiaFooter />

@@ -7,12 +7,7 @@ export function GaiaDNA() {
   const raf = useRef<number>(0);
 
   useEffect(() => {
-    let lastY = 0;
     const section = patternRef.current?.closest("section");
-
-    function onScroll() {
-      lastY = window.scrollY;
-    }
 
     function tick() {
       if (patternRef.current && section) {
@@ -23,11 +18,9 @@ export function GaiaDNA() {
       raf.current = requestAnimationFrame(tick);
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
     raf.current = requestAnimationFrame(tick);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf.current);
     };
   }, []);
@@ -54,7 +47,7 @@ export function GaiaDNA() {
       <div className="dna-grid" style={{ position: "relative", zIndex: 1 }}>
         {/* Left — story text */}
         <div className="reveal-left">
-          <span className="dna-tag">Notre ADN</span>
+          <div className="section-label">Notre ADN</div>
 
           <h2 className="dna-h2" id="dna-heading">
             Nous transformons<br />des idées en<br />
@@ -104,7 +97,7 @@ export function GaiaDNA() {
             style={{
               borderRadius: 24,
               overflow: "hidden",
-              boxShadow: "0 40px 100px rgba(11,25,41,0.6), 0 0 0 1px rgba(255,255,255,0.07)",
+              boxShadow: "0 40px 100px rgba(8,8,26,0.65), 0 0 0 1px rgba(255,255,255,0.07)",
               position: "relative",
             }}
           >
@@ -176,7 +169,7 @@ export function GaiaDNA() {
           >
             <div
               style={{
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
                 fontSize: 22,
                 fontWeight: 800,
                 color: "var(--orange)",

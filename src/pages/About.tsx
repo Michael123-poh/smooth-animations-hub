@@ -28,8 +28,8 @@ function useReveal() {
 
 const team = [
   { name: "Amina K.", role: "Directrice créative & fondatrice", initials: "AK", color: "#FF8A3D" },
-  { name: "Thierry M.", role: "Designer identité visuelle", initials: "TM", color: "#1E3A5F" },
-  { name: "Clarisse N.", role: "Stratège de marque", initials: "CN", color: "#2A4E7B" },
+  { name: "Thierry M.", role: "Designer identité visuelle", initials: "TM", color: "#16166A" },
+  { name: "Clarisse N.", role: "Stratège de marque", initials: "CN", color: "#20208A" },
   { name: "Boris E.", role: "Designer UX/UI", initials: "BE", color: "#7B3F2A" },
 ];
 
@@ -102,7 +102,7 @@ export default function About() {
                   marginTop: 28,
                 }}
               >
-                <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontStyle: "italic", fontWeight: 600, color: "var(--navy)", lineHeight: 1.6, maxWidth: "none" }}>
+                <p style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 17, fontStyle: "italic", fontWeight: 600, color: "var(--navy)", lineHeight: 1.6, maxWidth: "none" }}>
                   "Nous façonnons des marques qui parlent au cœur, parce que votre histoire
                   mérite d'être racontée avec excellence."
                 </p>
@@ -156,7 +156,7 @@ export default function About() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
                     fontWeight: 800,
                     fontSize: 22,
                     color: "white",
@@ -166,7 +166,7 @@ export default function About() {
                 >
                   {member.initials}
                 </div>
-                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: "var(--navy)", marginBottom: 6 }}>
+                <div style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 17, fontWeight: 700, color: "var(--navy)", marginBottom: 6 }}>
                   {member.name}
                 </div>
                 <div style={{ fontSize: 13, color: "var(--text-muted)", fontWeight: 500 }}>

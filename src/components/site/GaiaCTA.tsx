@@ -133,7 +133,7 @@ export function GaiaCTA() {
               },
             ].map((c) => (
               <div key={c.label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 10, background: "rgba(255,138,61,0.15)", border: "1px solid rgba(255,138,61,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--orange)", flexShrink: 0 }} aria-hidden="true">
+                <div style={{ width: 40, height: 40, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.75)", flexShrink: 0 }} aria-hidden="true">
                   {c.svg}
                 </div>
                 <div>
@@ -162,7 +162,7 @@ export function GaiaCTA() {
                 <div style={{ fontSize: 40, marginBottom: 16 }} aria-hidden="true">
                   <GaiaCircleMotif variant="mini" size={80} />
                 </div>
-                <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 22, fontWeight: 700, color: "white", marginBottom: 10 }}>
+                <h3 style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 22, fontWeight: 700, color: "white", marginBottom: 10 }}>
                   Message envoyé
                 </h3>
                 <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "none" }}>

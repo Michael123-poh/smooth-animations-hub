@@ -125,7 +125,7 @@ export default function Contact() {
                   >
                     <span
                       style={{
-                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
                         fontSize: 16,
                         fontWeight: 700,
                         color: "var(--navy)",

@@ -6,14 +6,14 @@ const projects = [
     name: "Oracle Education Consultancy",
     category: "Identité visuelle",
     img: "https://picsum.photos/seed/oracle-edu/800/500",
-    color: "#1E3A5F",
+    color: "#16166A",
   },
   {
     id: "ilma",
     name: "ILMA Consulting",
     category: "Image de marque",
     img: "https://picsum.photos/seed/ilma-consult/600/500",
-    color: "#2A4E7B",
+    color: "#20208A",
   },
   {
     id: "vitapro",
@@ -52,7 +52,7 @@ export function GaiaPortfolio() {
     <section className="gaia-portfolio" id="realisations" aria-labelledby="portfolio-heading">
       <div className="portfolio-header">
         <div>
-          <div className="section-label">Nos réalisations</div>
+          <div className="section-label">Nos Récoltes</div>
           <h2 className="gaia-h2 reveal" id="portfolio-heading">
             Des marques qui<br />ont trouvé leur voix
           </h2>
@@ -102,7 +102,7 @@ export function GaiaPortfolio() {
             </div>
             <div className="port-arrow" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7h10M7 2l5 5-5 5" stroke="#1E3A5F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 7h10M7 2l5 5-5 5" stroke="#16166A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </article>

@@ -34,7 +34,7 @@ const projects = [
     desc: "Refonte complète de l'identité visuelle pour ce cabinet de conseil en orientation scolaire international.",
     tags: ["Logo", "Charte graphique", "Papeterie"],
     img: "https://picsum.photos/seed/oracle-edu/700/500",
-    color: "#1E3A5F",
+    color: "#16166A",
     year: "2024",
   },
   {
@@ -44,7 +44,7 @@ const projects = [
     desc: "Construction d'une identité de marque premium pour ce cabinet de conseil en stratégie d'entreprise.",
     tags: ["Branding", "Identité", "Digital"],
     img: "https://picsum.photos/seed/ilma-consult/700/500",
-    color: "#2A4E7B",
+    color: "#20208A",
     year: "2024",
   },
   {
@@ -105,6 +105,15 @@ export default function Portfolio() {
         p.tags.some((t) => t.toLowerCase().includes(activeFilter.toLowerCase()))
       );
 
+  // Re-trigger reveal when filter changes
+  useEffect(() => {
+    const els = document.querySelectorAll(".port-card");
+    els.forEach((el) => {
+      el.classList.remove("in");
+      requestAnimationFrame(() => el.classList.add("in"));
+    });
+  }, [activeFilter]);
+
   return (
     <>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
@@ -152,7 +161,7 @@ export default function Portfolio() {
             {filtered.map((p, i) => (
               <article
                 key={p.id}
-                className={`port-card reveal d${Math.min(i + 1, 4)}`}
+                className="port-card"
                 aria-label={`${p.name} — ${p.category}`}
               >
                 {/* Photo — élément principal */}

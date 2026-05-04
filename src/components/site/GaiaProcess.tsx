@@ -28,35 +28,39 @@ const steps = [
   },
 ];
 
+// Extra scroll distance per step — augmenter pour ralentir l'animation
+const SCROLL_PER_STEP = 120; // px de scroll supplémentaire par étape
+
 export function GaiaProcess() {
   const [activeStep, setActiveStep] = useState(0);
-  // Wrapper that has full scroll height, inner sticky panel stays in view
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const patternRef = useRef<HTMLDivElement>(null);
-  const raf = useRef<number>(0);
+  const wrapperRef  = useRef<HTMLDivElement>(null);
+  const sectionRef  = useRef<HTMLElement>(null);
+  const patternRef  = useRef<HTMLDivElement>(null);
+  const raf         = useRef<number>(0);
 
   useEffect(() => {
     function tick() {
-      const wrapper = wrapperRef.current;
-      if (!wrapper) { raf.current = requestAnimationFrame(tick); return; }
+      const wrapper  = wrapperRef.current;
+      const section  = sectionRef.current;
+      if (!wrapper || !section) { raf.current = requestAnimationFrame(tick); return; }
 
-      const rect = wrapper.getBoundingClientRect();
-      const vh   = window.innerHeight;
+      const wRect = wrapper.getBoundingClientRect();
+      const sH    = section.offsetHeight;   // natural height of the sticky panel
+      const vh    = window.innerHeight;
 
       // Parallax pattern
       if (patternRef.current) {
-        const progress = -rect.top / vh;
-        patternRef.current.style.transform = `translateY(${progress * 20}px)`;
+        const p = Math.max(0, -wRect.top / vh);
+        patternRef.current.style.transform = `translateY(${p * 20}px)`;
       }
 
-      // Scroll progress: 0 when wrapper top enters viewport, 1 when wrapper bottom exits
-      const scrolled = vh - rect.top;
-      const total    = rect.height + vh;
-      const pct      = Math.max(0, Math.min(1, scrolled / total));
+      // Scrollable distance = total extra scroll space = wrapper height - sticky panel height
+      const extra    = wRect.height - sH;
+      const scrolled = Math.max(0, -wRect.top); // how far we've scrolled into the wrapper
+      const pct      = extra > 0 ? Math.min(1, scrolled / extra) : 0;
 
-      // Map to step index — includes slight overshoot so last step fully activates
-      const raw  = pct * steps.length;
-      const step = Math.min(steps.length - 1, Math.floor(raw));
+      // Reach last step at 90% of scroll so minimal blank tail remains
+      const step = Math.min(steps.length - 1, Math.floor((pct / 0.9) * steps.length));
       setActiveStep(step);
 
       raf.current = requestAnimationFrame(tick);
@@ -69,14 +73,23 @@ export function GaiaProcess() {
   const progressPercent = ((activeStep + 1) / steps.length) * 100;
 
   return (
-    // Outer wrapper: tall enough to drive the sticky animation
+    /*
+     * Wrapper: natural height (auto) PLUS extra scroll room per step.
+     * We use padding-bottom to add extra height without affecting the
+     * sticky panel's visual size — the section sits at the top via sticky,
+     * and the padding below it is the invisible scroll driver.
+     */
     <div
       ref={wrapperRef}
       className="process-scroll-wrapper"
       id="processus"
+      style={{
+        paddingBottom: `${SCROLL_PER_STEP * (steps.length - 1)}px`,
+        marginBottom: `-${SCROLL_PER_STEP * (steps.length - 1)}px`,
+      }}
     >
-      {/* Sticky inner — stays in view while user scrolls through wrapper */}
       <section
+        ref={sectionRef}
         className="gaia-process process-sticky"
         aria-labelledby="process-heading"
       >
@@ -106,7 +119,7 @@ export function GaiaProcess() {
         }} />
 
         <div style={{ position: "relative", zIndex: 1 }}>
-          <div>
+          <div style={{ marginBottom: 48 }}>
             <div className="section-label">Notre recette</div>
             <h2 className="gaia-h2 reveal" id="process-heading" style={{ maxWidth: 480 }}>
               Comment nous travaillons ensemble
@@ -132,10 +145,7 @@ export function GaiaProcess() {
                   <div
                     key={s.num}
                     className={`process-step${isActive ? " active" : ""}`}
-                    style={{
-                      opacity: isDone || isActive ? 1 : 0.35,
-                      transition: "opacity 0.4s",
-                    }}
+                    style={{ opacity: isDone || isActive ? 1 : 0.35, transition: "opacity 0.4s" }}
                   >
                     <div
                       className="step-num"
@@ -203,7 +213,7 @@ export function GaiaProcess() {
               })}
             </div>
 
-            {/* Right — sticky visual card */}
+            {/* Right — visual card */}
             <div className="process-visual">
               <div className="process-visual-card">
                 <div className="process-visual-label">Progression du projet</div>

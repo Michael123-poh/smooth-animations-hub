@@ -108,7 +108,7 @@ export function GaiaPillars() {
         width: 300,
         height: 300,
         borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(53,103,170,0.15) 0%, transparent 70%)",
+        background: "radial-gradient(circle, rgba(32,32,138,0.10) 0%, transparent 70%)",
         pointerEvents: "none",
         zIndex: 0,
       }} />
@@ -116,7 +116,7 @@ export function GaiaPillars() {
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="pillars-header">
           <div>
-            <div className="section-label">Nos piliers</div>
+            <div className="section-label">Nos Titans</div>
             <h2 className="gaia-h2 reveal" id="pillars-heading">
               Les valeurs qui<br />nous fondent
             </h2>

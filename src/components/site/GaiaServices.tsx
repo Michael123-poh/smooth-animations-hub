@@ -18,7 +18,7 @@ const services = [
         <circle cx="26" cy="26" r="22" stroke="#FF8A3D" strokeWidth="1.5" strokeOpacity="0.4" />
         <circle cx="26" cy="26" r="14" fill="#FF8A3D" fillOpacity="0.12" />
         <circle cx="26" cy="26" r="7" fill="#FF8A3D" fillOpacity="0.7" />
-        <circle cx="37" cy="15" r="4" fill="#1E3A5F" fillOpacity="0.5" />
+        <circle cx="37" cy="15" r="4" fill="#16166A" fillOpacity="0.5" />
         <circle cx="15" cy="37" r="3" fill="#FF8A3D" fillOpacity="0.5" />
       </svg>
     ),
@@ -30,8 +30,8 @@ const services = [
     featured: false,
     icon: (
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="16" width="36" height="24" rx="4" stroke="#1E3A5F" strokeWidth="1.5" strokeOpacity="0.6" />
-        <path d="M16 28h20M16 23h12" stroke="#1E3A5F" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.5" />
+        <rect x="8" y="16" width="36" height="24" rx="4" stroke="#16166A" strokeWidth="1.5" strokeOpacity="0.6" />
+        <path d="M16 28h20M16 23h12" stroke="#16166A" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.5" />
         <circle cx="38" cy="14" r="5" fill="#FF8A3D" fillOpacity="0.85" />
       </svg>
     ),
@@ -43,9 +43,9 @@ const services = [
     featured: false,
     icon: (
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="12" y="8" width="28" height="36" rx="6" stroke="#1E3A5F" strokeWidth="1.5" strokeOpacity="0.5" />
+        <rect x="12" y="8" width="28" height="36" rx="6" stroke="#16166A" strokeWidth="1.5" strokeOpacity="0.5" />
         <rect x="18" y="16" width="16" height="10" rx="3" fill="#FF8A3D" fillOpacity="0.18" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.5" />
-        <circle cx="26" cy="38" r="2.5" fill="#1E3A5F" fillOpacity="0.4" />
+        <circle cx="26" cy="38" r="2.5" fill="#16166A" fillOpacity="0.4" />
       </svg>
     ),
   },
@@ -56,7 +56,7 @@ const services = [
     featured: false,
     icon: (
       <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 14h32v24H10z" stroke="#1E3A5F" strokeWidth="1.5" strokeOpacity="0.5" strokeLinejoin="round" />
+        <path d="M10 14h32v24H10z" stroke="#16166A" strokeWidth="1.5" strokeOpacity="0.5" strokeLinejoin="round" />
         <path d="M10 14l16 16 16-16" stroke="#FF8A3D" strokeWidth="1.5" strokeOpacity="0.6" strokeLinejoin="round" />
         <circle cx="38" cy="36" r="6" fill="#FF8A3D" fillOpacity="0.85" />
         <path d="M35.5 36h5M38 33.5v5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
@@ -107,7 +107,7 @@ export function GaiaServices() {
 
       <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 40, marginBottom: 0, position: "relative", zIndex: 1 }}>
         <div>
-          <div className="section-label">Nos services</div>
+          <div className="section-label">Notre Jardin</div>
           <h2 className="gaia-h2 reveal" id="services-heading">
             Ce que nous<br />créons pour vous
           </h2>

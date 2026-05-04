@@ -18,7 +18,7 @@ export function GaiaCircleMotif({ size = 480, className = "", variant = "hero" }
       >
         <circle cx="80" cy="80" r="72" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.2" />
         <circle cx="80" cy="80" r="50" fill="#FF8A3D" fillOpacity="0.06" stroke="#FF8A3D" strokeWidth="0.75" strokeOpacity="0.25" />
-        <circle cx="104" cy="55" r="18" fill="#1E3A5F" fillOpacity="0.14" />
+        <circle cx="104" cy="55" r="18" fill="#16166A" fillOpacity="0.14" />
         <circle cx="80" cy="80" r="16" fill="#FF8A3D" fillOpacity="0.18" />
         <circle cx="56" cy="106" r="8" fill="#FF8A3D" fillOpacity="0.35" />
       </svg>
@@ -71,19 +71,19 @@ export function GaiaCircleMotif({ size = 480, className = "", variant = "hero" }
       aria-hidden="true"
     >
       {/* Outermost dashed ring — slow spin */}
-      <circle cx="260" cy="260" r="248" stroke="#1E3A5F" strokeWidth="0.75" strokeOpacity="0.1" strokeDasharray="2 10" className="spin-slow" />
+      <circle cx="260" cy="260" r="248" stroke="#16166A" strokeWidth="0.75" strokeOpacity="0.1" strokeDasharray="2 10" className="spin-slow" />
 
       {/* Outer ring */}
-      <circle cx="260" cy="260" r="220" stroke="#1E3A5F" strokeWidth="1" strokeOpacity="0.08" />
+      <circle cx="260" cy="260" r="220" stroke="#16166A" strokeWidth="1" strokeOpacity="0.08" />
 
       {/* Main filled navy ring */}
-      <circle cx="260" cy="260" r="185" fill="#1E3A5F" fillOpacity="0.04" stroke="#1E3A5F" strokeWidth="1" strokeOpacity="0.12" />
+      <circle cx="260" cy="260" r="185" fill="#16166A" fillOpacity="0.04" stroke="#16166A" strokeWidth="1" strokeOpacity="0.12" />
 
       {/* Orange offset large circle */}
       <circle cx="310" cy="215" r="140" fill="#FF8A3D" fillOpacity="0.07" stroke="#FF8A3D" strokeWidth="1.5" strokeOpacity="0.2" />
 
       {/* Reverse-spin ring */}
-      <circle cx="260" cy="260" r="120" fill="none" stroke="#1E3A5F" strokeWidth="0.75" strokeOpacity="0.15" strokeDasharray="4 8" className="spin-slow-reverse" />
+      <circle cx="260" cy="260" r="120" fill="none" stroke="#16166A" strokeWidth="0.75" strokeOpacity="0.15" strokeDasharray="4 8" className="spin-slow-reverse" />
 
       {/* Inner cream circle */}
       <circle cx="245" cy="275" r="75" fill="#FFFCF8" fillOpacity="0.6" />
@@ -97,13 +97,13 @@ export function GaiaCircleMotif({ size = 480, className = "", variant = "hero" }
       <circle cx="372" cy="148" r="38" fill="none" stroke="#FF8A3D" strokeWidth="1.5" strokeOpacity="0.3" />
 
       {/* Navy accent — bottom left */}
-      <circle cx="150" cy="370" r="16" fill="#1E3A5F" fillOpacity="0.18" />
-      <circle cx="150" cy="370" r="28" fill="none" stroke="#1E3A5F" strokeWidth="1" strokeOpacity="0.12" />
+      <circle cx="150" cy="370" r="16" fill="#16166A" fillOpacity="0.18" />
+      <circle cx="150" cy="370" r="28" fill="none" stroke="#16166A" strokeWidth="1" strokeOpacity="0.12" />
 
       {/* Tiny dots on perimeter */}
       <circle cx="460" cy="260" r="6" fill="#FF8A3D" fillOpacity="0.4" />
-      <circle cx="60" cy="260" r="4" fill="#1E3A5F" fillOpacity="0.2" />
-      <circle cx="260" cy="60" r="5" fill="#1E3A5F" fillOpacity="0.15" />
+      <circle cx="60" cy="260" r="4" fill="#16166A" fillOpacity="0.2" />
+      <circle cx="260" cy="60" r="5" fill="#16166A" fillOpacity="0.15" />
       <circle cx="260" cy="460" r="4" fill="#FF8A3D" fillOpacity="0.3" />
     </svg>
   );

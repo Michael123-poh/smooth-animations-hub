@@ -4,7 +4,7 @@ interface LogoProps {
 }
 
 export function GaiaLogo({ dark = false, size = 32 }: LogoProps) {
-  const color = dark ? "#1E3A5F" : "#1E3A5F";
+  const color = dark ? "#16166A" : "#16166A";
   const orange = "#FF8A3D";
 
   return (
@@ -28,7 +28,7 @@ export function GaiaLogo({ dark = false, size = 32 }: LogoProps) {
       </svg>
       <span
         style={{
-          fontFamily: "'Plus Jakarta Sans', sans-serif",
+          fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
           fontWeight: 800,
           fontSize: 20,
           letterSpacing: "-0.5px",
