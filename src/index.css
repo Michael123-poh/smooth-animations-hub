@@ -839,6 +839,12 @@ a {
 }
 
 /* ─── GAIA DNA ───────────────────────────────────────────── */
+.gaia-dna .section-label {
+  color: var(--orange);
+}
+.gaia-dna .section-label::before {
+  background: var(--orange);
+}
 .gaia-dna {
   background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-navy) 60%, var(--blue-dark) 100%);
   padding: 120px 80px;
@@ -2089,13 +2095,36 @@ textarea.form-input {
     border-right: none;
   }
 
-  /* PROCESS sticky : désactivé sur tablette */
+  /* PROCESS sticky : désactivé sur tablette — toutes les étapes visibles */
   .process-scroll-wrapper {
     padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }
   .process-sticky {
     position: relative;
     top: 0;
+  }
+  .process-step {
+    opacity: 1 !important;
+  }
+  .step-desc {
+    max-height: 300px !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    margin-bottom: 0 !important;
+  }
+  .step-num {
+    background: rgba(255,138,61,0.18) !important;
+    border-color: rgba(255,138,61,0.35) !important;
+    color: var(--orange) !important;
+  }
+  .step-title {
+    color: rgba(255,255,255,0.85) !important;
+  }
+  .step-content > div:last-child {
+    max-height: 30px !important;
+    opacity: 1 !important;
+    margin-top: 8px !important;
   }
 
   /* SECTION padding */
@@ -2139,15 +2168,20 @@ textarea.form-input {
     font-size: 22px;
   }
 
-  /* DNA: text first, visual below but small and decorative */
+  /* DNA: text first, visual below */
   .dna-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
+  }
+  .dna-grid .reveal-left {
+    opacity: 1 !important;
+    transform: none !important;
+    order: 1;
   }
   .dna-visual {
-    height: 240px;
-    order: -1;
-    opacity: 0.7;
+    height: 220px;
+    order: 2;
+    opacity: 0.8;
   }
   .dna-stats-row {
     grid-template-columns: repeat(3, 1fr);
@@ -2185,19 +2219,13 @@ textarea.form-input {
   /* JS still works — but at 100% width the math changes.
      We override via testi-track width math here via CSS only */
 
-  /* PROCESS: steps full width, visual card becomes a compact strip at top */
+  /* PROCESS: steps full width, card masquée sur mobile */
   .process-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 0;
   }
   .process-visual {
-    position: relative;
-    top: 0;
-    order: -1;
-  }
-  .process-visual-card {
-    padding: 28px;
-    border-radius: var(--radius-lg);
+    display: none;
   }
 
   /* CTA: form below text */
@@ -2282,13 +2310,36 @@ textarea.form-input {
     margin-top: 10px;
   }
 
-  /* PROCESS sticky désactivé sur phone */
+  /* PROCESS sticky désactivé sur phone — toutes les étapes visibles */
   .process-scroll-wrapper {
     padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
   }
   .process-sticky {
     position: relative;
     top: 0;
+  }
+  .process-step {
+    opacity: 1 !important;
+  }
+  .step-desc {
+    max-height: 300px !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    margin-bottom: 0 !important;
+  }
+  .step-num {
+    background: rgba(255,138,61,0.18) !important;
+    border-color: rgba(255,138,61,0.35) !important;
+    color: var(--orange) !important;
+  }
+  .step-title {
+    color: rgba(255,255,255,0.85) !important;
+  }
+  .step-content > div:last-child {
+    max-height: 30px !important;
+    opacity: 1 !important;
+    margin-top: 8px !important;
   }
 
   /* SECTION padding */

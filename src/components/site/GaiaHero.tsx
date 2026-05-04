@@ -65,22 +65,7 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
           Le Made in Cameroun mérite de briller — et nous sommes là pour ça.
         </p>
 
-        {/* Badges */}
-        <div className="hero-badges-inline reveal d3" style={{ display: "flex" }}>
-          <div className="hero-badge-pill">
-            <div className="float-card-dot" aria-hidden="true" />
-            Identité visuelle complète
-          </div>
-          <div className="hero-badge-pill">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M8 1.5C4.41 1.5 1.5 4.41 1.5 8s2.91 6.5 6.5 6.5 6.5-2.91 6.5-6.5S11.59 1.5 8 1.5z" fill="#FF8A3D" fillOpacity="0.2" stroke="#FF8A3D" strokeWidth="1.2" />
-              <path d="M5 8l2 2 4-4" stroke="#FF8A3D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Made in Cameroun
-          </div>
-        </div>
-
-        <div className="hero-ctas reveal d4">
+        <div className="hero-ctas reveal d3">
           <button className="gaia-btn" onClick={() => navigate("/contact")}>
             Discutons de votre projet
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -98,7 +83,7 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
           </button>
         </div>
 
-        <div className="hero-stats reveal d5">
+        <div className="hero-stats reveal d4">
           <div>
             <div className="hero-stat-num">6+</div>
             <div className="hero-stat-label">Années d'expertise</div>
