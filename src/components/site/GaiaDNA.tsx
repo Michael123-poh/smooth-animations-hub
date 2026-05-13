@@ -50,8 +50,8 @@ export function GaiaDNA() {
           <div className="section-label">Notre ADN</div>
 
           <h2 className="dna-h2" id="dna-heading">
-            Nous transformons<br />des idées en<br />
-            <span style={{ color: "var(--orange)" }}>expériences mémorables</span>
+            Nous transformons<br />des idées en <span style={{ color: "var(--orange)" }}>expériences</span><br />
+            <span style={{ color: "var(--orange)" }}>mémorables</span>
           </h2>
 
           <p className="dna-body">
@@ -74,30 +74,15 @@ export function GaiaDNA() {
             </p>
           </blockquote>
 
-          <div className="dna-stats-row reveal d2">
-            <div className="dna-stat">
-              <span className="dna-stat-num">120+</span>
-              <div className="dna-stat-label">Identités créées</div>
-            </div>
-            <div className="dna-stat">
-              <span className="dna-stat-num">98%</span>
-              <div className="dna-stat-label">Clients satisfaits</div>
-            </div>
-            <div className="dna-stat">
-              <span className="dna-stat-num">6 ans</span>
-              <div className="dna-stat-label">D'expertise</div>
-            </div>
-          </div>
         </div>
 
         {/* Right — studio photo avec effet glassmorphic */}
-        <div className="dna-visual reveal-right d2" style={{ position: "relative", width: "100%", maxWidth: 480, margin: "0 auto" }}>
+        <div className="dna-visual reveal-right d2" style={{ position: "relative", width: "100%", maxWidth: 400, margin: "0 auto" }}>
           
           <div
             style={{
               borderRadius: 24,
               overflow: "hidden",
-              boxShadow: "0 40px 100px rgba(8,8,26,0.65), 0 0 0 1px rgba(255,255,255,0.07)",
               position: "relative",
             }}
           >
@@ -126,27 +111,23 @@ export function GaiaDNA() {
             />
           </div>
 
-          {/* Décoration coins — cadre lumineux */}
-          {[
-            { top: -4, left: -4 },
-            { top: -4, right: -4 },
-            { bottom: -4, left: -4 },
-            { bottom: -4, right: -4 },
-          ].map((pos, idx) => (
-            <div
-              key={idx}
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                ...pos,
-                width: 20,
-                height: 20,
-                border: "2px solid rgba(255,138,61,0.5)",
-                borderRadius: 4,
-              }}
-            />
-          ))}
 
+        </div>
+
+        {/* Stats — direct child of grid so order works on mobile */}
+        <div className="dna-stats-row reveal d2">
+          <div className="dna-stat">
+            <span className="dna-stat-num">120+</span>
+            <div className="dna-stat-label">Identités créées</div>
+          </div>
+          <div className="dna-stat">
+            <span className="dna-stat-num">98%</span>
+            <div className="dna-stat-label">Clients satisfaits</div>
+          </div>
+          <div className="dna-stat">
+            <span className="dna-stat-num">6 ans</span>
+            <div className="dna-stat-label">D'expertise</div>
+          </div>
         </div>
       </div>
     </section>

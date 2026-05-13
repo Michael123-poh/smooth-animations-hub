@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaHero } from "../components/site/GaiaHero";
-import { GaiaMarquee } from "../components/site/GaiaMarquee";
 import { GaiaServices } from "../components/site/GaiaServices";
 import { GaiaDNA } from "../components/site/GaiaDNA";
 import { GaiaPillars } from "../components/site/GaiaPillars";
@@ -92,15 +91,30 @@ function CustomCursor() {
   );
 }
 
-/* ─── Scroll Y ───────────────────────────────────────── */
-function useScrollY() {
+/* ─── Scroll Y + direction ───────────────────────────── */
+function useScroll() {
   const [y, setY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+  const prevY = useRef(0);
   useEffect(() => {
-    const handler = () => setY(window.scrollY);
+    const handler = () => {
+      const cur = window.scrollY;
+      const goingDown = cur > prevY.current;
+      // Cache la nav en scrollant vers le bas (passé 80 px), réaffiche en remontant
+      if (cur <= 80) {
+        setHidden(false);
+      } else if (goingDown) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      prevY.current = cur;
+      setY(cur);
+    };
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
-  return y;
+  return { y, hidden };
 }
 
 /* ─── Scroll reveal ──────────────────────────────────── */
@@ -144,18 +158,37 @@ function useParallaxOrbs() {
 }
 
 const Index = () => {
-  const scrollY = useScrollY();
+  const { y: scrollY, hidden: navHidden } = useScroll();
+  const [footerVisible, setFooterVisible] = useState(false);
+  const footerRef = useRef<HTMLElement>(null);
   useReveal();
   useParallaxOrbs();
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    io.observe(footer);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <CustomCursor />
-      <GaiaNavbar solid={scrollY > 60} />
+      {!footerVisible && !navHidden && <GaiaNavbar solid={scrollY > 60} />}
       <main id="main-content">
         <GaiaHero scrollY={scrollY} />
-        <GaiaMarquee />
+        <div className="gaia-bridge">
+          <p className="gaia-bridge-text reveal">
+            Derrière chaque marque se cache une histoire.<br />
+            chez Gaïa, nous la transformons<br />
+            en une <span style={{ color: "var(--orange)" }}>identité forte</span>.
+          </p>
+        </div>
         <GaiaServices />
         <GaiaDNA />
         <GaiaPillars />
@@ -164,7 +197,7 @@ const Index = () => {
         <GaiaTestimonials />
         <GaiaCTA />
       </main>
-      <GaiaFooter />
+      <GaiaFooter ref={footerRef} />
     </>
   );
 };

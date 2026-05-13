@@ -1,274 +1,81 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import patternClair from "../../assets/deco/Gaia_Decorative_Pattern_Fond_Clair@3x.png";
 
 const steps = [
   {
     num: "01",
     title: "Écoute & découverte",
-    desc: "Nous plongeons dans votre univers. Brief approfondi, analyse de votre marché, étude de vos concurrents et de vos cibles. Chaque projet commence par une vraie conversation.",
+    desc: "Brief approfondi, analyse marché, étude concurrents et cibles.",
     duration: "1 — 2 semaines",
   },
   {
     num: "02",
     title: "Stratégie & positionnement",
-    desc: "Nous définissons votre territoire de marque : promesse, ton, valeurs différenciantes. Une fondation solide avant le moindre trait de crayon.",
+    desc: "Territoire de marque : promesse, ton, valeurs différenciantes.",
     duration: "1 semaine",
   },
   {
     num: "03",
     title: "Création & itération",
-    desc: "Nos designers conçoivent, testent, affinent. Vous êtes impliqués à chaque étape avec des retours organisés et constructifs. Pas de surprise au bout du tunnel.",
+    desc: "Design, tests, affinements avec vos retours à chaque étape.",
     duration: "2 — 4 semaines",
   },
   {
     num: "04",
     title: "Livraison & accompagnement",
-    desc: "Fichiers finaux, charte d'utilisation, guide de marque complet. Et nous restons disponibles après livraison pour vous accompagner dans le déploiement.",
+    desc: "Fichiers finaux, charte d'utilisation, guide de marque complet.",
     duration: "1 semaine",
   },
 ];
 
-// Extra scroll distance per step — scroll space added to wrapper so sticky lasts longer
-const SCROLL_PER_STEP = 260; // px de scroll supplémentaire par étape
-
 export function GaiaProcess() {
-  const [activeStep, setActiveStep] = useState(0);
-  const wrapperRef  = useRef<HTMLDivElement>(null);
-  const sectionRef  = useRef<HTMLElement>(null);
-  const patternRef  = useRef<HTMLDivElement>(null);
-  const raf         = useRef<number>(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    function tick() {
-      const wrapper  = wrapperRef.current;
-      const section  = sectionRef.current;
-      if (!wrapper || !section) { raf.current = requestAnimationFrame(tick); return; }
-
-      const wRect = wrapper.getBoundingClientRect();
-      const sH    = section.offsetHeight;   // natural height of the sticky panel
-      const vh    = window.innerHeight;
-
-      // Parallax pattern
-      if (patternRef.current) {
-        const p = Math.max(0, -wRect.top / vh);
-        patternRef.current.style.transform = `translateY(${p * 20}px)`;
-      }
-
-      // Scrollable distance = total extra scroll space = wrapper height - sticky panel height
-      const extra    = wRect.height - sH;
-      const scrolled = Math.max(0, -wRect.top); // how far we've scrolled into the wrapper
-      const pct      = extra > 0 ? Math.min(1, scrolled / extra) : 0;
-
-      // Reach last step at 90% of scroll so minimal blank tail remains
-      const step = Math.min(steps.length - 1, Math.floor((pct / 0.9) * steps.length));
-      setActiveStep(step);
-
-      raf.current = requestAnimationFrame(tick);
-    }
-
-    raf.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf.current);
+    const section = sectionRef.current;
+    if (!section) return;
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) section.classList.add("process-visible"); },
+      { threshold: 0.15 }
+    );
+    io.observe(section);
+    return () => io.disconnect();
   }, []);
 
-  const progressPercent = ((activeStep + 1) / steps.length) * 100;
-
   return (
-    /*
-     * Wrapper: natural height (auto) PLUS extra scroll room per step.
-     * We use padding-bottom to add extra height without affecting the
-     * sticky panel's visual size — the section sits at the top via sticky,
-     * and the padding below it is the invisible scroll driver.
-     */
-    <div
-      ref={wrapperRef}
-      className="process-scroll-wrapper"
-      id="processus"
-      style={{
-        paddingBottom: `${SCROLL_PER_STEP * (steps.length - 1)}px`,
-        marginBottom: `-${SCROLL_PER_STEP * (steps.length - 1)}px`,
-      }}
-    >
-      <section
-        ref={sectionRef}
-        className="gaia-process process-sticky"
-        aria-labelledby="process-heading"
-      >
-        {/* Pattern overlay */}
-        <div
-          ref={patternRef}
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `url(${patternClair})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.04,
-            mixBlendMode: "soft-light",
-            pointerEvents: "none",
-            willChange: "transform",
-          }}
-        />
+    <section ref={sectionRef} className="gaia-process" id="processus" aria-labelledby="process-heading">
 
-        <div style={{ position: "relative", zIndex: 1 }}>
-          <div style={{ marginBottom: 48 }}>
-            <div className="section-label">Notre recette</div>
-            <h2 className="gaia-h2 reveal" id="process-heading" style={{ maxWidth: 480 }}>
-              Comment nous travaillons ensemble
-            </h2>
-          </div>
+      <div aria-hidden="true" style={{
+        position: "absolute", inset: 0,
+        backgroundImage: `url(${patternClair})`,
+        backgroundSize: "cover", backgroundPosition: "center",
+        opacity: 0.04, mixBlendMode: "soft-light", pointerEvents: "none",
+      }} />
 
-          <div className="process-grid">
-            {/* Left — steps */}
-            <div className="process-steps">
-              <div className="process-line">
-                <div
-                  className="process-line-fill"
-                  style={{ height: `${progressPercent}%` }}
-                  aria-hidden="true"
-                />
-              </div>
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div className="section-label">Notre recette</div>
+        <h2 className="gaia-h2" id="process-heading" style={{ marginBottom: 56 }}>
+          Comment nous travaillons <span style={{ color: "var(--orange)" }}>ensemble</span>
+        </h2>
 
-              {steps.map((s, i) => {
-                const isActive = i === activeStep;
-                const isDone   = i < activeStep;
-
-                return (
-                  <div
-                    key={s.num}
-                    className={`process-step${isActive ? " active" : ""}`}
-                    style={{ opacity: isDone || isActive ? 1 : 0.35, transition: "opacity 0.4s" }}
-                  >
-                    <div
-                      className="step-num"
-                      style={{
-                        background: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.12)" : "white",
-                        borderColor: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.35)" : "var(--border)",
-                        color: isActive ? "white" : isDone ? "var(--orange)" : "rgba(0,0,0,0.35)",
-                        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                      }}
-                      aria-hidden="true"
-                    >
-                      {isDone ? (
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                          <path d="M2.5 7l3.5 3.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      ) : s.num}
-                    </div>
-
-                    <div className="step-content">
-                      <h3
-                        className="step-title"
-                        style={{
-                          color: isActive ? "var(--text-dark)" : isDone ? "var(--text-mid)" : "rgba(0,0,0,0.35)",
-                          transition: "color 0.4s",
-                        }}
-                      >
-                        {s.title}
-                      </h3>
-
-                      <p
-                        className="step-desc"
-                        style={{
-                          maxHeight: isActive ? "200px" : "0px",
-                          overflow: "hidden",
-                          opacity: isActive ? 1 : 0,
-                          transition: "max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s",
-                          marginBottom: isActive ? 0 : -8,
-                        }}
-                      >
-                        {s.desc}
-                      </p>
-
-                      <div style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 6,
-                        marginTop: isActive ? 10 : 0,
-                        fontSize: 12,
-                        fontWeight: 600,
-                        color: "var(--orange)",
-                        opacity: isActive ? 1 : 0,
-                        maxHeight: isActive ? "30px" : "0px",
-                        overflow: "hidden",
-                        transition: "opacity 0.35s, max-height 0.4s, margin-top 0.35s",
-                      }}>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                          <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2" />
-                          <path d="M6 3.5V6l1.5 1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                        </svg>
-                        {s.duration}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Right — visual card */}
-            <div className="process-visual">
-              <div className="process-visual-card">
-                <div className="process-visual-label">Progression du projet</div>
-
-                {steps.map((s, i) => {
-                  const done    = i < activeStep;
-                  const current = i === activeStep;
-                  return (
-                    <div key={s.num} style={{ marginBottom: 18 }}>
-                      <div style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        marginBottom: 6,
-                        fontSize: 13,
-                        fontWeight: 600,
-                        color: current ? "var(--text-dark)" : done ? "var(--text-mid)" : "rgba(0,0,0,0.2)",
-                        transition: "color 0.4s",
-                      }}>
-                        <span>{s.title}</span>
-                        <span style={{
-                          color: done ? "var(--orange)" : current ? "rgba(0,0,0,0.35)" : "rgba(0,0,0,0.15)",
-                          transition: "color 0.4s",
-                        }}>
-                          {done ? "✓" : s.num}
-                        </span>
-                      </div>
-                      <div className="process-bar">
-                        <div
-                          className="process-bar-fill"
-                          style={{
-                            width: done ? "100%" : current ? "60%" : "0%",
-                            transition: "width 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                          }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-
-                <div style={{
-                  marginTop: 28,
-                  padding: "16px 20px",
-                  background: "rgba(255,138,61,0.12)",
-                  border: "1px solid rgba(255,138,61,0.2)",
-                  borderRadius: 10,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: "var(--orange)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                }}>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
-                    <path d="M8 5v4M8 11v.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                  Durée moyenne : 6 — 8 semaines
-                </div>
+        <div className="process-steps-row">
+          {steps.map((s, i) => (
+            <div key={s.num} className="process-card" style={{ animationDelay: `${i * 120}ms` }}>
+              <div className="process-card-num">{s.num}</div>
+              <div className="process-card-connector" aria-hidden="true" />
+              <h3 className="process-card-title">{s.title}</h3>
+              <p className="process-card-desc">{s.desc}</p>
+              <div className="process-card-duration">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.3"/>
+                  <path d="M6 3.5V6l1.5 1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                </svg>
+                {s.duration}
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

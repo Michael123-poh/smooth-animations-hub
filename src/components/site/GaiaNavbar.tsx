@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logoSombre from "../../assets/logos/Gaia_logo_principal_declinaison_sur_fond_sombre@3x.png";
+import logoPrincipal from "../../assets/logos/Gaia_logo_principal@3x.png";
 
 interface NavbarProps {
   solid: boolean;
@@ -94,14 +95,14 @@ export function GaiaNavbar({ solid }: NavbarProps) {
       <nav className={`gaia-nav${solid ? " solid" : ""}`} role="navigation" aria-label="Navigation principale">
         <a href="/" className="gaia-nav-logo" onClick={(e) => { e.preventDefault(); handleNav("/"); }}>
           <img
-            src={logoSombre}
+            src={solid ? logoPrincipal : logoSombre}
             alt="Gaïa Studio"
-            style={{ height: 48, width: "auto", display: "block" }}
+            style={{ height: 48, width: "auto", display: "block", transition: "opacity 0.4s" }}
           />
         </a>
 
         <button
-          className="gaia-hamburger"
+          className={`gaia-hamburger${solid ? " dark" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={menuOpen}

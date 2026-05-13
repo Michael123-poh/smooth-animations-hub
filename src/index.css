@@ -27,9 +27,9 @@
   --orange-pale:   #FFF3EA;
 
   /* —— Secondary: Beige/Cream (inchangé) */
-  --cream:         #FFFCF8;
-  --beige:         #F5F2ED;
-  --beige-dark:    #EAE6DF;
+  --cream:         #FFFFFF;
+  --beige:         #F7F7F5;
+  --beige-dark:    #EDEDEB;
 
   /* —— Legacy aliases (pour compatibilité composants) */
   --navy:          var(--blue-navy);
@@ -74,7 +74,7 @@ html {
 }
 
 body {
-  font-family: 'Nunito', 'Gotham Rounded', system-ui, sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
   background: var(--beige);
   color: var(--text-dark);
   overflow-x: hidden;
@@ -96,7 +96,7 @@ body::after {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Nunito', 'Gotham Rounded', system-ui, sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
   text-wrap: balance;
 }
 
@@ -177,22 +177,27 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 60px;
-  transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
-  /* Start transparent so hero blue gradient shows through */
-}
-.gaia-nav.solid {
+  /* Default = scrolled state: compact, dark, solid */
   background: rgba(14, 14, 66, 0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 1px 0 rgba(255,255,255,0.07), 0 8px 32px rgba(8,8,26,0.35);
-  padding: 14px 60px;
+  padding: 14px 80px;
+  transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
+}
+.gaia-nav.solid {
+  /* Hero state: relaxed, transparent */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  padding: 20px 80px;
 }
 .gaia-nav-logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 800;
   font-size: 20px;
   color: white;
@@ -258,7 +263,7 @@ a {
   gap: 8px;
   background: var(--orange);
   color: white;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 14px;
   padding: 11px 24px;
@@ -386,54 +391,57 @@ a {
 .gaia-hero--eye {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: flex-start;
   padding-top: 0;
 }
-/* Espace vide contrôlé en haut — pousse le texte vers le bas */
+/* Spacer — hidden on PC (justify-content:center handles it) */
 .hero-eye-void {
-  flex: 1;
-  min-height: 100px;
+  flex: 0;
+  min-height: 0;
   pointer-events: none;
 }
+/* Eye shifted right so it's clearly separate from the text block */
 .hero-bg-img--eye {
-  object-position: center 8%;
+  object-position: 62% center;
 }
+/* Gradient: dark left (text readability) → transparent right (eye visible) */
 .hero-bg-overlay--eye {
   background:
-    linear-gradient(180deg,
-      rgba(8, 14, 30, 0.65) 0%,
-      rgba(8, 14, 30, 0.22) 22%,
-      rgba(8, 14, 30, 0.08) 44%,
-      rgba(8, 14, 30, 0.38) 62%,
-      rgba(8, 14, 30, 0.88) 80%,
-      rgba(8, 14, 30, 0.97) 100%
+    linear-gradient(180deg, rgba(8,14,30,0.55) 0%, transparent 12%),
+    linear-gradient(
+      105deg,
+      rgba(8,14,30,0.96) 0%,
+      rgba(8,14,30,0.82) 35%,
+      rgba(8,14,30,0.22) 60%,
+      rgba(8,14,30,0.04) 100%
     );
 }
 .hero-eye-content {
   position: relative;
   z-index: 3;
-  padding: 0 80px 88px;
+  padding: 0 60px 0 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 52%;
 }
-/* Bloc dont la largeur = plus longue ligne du h1.
-   La subtitle s'étire sur exactement cette même largeur. */
+/* Bloc dont la largeur = plus longue ligne du h1 */
 .hero-eye-text-block {
   display: inline-block;
   max-width: 100%;
-  text-align: center;
+  text-align: left;
 }
 .hero-eye-h1 {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(36px, 4.5vw, 64px);
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -1px;
   color: white;
   margin-bottom: 14px;
-  text-align: center;
+  text-align: left;
   text-transform: lowercase;
   white-space: nowrap;
 }
@@ -443,7 +451,7 @@ a {
 }
 /* Chaque caractère = 1 flex item, space-between les répartit sur toute la largeur du h1 */
 .hero-eye-sub {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(13px, 1.55vw, 24px);
   font-weight: 500;
   color: var(--orange);
@@ -456,7 +464,7 @@ a {
   letter-spacing: 0;
 }
 .hero-eye-ctas {
-  justify-content: center;
+  justify-content: flex-start;
 }
 /* Scroll indicator */
 .hero-scroll-indicator {
@@ -516,7 +524,7 @@ a {
   50% { opacity: 0.5; transform: scale(0.7); }
 }
 .gaia-h1 {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(36px, 4.5vw, 68px);
   font-weight: 800;
   line-height: 1.06;
@@ -550,7 +558,7 @@ a {
   border-top: 1px solid rgba(255,255,255,0.12);
 }
 .hero-stat-num {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 30px;
   font-weight: 800;
   color: white;
@@ -588,6 +596,7 @@ a {
 .gaia-hamburger-bar.open-top  { transform: translateY(7px) rotate(45deg); }
 .gaia-hamburger-bar.open-mid  { opacity: 0; transform: scaleX(0); }
 .gaia-hamburger-bar.open-bot  { transform: translateY(-7px) rotate(-45deg); }
+.gaia-hamburger.dark .gaia-hamburger-bar { background: var(--blue-navy); transition: background 0.4s, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease; }
 
 /* ─── MOBILE MENU OVERLAY ────────────────────────────────── */
 .gaia-mobile-menu {
@@ -825,7 +834,7 @@ a {
   align-items: center;
   gap: 12px;
   padding: 0 40px;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -842,8 +851,27 @@ a {
   opacity: 0.6;
 }
 
+/* ─── TEXT BALANCE — applied everywhere ──────────────────── */
+.section-sub,
+.dna-body,
+.dna-h2,
+.gaia-h2,
+.dna-quote p,
+.pillar-desc,
+.pillar-title,
+.step-title,
+.step-desc,
+.testi-text,
+.testi-role,
+.accordion-trigger-title,
+.port-name,
+.port-category {
+  text-wrap: balance;
+}
+
 /* ─── SECTION COMMONS ────────────────────────────────────── */
 .section-label {
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -863,32 +891,55 @@ a {
   flex-shrink: 0;
 }
 .gaia-h2 {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: clamp(28px, 3.5vw, 52px);
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 800;
-  letter-spacing: -1px;
-  line-height: 1.04;
+  letter-spacing: -0.5px;
+  line-height: 1.0;
+  line-height: 1.0;
   color: var(--blue-navy);
 }
 .gaia-h2.on-dark {
   color: white;
 }
 .section-sub {
-  font-size: 16px;
-  line-height: 1.28;
+  font-size: 15px;
+  line-height: 1.2;
   color: var(--text-mid);
-  max-width: 520px;
+  max-width: 280px;
   margin-top: 14px;
+  text-wrap: balance;
 }
 .section-sub.on-dark {
   color: rgba(255,255,255,0.6);
 }
 
+/* ─── GAIA BRIDGE (hero → services) ─────────────────────── */
+.gaia-bridge {
+  background: var(--beige);
+  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 64px 80px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.gaia-bridge-text {
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
+  font-size: clamp(14px, 2.2vw, 32px);
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-navy);
+  max-width: 860px;
+  white-space: nowrap;
+}
+
 /* ─── GAIA SERVICES ──────────────────────────────────────── */
 .gaia-services {
   background: var(--beige);
-  padding: 120px 80px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 70px 80px;
+  border-top: none;
   position: relative;
   overflow: hidden;
 }
@@ -949,7 +1000,7 @@ a {
   opacity: 0.9;
 }
 .service-title {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.3px;
@@ -1000,32 +1051,45 @@ a {
 /* ─── SERVICES ACCORDION LAYOUT ─────────────────────────── */
 .services-top {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 40px;
   margin-bottom: 0;
   position: relative;
   z-index: 1;
 }
+/* Sub aligns with h2, not section-label — compensate for label height (~36px) */
+.services-top .section-sub {
+  padding-top: 36px;
+  margin-top: 0;
+  text-align: right;
+}
+.services-top .gaia-h2 {
+  line-height: 0.9;
+}
+.services-top .section-sub {
+  line-height: 1.2;
+}
 .services-accordion-wrap {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 64px;
   margin-top: 60px;
-  align-items: start;
+  align-items: stretch;
 }
 .services-photo-col {
-  position: sticky;
-  top: 80px;
+  position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  align-self: stretch;
 }
 .services-photo-col img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  position: absolute;
+  inset: 0;
 }
 .services-list-col {
   display: flex;
@@ -1050,16 +1114,17 @@ a {
   gap: 16px;
 }
 .accordion-trigger-title {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 18px;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 17px;
+  line-height: 1.15;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--blue-navy);
   letter-spacing: -0.2px;
   transition: color 0.2s;
 }
 .accordion-item.open .accordion-trigger-title,
 .accordion-trigger:hover .accordion-trigger-title {
-  color: var(--blue-navy);
+  color: var(--orange);
 }
 .accordion-chevron {
   font-size: 22px;
@@ -1092,7 +1157,7 @@ a {
 .accordion-sub-list li {
   font-size: 14px;
   color: var(--text-mid);
-  line-height: 1.3;
+  line-height: 1.15;
   padding-left: 18px;
   position: relative;
 }
@@ -1111,7 +1176,7 @@ a {
 }
 .gaia-dna {
   background: var(--beige);
-  padding: 120px 80px 180px;
+  padding: 70px 80px 80px;
   border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
@@ -1124,6 +1189,11 @@ a {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
+}
+/* Stats span both columns on desktop */
+.dna-grid .dna-stats-row {
+  grid-column: 1 / -1;
+  margin-top: 24px;
 }
 .dna-tag {
   display: inline-block;
@@ -1138,33 +1208,33 @@ a {
   margin-bottom: 24px;
 }
 .dna-h2 {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: clamp(30px, 3.8vw, 52px);
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 800;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   line-height: 1.0;
   color: var(--blue-navy);
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 .dna-body {
-  font-size: 15px;
-  line-height: 1.34;
+  font-size: 14px;
+  line-height: 1.2;
   color: var(--text-mid);
   max-width: 520px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 .dna-quote {
   border-left: 3px solid var(--orange);
   padding-left: 20px;
-  margin-top: 36px;
+  margin-top: 20px;
 }
 .dna-quote p {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 15px;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 14px;
   font-style: normal;
   font-weight: 500;
   color: var(--text-mid);
-  line-height: 1.3;
+  line-height: 1.2;
   max-width: none;
   letter-spacing: 0.01em;
 }
@@ -1173,7 +1243,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 480px;
+  height: auto;
 }
 .dna-circle-bg {
   position: absolute;
@@ -1197,7 +1267,7 @@ a {
   text-align: center;
 }
 .dna-stat-num {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 32px;
   font-weight: 800;
   color: var(--orange);
@@ -1214,7 +1284,7 @@ a {
 /* ─── GAIA PILLARS ───────────────────────────────────────── */
 .gaia-pillars {
   background: var(--blue-navy);
-  padding: 120px 80px;
+  padding: 70px 80px;
   border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
@@ -1223,19 +1293,27 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  align-items: end;
+  align-items: start;
   margin-bottom: 56px;
+}
+.pillars-header .section-sub {
+  padding-top: 36px;
+  margin-top: 0;
+  margin-left: auto;
+  text-align: right;
+  max-width: 320px;
+  line-height: 1.2;
 }
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 .pillar-card {
   background: var(--beige);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 40px 36px;
+  padding: 32px 24px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
   position: relative;
   overflow: hidden;
@@ -1261,7 +1339,7 @@ a {
   opacity: 1;
 }
 .pillar-card:nth-child(even) {
-  margin-top: 24px;
+  margin-top: 0;
 }
 .pillar-icon-wrap {
   width: 56px;
@@ -1278,23 +1356,23 @@ a {
   position: absolute;
   top: 24px;
   right: 28px;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: rgba(0,0,0,0.2);
 }
 .pillar-title {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 22px;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.3px;
-  color: var(--text-dark);
-  margin-bottom: 10px;
+  color: var(--blue-navy);
+  margin-bottom: 8px;
 }
 .pillar-desc {
-  font-size: 14px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.2;
   color: var(--text-mid);
   max-width: none;
 }
@@ -1302,17 +1380,31 @@ a {
 /* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
 .gaia-portfolio {
   background: var(--beige);
-  padding: 120px 80px;
+  padding: 70px 80px;
   border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
 .portfolio-header {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 56px;
+  margin-bottom: 32px;
   gap: 40px;
+}
+.portfolio-header .gaia-h2 {
+  font-size: clamp(26px, 2.4vw, 36px);
+  line-height: 1.0;
+  margin-bottom: 0;
+}
+.portfolio-header .gaia-btn {
+  margin-top: 36px;
+  flex-shrink: 0;
+}
+.pillars-title-mobile { display: none; }
+.portfolio-header .section-sub {
+  padding-top: 50px;
+  margin-top: 0;
 }
 .portfolio-grid {
   display: grid;
@@ -1355,7 +1447,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 28px;
+  padding: 14px 16px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1371,11 +1463,12 @@ a {
   margin-bottom: 6px;
 }
 .port-name {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 18px;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 14px;
   font-weight: 700;
   color: white;
   letter-spacing: -0.2px;
+  line-height: 1.2;
 }
 .port-arrow {
   position: absolute;
@@ -1398,7 +1491,7 @@ a {
 /* ─── GAIA TESTIMONIALS ──────────────────────────────────── */
 .gaia-testimonials {
   background: var(--beige);
-  padding: 120px 0;
+  padding: 70px 0;
   border-top: 1px solid rgba(165,145,120,0.28);
   overflow: hidden;
   position: relative;
@@ -1408,32 +1501,27 @@ a {
 }
 .testi-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 48px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 36px;
 }
 .testi-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 44px 48px;
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
   position: relative;
 }
-.testi-quote-mark {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 60px;
-  line-height: 1;
-  color: var(--orange);
-  opacity: 0.4;
-  position: absolute;
-  top: 28px;
-  right: 36px;
+.testi-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 10px;
 }
 .testi-text {
-  font-size: 15px;
-  line-height: 1.34;
+  font-size: 14px;
+  line-height: 1.2;
   color: var(--text-mid);
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   font-style: normal;
   max-width: none;
   font-weight: 500;
@@ -1444,30 +1532,32 @@ a {
   gap: 14px;
 }
 .testi-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   background: linear-gradient(135deg, var(--orange), var(--navy-mid));
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 13px;
   color: white;
   flex-shrink: 0;
   overflow: hidden;
 }
 .testi-name {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 15px;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-dark);
+  line-height: 1.2;
 }
 .testi-role {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--text-mid);
   margin-top: 2px;
+  line-height: 1.2;
 }
 .testi-btn {
   display: none;
@@ -1509,8 +1599,6 @@ a {
 /* Logos marquee */
 .logos-strip {
   margin-top: 64px;
-  border-top: 1px solid var(--border);
-  padding-top: 40px;
   overflow: hidden;
 }
 .logos-track {
@@ -1521,7 +1609,7 @@ a {
 }
 .logo-item {
   padding: 0 44px;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1533,137 +1621,66 @@ a {
 /* ─── GAIA PROCESS ───────────────────────────────────────── */
 
 /* Wrapper : hauteur auto + padding-bottom ajouté via JS pour le scroll driver */
-.process-scroll-wrapper {
-  position: relative;
-  /* height: auto — c'est le padding-bottom inline (depuis React) qui drive le scroll */
-}
-
-/* Section sticky : se colle en haut dès qu'elle entre dans le viewport */
-.process-sticky {
-  position: sticky;
-  top: 0;
-}
-
 .gaia-process {
   background: var(--beige);
-  padding: 120px 80px 100px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 70px 80px 80px;
   position: relative;
   overflow: hidden;
 }
-.process-grid {
+
+/* 4 étapes en ligne */
+.process-steps-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-top: 60px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
 }
-.process-steps {
-  position: relative;
+
+.process-card {
+  padding: 0 32px 0 28px;
+  border-left: 2px solid rgba(165,145,120,0.22);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.process-line {
-  position: absolute;
-  left: 22px;
-  top: 44px;
-  bottom: 44px;
-  width: 2px;
-  background: var(--border);
-  border-radius: 1px;
-}
-.process-line-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  background: var(--orange);
-  transition: height 0.8s ease;
-}
-.process-step {
-  display: flex;
-  gap: 24px;
-  padding: 0 0 44px 0;
-  position: relative;
-}
-.process-step:last-child {
-  padding-bottom: 0;
-}
-.step-num {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(0,0,0,0.35);
-  flex-shrink: 0;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
-  position: relative;
-  z-index: 1;
-}
-.process-step.active .step-num {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: white;
-}
-.step-content {
-  padding-top: 10px;
-}
-.step-title {
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 8px;
-  letter-spacing: -0.2px;
-}
-.step-desc {
-  font-size: 14px;
-  line-height: 1.3;
-  color: var(--text-mid);
-  max-width: none;
-}
-.process-visual {
-  position: sticky;
-  top: 120px;
-}
-.process-visual-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 48px;
-  box-shadow: 0 12px 40px rgba(8,8,26,0.08);
-}
-.process-visual-label {
+.process-card:first-child { border-left: none; padding-left: 0; }
+.process-visible .process-card { opacity: 1; transform: translateY(0); }
+
+.process-card-num {
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   color: var(--orange);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
-.process-bar {
-  height: 6px;
-  background: rgba(0,0,0,0.08);
-  border-radius: 3px;
+.process-card-title {
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 800;
+  color: var(--blue-navy);
   margin-bottom: 10px;
-  overflow: hidden;
+  line-height: 1.15;
 }
-.process-bar-fill {
-  height: 100%;
-  background: var(--orange);
-  border-radius: 3px;
-  transition: width 0.8s ease;
+.process-card-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-mid);
+  margin-bottom: 14px;
+}
+.process-card-duration {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.04em;
 }
 
 /* ─── GAIA CTA ───────────────────────────────────────────── */
 .gaia-cta {
   background: var(--beige);
-  padding: 120px 80px;
+  padding: 70px 80px;
   border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
@@ -1744,7 +1761,7 @@ textarea.form-input {
   text-align: center;
   padding: 24px;
   color: var(--text-dark);
-  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 600;
 }
 
@@ -1884,39 +1901,149 @@ textarea.form-input {
 /* ─── GAIA FOOTER ────────────────────────────────────────── */
 .gaia-footer {
   background: var(--blue-deep);
-  padding: 80px 80px 40px;
   position: relative;
   overflow: hidden;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
-.gaia-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+
+/* TOP ROW: logo left + tagline right */
+.footer-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 80px 36px;
+}
+.footer-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+.footer-top-tagline {
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
+  font-size: clamp(13px, 1.1vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  line-height: 1;
+}
+.footer-o-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* SEPARATOR */
+.footer-sep {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,138,61,0.3), transparent);
+  margin: 0 80px;
+  background: rgba(255,255,255,0.08);
 }
-.footer-grid {
+
+/* MIDDLE: CTA col + nav cols */
+.footer-mid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 60px;
-  margin-bottom: 60px;
+  padding: 52px 80px 40px;
 }
-.footer-brand-desc {
-  font-size: 14px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.42);
-  margin-top: 16px;
-  max-width: 260px;
+
+/* Left CTA column */
+.footer-cta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-cta-label {
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
+  font-size: clamp(28px, 3.2vw, 52px);
+  font-weight: 800;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.0;
+  letter-spacing: -1px;
+}
+.footer-cta-link {
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
+  font-size: clamp(28px, 3.2vw, 52px);
+  font-weight: 800;
+  color: var(--orange);
+  line-height: 1.0;
+  letter-spacing: -1px;
+  text-decoration: none;
+  font-style: italic;
+  transition: opacity 0.2s;
+  display: block;
+  margin-bottom: 32px;
+}
+.footer-cta-link:hover { opacity: 0.75; }
+
+.footer-contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-contact-stack a,
+.footer-contact-stack span {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  line-height: 1.2;
+  transition: color 0.2s;
+}
+.footer-contact-stack a:hover { color: rgba(255,255,255,0.85); }
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+.footer-social-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.35);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.footer-social-icon:hover {
+  border-color: rgba(255,138,61,0.5);
+  color: var(--orange);
+  background: rgba(255,138,61,0.08);
+}
+
+/* Right nav columns */
+.footer-nav-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding-top: 8px;
 }
 .footer-col-title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.25);
   margin-bottom: 20px;
+  line-height: 1;
 }
 .footer-links {
   list-style: none;
@@ -1926,30 +2053,43 @@ textarea.form-input {
 }
 .footer-links a {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
   font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.2;
+  text-decoration: none;
   transition: color 0.2s;
 }
-.footer-links a:hover {
-  color: white;
+.footer-links a:hover { color: white; }
+
+/* BIG BRAND WORDMARK */
+.footer-wordmark {
+  flex: 1;
+  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
+  font-size: clamp(80px, 15vw, 220px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  color: rgba(255,255,255,0.04);
+  line-height: 0.85;
+  text-align: center;
+  padding: 0 80px 0;
+  user-select: none;
+  pointer-events: none;
+  overflow: hidden;
+  white-space: nowrap;
 }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.07);
-  padding-top: 28px;
+
+/* LEGAL STRIP */
+.footer-legal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
-  color: rgba(255,255,255,0.22);
-  gap: 20px;
+  padding: 16px 80px 24px;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.18);
+  gap: 16px;
   flex-wrap: wrap;
-}
-.footer-bottom a {
-  color: rgba(255,255,255,0.35);
-  transition: color 0.2s;
-}
-.footer-bottom a:hover {
-  color: rgba(255,255,255,0.7);
+  line-height: 1.2;
 }
 
 /* ─── UTILITY ANIMATIONS ─────────────────────────────────── */
@@ -2198,10 +2338,13 @@ textarea.form-input {
     gap: 50px;
   }
   .dna-visual {
-    height: 380px;
+    height: auto;
   }
 
-  /* Pillars: keep 2-col, remove vertical offset */
+  /* Pillars: 2-col at tablet landscape, remove vertical offset */
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .pillar-card:nth-child(even) {
     margin-top: 0;
   }
@@ -2243,20 +2386,22 @@ textarea.form-input {
   .testi-inner {
     padding: 0 60px;
   }
-  .gaia-footer {
-    padding: 70px 60px 36px;
-  }
+  .footer-top-row { padding: 40px 60px 28px; }
+  .footer-sep { margin: 0 60px; }
+  .footer-mid { padding: 44px 60px 32px; gap: 40px; }
+  .footer-wordmark { padding: 0 60px; letter-spacing: -2px; }
+  .footer-legal { padding: 14px 60px 20px; }
 }
 
 /* ─── 768px — Tablet portrait ────────────────────────────── */
 @media (max-width: 768px) {
 
-  /* NAV: compact padding on mobile */
+  /* NAV: compact padding on mobile — match section content padding */
   .gaia-nav {
-    padding: 16px 24px;
+    padding: 14px 28px;
   }
   .gaia-nav.solid {
-    padding: 14px 24px;
+    padding: 18px 28px;
   }
 
   /* HERO: colonne unique, photo masquée, badges inline, stats en grille */
@@ -2306,24 +2451,29 @@ textarea.form-input {
   /* Hero Eye — mobile : overlay plein écran, texte sur l'image */
   .gaia-hero--eye {
     justify-content: flex-end;
-    align-items: stretch;
+    align-items: center;
     min-height: 100dvh;
   }
-  /* bg-wrap reste absolu (plein écran) — pas de stacking */
+  /* bg-wrap : plein écran absolu, image toujours visible */
   .gaia-hero--eye .hero-bg-wrap {
     position: absolute;
     inset: 0;
-    height: auto;
+    width: 100%;
+    height: 100%;
   }
   .gaia-hero--eye .hero-bg-img--eye {
-    object-position: center 22%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 68% center;
+    display: block;
   }
   .gaia-hero--eye .hero-bg-overlay--eye {
     background:
       linear-gradient(180deg,
-        rgba(8, 14, 30, 0.32) 0%,
+        rgba(8, 14, 30, 0.30) 0%,
         rgba(8, 14, 30, 0.04) 25%,
-        rgba(8, 14, 30, 0.12) 48%,
+        rgba(8, 14, 30, 0.10) 48%,
         rgba(8, 14, 30, 0.88) 68%,
         rgba(8, 14, 30, 0.97) 100%
       );
@@ -2331,12 +2481,14 @@ textarea.form-input {
   .hero-eye-void {
     display: block;
     flex: 1;
+    min-height: 60px;
   }
   .hero-eye-content {
     padding: 0 24px 52px;
     background: transparent;
-    justify-content: flex-end;
     align-items: center;
+    text-align: center;
+    max-width: 100%;
   }
   .hero-eye-text-block {
     display: inline-block;
@@ -2352,18 +2504,20 @@ textarea.form-input {
   }
   .hero-eye-sub {
     font-size: clamp(11px, 3.5vw, 18px);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
     width: 100%;
     letter-spacing: 0;
   }
   .hero-eye-ctas {
-    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   .hero-eye-ctas .gaia-btn {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    padding: 12px 28px;
+    font-size: 14px;
   }
   /* Stats : grille 3 colonnes avec séparateurs */
   .hero-stats {
@@ -2385,37 +2539,9 @@ textarea.form-input {
     border-right: none;
   }
 
-  /* PROCESS sticky : désactivé sur tablette — toutes les étapes visibles */
-  .process-scroll-wrapper {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  .process-sticky {
-    position: relative;
-    top: 0;
-  }
-  .process-step {
-    opacity: 1 !important;
-  }
-  .step-desc {
-    max-height: 300px !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-    margin-bottom: 0 !important;
-  }
-  .step-num {
-    background: rgba(255,138,61,0.18) !important;
-    border-color: rgba(255,138,61,0.35) !important;
-    color: var(--orange) !important;
-  }
-  .step-title {
-    color: var(--text-dark) !important;
-  }
-  .step-content > div:last-child {
-    max-height: 30px !important;
-    opacity: 1 !important;
-    margin-top: 8px !important;
-  }
+  /* PROCESS : 2 colonnes sur tablette */
+  .process-steps-row { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .process-card:nth-child(3) { border-left: none; padding-left: 0; }
 
   /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
   .gaia-dna {
@@ -2436,15 +2562,17 @@ textarea.form-input {
     padding: 0 28px;
   }
 
-  /* SECTION headers: stack label + title left, sub below */
+  /* SECTION headers: keep 2-col so sub stays level with h2 */
   .pillars-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: 20px;
   }
   .pillars-header .section-sub {
-    text-align: left;
-    margin-top: 8px;
+    padding-top: 36px;
+    margin-top: 0;
+    text-align: right;
+    margin-left: auto;
   }
   /* Services top: keep subtitle to the right on all sizes */
   .services-top {
@@ -2453,10 +2581,23 @@ textarea.form-input {
   }
   .services-top .section-sub {
     font-size: 13px;
+    line-height: 1.2;
     text-align: right;
     flex-shrink: 0;
     max-width: 45%;
+    padding-top: 36px;
   }
+  /* Bridge: tighter on mobile */
+  .gaia-bridge {
+    padding: 40px 20px;
+  }
+  .gaia-bridge-text {
+    font-size: clamp(10px, 3.2vw, 15px);
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
   /* Services accordion: stack photo above list */
   .services-accordion-wrap {
     grid-template-columns: 1fr;
@@ -2464,9 +2605,12 @@ textarea.form-input {
     margin-top: 40px;
   }
   .services-photo-col {
-    position: static;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 12px;
+    overflow: hidden;
   }
 
   /* SERVICES: featured full-width (reset grid from 1200), others 2-col */
@@ -2484,7 +2628,7 @@ textarea.form-input {
     font-size: 22px;
   }
 
-  /* DNA: text first, visual below */
+  /* DNA: text → image → stats */
   .dna-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2495,13 +2639,19 @@ textarea.form-input {
     order: 1;
   }
   .dna-visual {
-    height: 220px;
+    height: auto;
     order: 2;
-    opacity: 0.8;
+    opacity: 1;
   }
-  .dna-stats-row {
+  .dna-grid .dna-stats-row {
+    order: 3;
     grid-template-columns: repeat(3, 1fr);
+    margin-top: 0;
   }
+
+  /* PILLARS: mobile title variant */
+  .pillars-title-desktop { display: none; }
+  .pillars-title-mobile { display: inline; }
 
   /* PILLARS: keep 2-col, tighter padding */
   .pillars-grid {
@@ -2556,20 +2706,22 @@ textarea.form-input {
     padding: 32px 24px;
   }
 
-  /* FOOTER: brand block full width, links in 2-col */
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+  /* FOOTER: tablet */
+  .footer-top-row { padding: 32px 28px 24px; }
+  .footer-sep { margin: 0 28px; }
+  .footer-mid { padding: 36px 28px 28px; gap: 32px; grid-template-columns: 1fr; }
+  .footer-nav-cols { grid-template-columns: 1fr 1fr; }
+  .footer-wordmark { font-size: clamp(60px, 12vw, 140px); padding: 0 28px; letter-spacing: -2px; }
+  .footer-contact-row {
+    gap: 8px;
   }
-  .footer-grid > div:first-child {
-    grid-column: 1 / -1;
+  .footer-contact-sep {
+    display: none;
   }
-  .gaia-footer {
-    padding: 56px 28px 28px;
-  }
-  .footer-bottom {
+  .footer-legal {
+    padding: 14px 28px;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     text-align: center;
   }
 }
@@ -2594,10 +2746,13 @@ textarea.form-input {
     padding: 0 20px 48px;
   }
   .hero-eye-content {
-    padding: 0 20px 44px;
+    padding: 0 20px 40px;
+    align-items: center;
+    text-align: center;
   }
   .hero-eye-h1 {
     font-size: clamp(22px, 6.5vw, 30px);
+    text-align: center;
   }
   .hero-eye-sub {
     font-size: clamp(9px, 3vw, 14px);
@@ -2605,6 +2760,10 @@ textarea.form-input {
     justify-content: space-between;
     width: 100%;
     letter-spacing: 0;
+  }
+  .hero-eye-ctas .gaia-btn {
+    padding: 11px 24px;
+    font-size: 13px;
   }
   .hero-sub {
     font-size: 15px;
@@ -2635,44 +2794,18 @@ textarea.form-input {
   .gaia-h2 {
     font-size: clamp(22px, 6.5vw, 30px);
     letter-spacing: -0.5px;
+    line-height: 1.0;
   }
   .section-sub {
-    font-size: 14px;
-    line-height: 1.6;
-    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.2;
+    margin-top: 8px;
   }
 
-  /* PROCESS sticky désactivé sur phone — toutes les étapes visibles */
-  .process-scroll-wrapper {
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-  }
-  .process-sticky {
-    position: relative;
-    top: 0;
-  }
-  .process-step {
-    opacity: 1 !important;
-  }
-  .step-desc {
-    max-height: 300px !important;
-    opacity: 1 !important;
-    overflow: visible !important;
-    margin-bottom: 0 !important;
-  }
-  .step-num {
-    background: rgba(255,138,61,0.18) !important;
-    border-color: rgba(255,138,61,0.35) !important;
-    color: var(--orange) !important;
-  }
-  .step-title {
-    color: var(--text-dark) !important;
-  }
-  .step-content > div:last-child {
-    max-height: 30px !important;
-    opacity: 1 !important;
-    margin-top: 8px !important;
-  }
+  /* PROCESS : 1 colonne sur mobile */
+  .process-steps-row { grid-template-columns: 1fr; row-gap: 28px; }
+  .process-card { border-left: none; padding-left: 0; border-top: 2px solid rgba(165,145,120,0.22); padding-top: 24px; }
+  .process-card:first-child { border-top: none; padding-top: 0; }
 
   /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
   .gaia-dna {
@@ -2788,50 +2921,49 @@ textarea.form-input {
     box-shadow: 0 4px 24px rgba(8,8,26,0.12);
   }
 
-  /* DNA: stats horizontal on phone */
-  .dna-stats-row {
+  /* DNA: stats horizontal on phone — equal columns, flush */
+  .dna-grid .dna-stats-row {
+    order: 3;
     grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+  }
+  .dna-stat {
+    padding: 20px 8px;
+  }
+  .dna-stat-num {
+    font-size: 24px;
+  }
+  .dna-stat-label {
+    font-size: 11px;
   }
   .dna-visual {
-    height: 180px;
+    height: auto;
   }
 
-  /* PORTFOLIO: bento créatif — magazine asymétrique
-     Col 1 (large) + cols 2-3 (étroites) sur 3 lignes */
+  /* PORTFOLIO: 2 colonnes égales sur mobile */
   .portfolio-grid {
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 170px 120px 150px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 160px);
     gap: 10px;
   }
-  /* Item 1: gauche large, 2 lignes */
-  .portfolio-grid .port-item:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-  /* Item 2: top droite, 2 cols étroites */
-  .portfolio-grid .port-item:nth-child(2) {
-    grid-column: 2 / 4;
-    grid-row: 1;
-  }
-  /* Item 3: mid col 2 */
-  .portfolio-grid .port-item:nth-child(3) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-  /* Item 4: mid col 3 */
-  .portfolio-grid .port-item:nth-child(4) {
-    grid-column: 3;
-    grid-row: 2;
-  }
-  /* Item 5: bottom gauche+centre */
-  .portfolio-grid .port-item:nth-child(5) {
-    grid-column: 1 / 3;
-    grid-row: 3;
-  }
-  /* Item 6: bottom droite */
+  .portfolio-grid .port-item:nth-child(1),
+  .portfolio-grid .port-item:nth-child(2),
+  .portfolio-grid .port-item:nth-child(3),
+  .portfolio-grid .port-item:nth-child(4),
+  .portfolio-grid .port-item:nth-child(5),
   .portfolio-grid .port-item:nth-child(6) {
-    grid-column: 3;
-    grid-row: 3;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* Portfolio button: less padding on mobile */
+  .portfolio-header .gaia-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+    margin-top: 36px;
   }
 
   /* PILLARS: boost decorative visibility on mobile */
@@ -2922,19 +3054,13 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 
-  /* FOOTER: all single column on phone */
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .footer-grid > div:first-child {
-    grid-column: auto;
-  }
-  .gaia-footer {
-    padding: 48px 20px 24px;
-  }
-  .footer-bottom {
-    font-size: 12px;
+  /* FOOTER: phone */
+  .footer-top-row { padding: 28px 20px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .footer-sep { margin: 0 20px; }
+  .footer-mid { padding: 32px 20px 24px; }
+  .footer-nav-cols { grid-template-columns: 1fr 1fr; }
+  .footer-wordmark { font-size: clamp(52px, 16vw, 100px); padding: 0 20px; letter-spacing: -1px; }
+  .footer-legal { padding: 12px 20px 20px; flex-direction: column; gap: 6px; text-align: center; font-size: 11px;
   }
 
   /* FORM */
@@ -2959,6 +3085,15 @@ textarea.form-input {
   }
   /* Pillars is full-width (no margin) — compensate with extra padding */
   .gaia-pillars {
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+  /* Navbar aligns with content */
+  .gaia-nav {
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+  .gaia-nav.solid {
     padding-left: 180px;
     padding-right: 180px;
   }

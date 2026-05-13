@@ -33,7 +33,7 @@ export function GaiaServices() {
         <div>
           <div className="section-label">Notre Jardin</div>
           <h2 className="gaia-h2 reveal" id="services-heading">
-            Ce que nous<br />créons pour vous
+            Ce que nous créons<br /><span style={{ color: "var(--orange)" }}>pour vous</span>
           </h2>
         </div>
         <p className="section-sub reveal d2" style={{ marginTop: 0, textAlign: "right" }}>

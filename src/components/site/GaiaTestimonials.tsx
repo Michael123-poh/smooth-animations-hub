@@ -1,35 +1,45 @@
 const testimonials = [
   {
-    text: "Gaïa a transformé notre vision en une identité visuelle qui nous ressemble vraiment. Chaque détail reflète notre ADN d'entreprise. Le résultat a dépassé toutes nos attentes.",
-    name: "Marguerite Nkeng",
-    role: "Directrice générale",
-    company: "Oracle Education Consultancy",
-    initials: "MN",
+    text: "L'équipe Gaïa a été un partenaire fiable et dévoué tout au long de ce projet en mettant à notre service leur expertise avec bienveillance et professionnalisme.",
+    name: "Le Management de OEC",
+    role: "Oracle Education Consultancy",
+    initials: "OE",
     color: "#16166A",
   },
   {
-    text: "Une collaboration remarquable. L'équipe Gaïa a su comprendre nos enjeux dès le premier échange et proposer une identité à la hauteur de nos ambitions. Professionnalisme et créativité au rendez-vous.",
-    name: "Bertrand Fouda",
-    role: "Fondateur",
-    company: "ILMA Consulting",
-    initials: "BF",
+    text: "Confier notre branding à l'équipe Gaïa est la meilleure décision que j'ai prise après avoir décidé de mettre sur pied mon cabinet.",
+    name: "Fred MILLA",
+    role: "CEO · ILMA Consulting",
+    initials: "FM",
     color: "#20208A",
   },
   {
-    text: "Notre packaging VITAPRO est maintenant reconnaissable en rayons. Gaïa a su capturer l'essence naturelle de notre marque dans chaque élément graphique. Un travail d'orfèvre.",
-    name: "Sandrine Mbella",
-    role: "Responsable marketing",
-    company: "VITAPRO",
-    initials: "SM",
+    text: "L'équipe Gaïa a su nous révéler tout le potentiel de notre projet. Nous étions complètement stupéfaits par le résultat.",
+    name: "Mmes MBANGO & YOUDOM",
+    role: "Co-fondatrices de l'entreprise",
+    initials: "MB",
     color: "#3D6B4F",
   },
   {
-    text: "Travailler avec Gaïa a été une expérience humaine avant tout. Ils écoutent, ils comprennent, et ils livrent. Notre nouvelle identité a immédiatement séduit nos investisseurs.",
-    name: "Hervé Nkemdirim",
-    role: "CEO",
-    company: "Invest Link",
-    initials: "HN",
+    text: "Avec l'équipe Gaïa, construire notre identité visuelle était une belle aventure de collaboration et nous sommes ravis de les avoir à nos côtés jusqu'à ce jour.",
+    name: "M. Eddy Ernest N.",
+    role: "CEO · Invest Link",
+    initials: "EE",
     color: "#7B3F2A",
+  },
+  {
+    text: "Grâce au travail acharné de l'équipe Gaïa, notre résidence a gagné une place notoire en hôtellerie dans la zone de Douala 5ème.",
+    name: "M. NZIMA S. Seraphin",
+    role: "CEO · SCI Isabella",
+    initials: "NS",
+    color: "#4A3728",
+  },
+  {
+    text: "Nous sommes ravis d'avoir travaillé avec l'équipe Gaïa sur la conception et le déploiement de notre marque. Ils ont su trouver le juste milieu entre nos valeurs et les besoins du marché actuel.",
+    name: "M. & Mme KUECHE",
+    role: "Co-fondateurs de la marque",
+    initials: "KU",
+    color: "#6B2A5F",
   },
 ];
 
@@ -42,14 +52,14 @@ export function GaiaTestimonials() {
   return (
     <section className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
       <div className="testi-inner">
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 40 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 40 }}>
           <div>
             <div className="section-label" style={{ color: "var(--orange)" }}>Notre Écho</div>
             <h2 className="gaia-h2" id="testi-heading">
-              Ce que disent<br />nos clients
+              Ce que disent<br /><span style={{ color: "var(--orange)" }}>nos clients</span>
             </h2>
           </div>
-          <p className="section-sub" style={{ marginTop: 0, textAlign: "right" }}>
+          <p className="section-sub" style={{ marginTop: 0, textAlign: "right", paddingTop: 36 }}>
             Ils nous ont fait confiance.<br />Voilà ce qu'ils en pensent.
           </p>
         </div>
@@ -57,8 +67,15 @@ export function GaiaTestimonials() {
         <div className="testi-grid">
           {testimonials.map((t, i) => (
             <article key={i} className="testi-card">
-              <div className="testi-quote-mark" aria-hidden="true">"</div>
-              <p className="testi-text">"{t.text}"</p>
+              {/* Stars */}
+              <div className="testi-stars" aria-label="5 étoiles">
+                {[...Array(5)].map((_, s) => (
+                  <svg key={s} width="12" height="12" viewBox="0 0 12 12" fill="var(--orange)" aria-hidden="true">
+                    <path d="M6 1l1.2 2.4 2.7.4-1.95 1.9.46 2.66L6 7.1l-2.41 1.26.46-2.66L2.1 3.8l2.7-.4z"/>
+                  </svg>
+                ))}
+              </div>
+              <p className="testi-text">{t.text}</p>
               <div className="testi-author">
                 <div
                   className="testi-avatar"
@@ -69,7 +86,7 @@ export function GaiaTestimonials() {
                 </div>
                 <div>
                   <div className="testi-name">{t.name}</div>
-                  <div className="testi-role">{t.role} · {t.company}</div>
+                  <div className="testi-role">{t.role}</div>
                 </div>
               </div>
             </article>

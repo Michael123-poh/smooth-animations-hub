@@ -94,9 +94,10 @@ export function GaiaPillars() {
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="pillars-header">
           <div>
-            <div className="section-label">Nos Titans</div>
+            <div className="section-label">Nos Valeurs</div>
             <h2 className="gaia-h2 reveal" id="pillars-heading">
-              Les valeurs qui<br />nous fondent
+              <span className="pillars-title-desktop">Les valeurs qui<br /><span style={{ color: "var(--orange)" }}>nous fondent</span></span>
+              <span className="pillars-title-mobile">Les valeurs<br />qui nous<br /><span style={{ color: "var(--orange)" }}>fondent</span></span>
             </h2>
           </div>
           <p className="section-sub reveal d2" style={{ marginTop: 0 }}>

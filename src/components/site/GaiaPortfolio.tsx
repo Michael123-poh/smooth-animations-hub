@@ -54,7 +54,7 @@ export function GaiaPortfolio() {
         <div>
           <div className="section-label">Nos Récoltes</div>
           <h2 className="gaia-h2 reveal" id="portfolio-heading">
-            Des marques qui<br />ont trouvé leur voix
+            Des marques<br />qui ont trouvé<br /><span style={{ color: "var(--orange)" }}>leur voix</span>
           </h2>
         </div>
         <button
@@ -99,11 +99,6 @@ export function GaiaPortfolio() {
             <div className="port-overlay">
               <div className="port-category">{p.category}</div>
               <div className="port-name">{p.name}</div>
-            </div>
-            <div className="port-arrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7h10M7 2l5 5-5 5" stroke="#16166A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
             </div>
           </article>
         ))}
