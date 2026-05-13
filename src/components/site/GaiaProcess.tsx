@@ -61,9 +61,10 @@ export function GaiaProcess() {
         <div className="process-steps-row">
           {steps.map((s, i) => (
             <div key={s.num} className="process-card" style={{ animationDelay: `${i * 120}ms` }}>
-              <div className="process-card-num">{s.num}</div>
-              <div className="process-card-connector" aria-hidden="true" />
-              <h3 className="process-card-title">{s.title}</h3>
+              <div className="process-card-header">
+                <span className="process-card-num">{s.num}</span>
+                <h3 className="process-card-title">{s.title}</h3>
+              </div>
               <p className="process-card-desc">{s.desc}</p>
               <div className="process-card-duration">
                 <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">

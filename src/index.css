@@ -1645,21 +1645,27 @@ a {
 .process-card:first-child { border-left: none; padding-left: 0; }
 .process-visible .process-card { opacity: 1; transform: translateY(0); }
 
+.process-card-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
 .process-card-num {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.14em;
-  color: var(--orange);
-  margin-bottom: 14px;
+  color: var(--blue-navy);
+  flex-shrink: 0;
 }
 .process-card-title {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(15px, 1.2vw, 18px);
+  font-size: clamp(14px, 1.1vw, 17px);
   font-weight: 800;
   color: var(--blue-navy);
-  margin-bottom: 10px;
-  line-height: 1.15;
+  margin-bottom: 0;
+  line-height: 1.05;
 }
 .process-card-desc {
   font-size: 13.5px;
@@ -2802,10 +2808,25 @@ textarea.form-input {
     margin-top: 8px;
   }
 
-  /* PROCESS : 1 colonne sur mobile */
-  .process-steps-row { grid-template-columns: 1fr; row-gap: 28px; }
-  .process-card { border-left: none; padding-left: 0; border-top: 2px solid rgba(165,145,120,0.22); padding-top: 24px; }
-  .process-card:first-child { border-top: none; padding-top: 0; }
+  /* PROCESS : horizontal scrollable sur mobile */
+  .process-steps-row {
+    grid-template-columns: repeat(4, 72vw);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    padding-bottom: 12px;
+  }
+  .process-steps-row::-webkit-scrollbar { display: none; }
+  .process-card {
+    scroll-snap-align: start;
+    border-left: 2px solid rgba(165,145,120,0.22);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-top: none;
+    padding-top: 0;
+  }
+  .process-card:first-child { border-left: none; padding-left: 0; }
 
   /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
   .gaia-dna {
