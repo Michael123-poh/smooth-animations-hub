@@ -1009,7 +1009,7 @@ a {
 }
 .services-accordion-wrap {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 0.8fr 1.2fr;
   gap: 64px;
   margin-top: 60px;
   align-items: start;
@@ -1019,7 +1019,7 @@ a {
   top: 80px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
 }
 .services-photo-col img {
   width: 100%;
@@ -2339,8 +2339,8 @@ textarea.form-input {
     align-items: center;
   }
   .hero-eye-text-block {
-    max-width: 100%;
-    width: 100%;
+    display: inline-block;
+    max-width: 90vw;
     text-align: center;
   }
   .hero-eye-h1 {
@@ -2353,11 +2353,10 @@ textarea.form-input {
   .hero-eye-sub {
     font-size: clamp(11px, 3.5vw, 18px);
     margin-bottom: 28px;
-    display: block;
-    text-align: center;
-    letter-spacing: 0.45em;
-    justify-content: initial;
-    width: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    letter-spacing: 0;
   }
   .hero-eye-ctas {
     width: 100%;
@@ -2602,7 +2601,10 @@ textarea.form-input {
   }
   .hero-eye-sub {
     font-size: clamp(9px, 3vw, 14px);
-    letter-spacing: 0.35em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    letter-spacing: 0;
   }
   .hero-sub {
     font-size: 15px;
@@ -2830,6 +2832,30 @@ textarea.form-input {
   .portfolio-grid .port-item:nth-child(6) {
     grid-column: 3;
     grid-row: 3;
+  }
+
+  /* PILLARS: boost decorative visibility on mobile */
+  .pillars-deco-pattern { opacity: 0.10 !important; }
+  .pillars-deco-glow-tr {
+    width: 260px !important;
+    height: 260px !important;
+    top: -5% !important;
+    right: -5% !important;
+    background: radial-gradient(circle, rgba(255,138,61,0.22) 0%, transparent 65%) !important;
+  }
+  .pillars-deco-ring-tr {
+    opacity: 0.14 !important;
+    top: -10px !important;
+    right: -10px !important;
+    width: 200px !important;
+    height: 200px !important;
+  }
+  .pillars-deco-ring-bl {
+    opacity: 0.12 !important;
+    bottom: -20px !important;
+    left: -20px !important;
+    width: 160px !important;
+    height: 160px !important;
   }
 
   /* PILLARS: fade right edge for scroll rail */

@@ -53,9 +53,9 @@ export function GaiaPillars() {
     <section className="gaia-pillars" id="valeurs" aria-labelledby="pillars-heading">
 
       {/* Decorative layer */}
-      <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+      <div aria-hidden="true" className="pillars-deco-layer" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
         {/* Pattern texture */}
-        <div style={{
+        <div className="pillars-deco-pattern" style={{
           position: "absolute", inset: 0,
           backgroundImage: `url(${patternSombre})`,
           backgroundSize: "cover",
@@ -63,13 +63,13 @@ export function GaiaPillars() {
           opacity: 0.06,
         }} />
         {/* Orange glow top-right */}
-        <div style={{
+        <div className="pillars-deco-glow-tr" style={{
           position: "absolute", top: "-10%", right: "-5%",
           width: 500, height: 500,
           background: "radial-gradient(circle, rgba(255,138,61,0.13) 0%, transparent 65%)",
           borderRadius: "50%",
         }} />
-        {/* Blue glow bottom-left */}
+        {/* White glow bottom-left */}
         <div style={{
           position: "absolute", bottom: "-15%", left: "-8%",
           width: 420, height: 420,
@@ -77,14 +77,14 @@ export function GaiaPillars() {
           borderRadius: "50%",
         }} />
         {/* Decorative ring top-right */}
-        <svg style={{ position: "absolute", top: -30, right: -30, opacity: 0.07 }}
+        <svg className="pillars-deco-ring-tr" style={{ position: "absolute", top: -30, right: -30, opacity: 0.07 }}
           width="360" height="360" viewBox="0 0 360 360" fill="none">
           <circle cx="180" cy="180" r="170" stroke="white" strokeWidth="1.5" strokeDasharray="4 12" />
           <circle cx="180" cy="180" r="120" stroke="white" strokeWidth="1" />
           <circle cx="180" cy="180" r="60" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.6" />
         </svg>
         {/* Decorative ring bottom-left */}
-        <svg style={{ position: "absolute", bottom: -60, left: -60, opacity: 0.06 }}
+        <svg className="pillars-deco-ring-bl" style={{ position: "absolute", bottom: -60, left: -60, opacity: 0.06 }}
           width="280" height="280" viewBox="0 0 280 280" fill="none">
           <circle cx="140" cy="140" r="130" stroke="white" strokeWidth="1" strokeDasharray="3 9" />
           <circle cx="140" cy="140" r="80" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.5" />
