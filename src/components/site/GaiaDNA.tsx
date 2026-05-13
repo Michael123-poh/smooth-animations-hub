@@ -147,41 +147,6 @@ export function GaiaDNA() {
             />
           ))}
 
-          {/* Floating label Douala, Cameroun */}
-          <div
-            className="float-bob"
-            style={{
-              position: "absolute",
-              bottom: "-20px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              background: "rgba(255,255,255,0.07)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: 12,
-              padding: "16px 24px",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
-              zIndex: 10,
-            }}
-          >
-            <div
-              style={{
-                fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
-                fontSize: 22,
-                fontWeight: 800,
-                color: "var(--orange)",
-                letterSpacing: "-0.5px",
-              }}
-            >
-              Douala, Cameroun
-            </div>
-            <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 4, fontWeight: 500 }}>
-              Agence de branding & design
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { GaiaCircleMotif } from "./GaiaCircleMotif";
-import shape1 from "../../assets/deco/Gaia_Decorative_Shape_1@3x.png";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -69,34 +68,6 @@ export function GaiaCTA() {
 
   return (
     <section className="gaia-cta" id="contact" aria-labelledby="cta-heading">
-      {/* Decorative top shape — parallax accent */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: "-80px",
-          right: "-60px",
-          width: "360px",
-          opacity: 0.1,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      >
-        <img src={shape1} alt="" style={{ width: "100%", height: "auto" }} />
-      </div>
-
-      {/* Ambient orbs */}
-      <div aria-hidden="true" style={{
-        position: "absolute",
-        bottom: "-80px",
-        left: "-80px",
-        width: 400,
-        height: 400,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,138,61,0.1) 0%, transparent 70%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      }} />
 
       <div className="cta-grid" style={{ position: "relative", zIndex: 1 }}>
         {/* Left — text */}
@@ -133,15 +104,15 @@ export function GaiaCTA() {
               },
             ].map((c) => (
               <div key={c.label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                <div style={{ width: 40, height: 40, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.75)", flexShrink: 0 }} aria-hidden="true">
+                <div style={{ width: 40, height: 40, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-mid)", flexShrink: 0 }} aria-hidden="true">
                   {c.svg}
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{c.label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: "var(--text-mid)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{c.label}</div>
                   {c.href ? (
-                    <a href={c.href} style={{ fontSize: 15, fontWeight: 500, color: "white", marginTop: 2, display: "block", textDecoration: "none" }}>{c.value}</a>
+                    <a href={c.href} style={{ fontSize: 15, fontWeight: 500, color: "var(--text-dark)", marginTop: 2, display: "block", textDecoration: "none" }}>{c.value}</a>
                   ) : (
-                    <div style={{ fontSize: 15, fontWeight: 500, color: "white", marginTop: 2 }}>{c.value}</div>
+                    <div style={{ fontSize: 15, fontWeight: 500, color: "var(--text-dark)", marginTop: 2 }}>{c.value}</div>
                   )}
                 </div>
               </div>
@@ -162,10 +133,10 @@ export function GaiaCTA() {
                 <div style={{ fontSize: 40, marginBottom: 16 }} aria-hidden="true">
                   <GaiaCircleMotif variant="mini" size={80} />
                 </div>
-                <h3 style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 22, fontWeight: 700, color: "white", marginBottom: 10 }}>
+                <h3 style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 22, fontWeight: 700, color: "var(--text-dark)", marginBottom: 10 }}>
                   Message envoyé
                 </h3>
-                <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.6, maxWidth: "none" }}>
+                <p style={{ fontSize: 15, color: "var(--text-mid)", lineHeight: 1.6, maxWidth: "none" }}>
                   Merci pour votre message. Nous vous répondons sous 48h ouvrées.
                 </p>
               </div>

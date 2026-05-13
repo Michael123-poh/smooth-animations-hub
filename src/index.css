@@ -38,14 +38,14 @@
   --navy-light:    var(--blue-light);
 
   /* —— Text */
-  --text-dark:     #080818;
-  --text-mid:      #3A3A70;
-  --text-muted:    rgba(22, 22, 106, 0.45);
+  --text-dark:     #0D0B09;
+  --text-mid:      #4A4540;
+  --text-muted:    rgba(0, 0, 0, 0.38);
   --text-on-dark:  rgba(255,255,255,0.90);
   --text-on-dark-muted: rgba(255,255,255,0.52);
 
   /* —— UI */
-  --border:        rgba(22, 22, 106, 0.12);
+  --border:        rgba(180, 155, 130, 0.22);
   --border-dark:   rgba(255, 255, 255, 0.10);
   --border-hover:  rgba(255, 138, 61, 0.35);
   --shadow-warm:   0 4px 24px rgba(255, 138, 61, 0.14);
@@ -75,7 +75,7 @@ html {
 
 body {
   font-family: 'Nunito', 'Gotham Rounded', system-ui, sans-serif;
-  background: var(--blue-navy);
+  background: var(--beige);
   color: var(--text-dark);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -200,7 +200,7 @@ a {
   cursor: pointer;
 }
 .gaia-nav-logo img {
-  height: 36px;
+  height: 46px;
   width: auto;
   display: block;
 }
@@ -382,6 +382,113 @@ a {
   z-index: 3;
   align-self: center;
 }
+/* ─── GAIA HERO EYE VARIANT ──────────────────────────────── */
+.gaia-hero--eye {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 0;
+}
+/* Espace vide contrôlé en haut — pousse le texte vers le bas */
+.hero-eye-void {
+  flex: 1;
+  min-height: 100px;
+  pointer-events: none;
+}
+.hero-bg-img--eye {
+  object-position: center 8%;
+}
+.hero-bg-overlay--eye {
+  background:
+    linear-gradient(180deg,
+      rgba(8, 14, 30, 0.65) 0%,
+      rgba(8, 14, 30, 0.22) 22%,
+      rgba(8, 14, 30, 0.08) 44%,
+      rgba(8, 14, 30, 0.38) 62%,
+      rgba(8, 14, 30, 0.88) 80%,
+      rgba(8, 14, 30, 0.97) 100%
+    );
+}
+.hero-eye-content {
+  position: relative;
+  z-index: 3;
+  padding: 0 80px 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+/* Bloc dont la largeur = plus longue ligne du h1.
+   La subtitle s'étire sur exactement cette même largeur. */
+.hero-eye-text-block {
+  display: inline-block;
+  max-width: 100%;
+  text-align: center;
+}
+.hero-eye-h1 {
+  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -1px;
+  color: white;
+  margin-bottom: 14px;
+  text-align: center;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+.hero-eye-h1 em {
+  font-style: normal;
+  color: var(--orange);
+}
+/* Chaque caractère = 1 flex item, space-between les répartit sur toute la largeur du h1 */
+.hero-eye-sub {
+  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-size: clamp(13px, 1.55vw, 24px);
+  font-weight: 500;
+  color: var(--orange);
+  margin-bottom: 36px;
+  text-transform: lowercase;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  letter-spacing: 0;
+}
+.hero-eye-ctas {
+  justify-content: center;
+}
+/* Scroll indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  z-index: 4;
+  pointer-events: none;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  animation: scrollLineAnim 2s ease-in-out infinite;
+}
+@keyframes scrollLineAnim {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
 .hero-label {
   display: inline-flex;
   align-items: center;
@@ -459,7 +566,7 @@ a {
 
 /* ─── HAMBURGER BUTTON ───────────────────────────────────── */
 .gaia-hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   background: none;
@@ -490,6 +597,7 @@ a {
   z-index: calc(var(--z-nav) - 1);
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 80px 32px 48px;
   opacity: 0;
@@ -506,46 +614,95 @@ a {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
+  align-items: center;
 }
 .gaia-mobile-links li {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.32s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+  max-width: 320px;
 }
 .gaia-mobile-menu.open .gaia-mobile-links li {
   opacity: 1;
   transform: none;
 }
 .gaia-mobile-links a {
-  display: flex;
+  display: grid;
+  grid-template-columns: 30px 1fr;
   align-items: center;
-  gap: 14px;
+  gap: 0;
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(28px, 6vw, 40px);
+  font-size: clamp(26px, 5.5vw, 38px);
   font-weight: 800;
   letter-spacing: -0.5px;
   color: rgba(255,255,255,0.75);
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 0;
   transition: color 0.2s;
+  width: 100%;
 }
-.gaia-mobile-links a:hover {
+.gaia-mobile-links a:hover,
+.gaia-mobile-links a.active {
   color: var(--orange);
-}
-.mobile-link-num {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--orange);
-  letter-spacing: 0.06em;
-  min-width: 24px;
 }
 .mobile-link-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  opacity: 0.6;
+  justify-content: flex-start;
+  opacity: 0.65;
+  color: currentColor;
+  flex-shrink: 0;
+}
+.gaia-mobile-links a:hover .mobile-link-icon,
+.gaia-mobile-links a.active .mobile-link-icon {
+  opacity: 1;
+}
+
+/* ─── NAV SOCIAL ROW ─────────────────────────────────────── */
+.nav-social-row {
+  display: flex;
+  gap: 32px;
+  margin-top: 44px;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.32s ease 0.35s, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+.gaia-mobile-menu.open .nav-social-row {
+  opacity: 1;
+  transform: none;
+}
+.nav-social-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.45);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.nav-social-link:hover {
   color: var(--orange);
-  margin-right: 4px;
+}
+.nav-social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.nav-social-link:hover .nav-social-icon {
+  border-color: var(--orange);
+  background: rgba(255,138,61,0.1);
+  color: var(--orange);
 }
 
 /* ─── CIRCLE MOTIF (SVG wrapper) ─────────────────────────── */
@@ -630,7 +787,7 @@ a {
 
 /* ─── MARQUEE BAR ────────────────────────────────────────── */
 .gaia-marquee {
-  background: var(--navy);
+  background: var(--cream);
   padding: 16px 0;
   overflow: hidden;
   position: relative;
@@ -647,11 +804,11 @@ a {
 }
 .gaia-marquee::before {
   left: 0;
-  background: linear-gradient(to right, var(--navy), transparent);
+  background: linear-gradient(to right, var(--cream), transparent);
 }
 .gaia-marquee::after {
   right: 0;
-  background: linear-gradient(to left, var(--navy), transparent);
+  background: linear-gradient(to left, var(--cream), transparent);
 }
 .marquee-track {
   display: flex;
@@ -673,7 +830,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--text-mid);
   white-space: nowrap;
 }
 .marquee-sep {
@@ -689,8 +846,8 @@ a {
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
+  gap: 10px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -700,24 +857,25 @@ a {
 .section-label::before {
   content: '';
   display: block;
-  width: 24px;
-  height: 1.5px;
+  width: 32px;
+  height: 2px;
   background: var(--orange);
+  flex-shrink: 0;
 }
 .gaia-h2 {
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-size: clamp(28px, 3.5vw, 52px);
   font-weight: 800;
   letter-spacing: -1px;
-  line-height: 1.1;
-  color: var(--text-dark);
+  line-height: 1.04;
+  color: var(--blue-navy);
 }
 .gaia-h2.on-dark {
   color: white;
 }
 .section-sub {
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.28;
   color: var(--text-mid);
   max-width: 520px;
   margin-top: 14px;
@@ -728,8 +886,9 @@ a {
 
 /* ─── GAIA SERVICES ──────────────────────────────────────── */
 .gaia-services {
-  background: var(--cream);
+  background: var(--beige);
   padding: 120px 80px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
@@ -804,7 +963,7 @@ a {
 }
 .service-desc {
   font-size: 14px;
-  line-height: 1.72;
+  line-height: 1.3;
   color: var(--text-mid);
 }
 .service-card.featured .service-desc {
@@ -838,29 +997,127 @@ a {
   border-color: var(--orange);
 }
 
+/* ─── SERVICES ACCORDION LAYOUT ─────────────────────────── */
+.services-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+.services-accordion-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 64px;
+  margin-top: 60px;
+  align-items: start;
+}
+.services-photo-col {
+  position: sticky;
+  top: 80px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+.services-photo-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.services-list-col {
+  display: flex;
+  flex-direction: column;
+}
+.accordion-item {
+  border-bottom: 1px solid rgba(165,145,120,0.28);
+}
+.accordion-item:first-child {
+  border-top: 1px solid rgba(165,145,120,0.28);
+}
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 22px 0;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+.accordion-trigger-title {
+  font-family: 'Nunito', 'Gotham Rounded', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  letter-spacing: -0.2px;
+  transition: color 0.2s;
+}
+.accordion-item.open .accordion-trigger-title,
+.accordion-trigger:hover .accordion-trigger-title {
+  color: var(--blue-navy);
+}
+.accordion-chevron {
+  font-size: 22px;
+  color: var(--orange);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  line-height: 1;
+  display: inline-block;
+  font-weight: 300;
+}
+.accordion-item.open .accordion-chevron {
+  transform: rotate(90deg);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.accordion-item.open .accordion-body {
+  max-height: 260px;
+}
+.accordion-sub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.accordion-sub-list li {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.3;
+  padding-left: 18px;
+  position: relative;
+}
+.accordion-sub-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-size: 10px;
+  top: 2px;
+}
+
 /* ─── GAIA DNA ───────────────────────────────────────────── */
 .gaia-dna .section-label {
   color: var(--orange);
 }
-.gaia-dna .section-label::before {
-  background: var(--orange);
-}
 .gaia-dna {
-  background: linear-gradient(160deg, var(--blue-mid) 0%, var(--blue-navy) 60%, var(--blue-dark) 100%);
-  padding: 120px 80px;
+  background: var(--beige);
+  padding: 120px 80px 180px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
 .gaia-dna::before {
-  content: '';
-  position: absolute;
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,138,61,0.06) 0%, transparent 70%);
-  pointer-events: none;
+  display: none;
 }
 .dna-grid {
   display: grid;
@@ -885,16 +1142,16 @@ a {
   font-size: clamp(30px, 3.8vw, 52px);
   font-weight: 800;
   letter-spacing: -1px;
-  line-height: 1.08;
-  color: white;
+  line-height: 1.0;
+  color: var(--blue-navy);
   margin-bottom: 24px;
 }
 .dna-body {
-  font-size: 16px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.62);
+  font-size: 15px;
+  line-height: 1.34;
+  color: var(--text-mid);
   max-width: 520px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 .dna-quote {
   border-left: 3px solid var(--orange);
@@ -906,8 +1163,8 @@ a {
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.68);
-  line-height: 1.65;
+  color: var(--text-mid);
+  line-height: 1.3;
   max-width: none;
   letter-spacing: 0.01em;
 }
@@ -929,13 +1186,13 @@ a {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: rgba(255,255,255,0.08);
+  background: var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-top: 52px;
 }
 .dna-stat {
-  background: rgba(255,255,255,0.04);
+  background: white;
   padding: 28px 24px;
   text-align: center;
 }
@@ -949,15 +1206,16 @@ a {
 }
 .dna-stat-label {
   font-size: 12px;
-  color: rgba(255,255,255,0.45);
+  color: var(--text-mid);
   margin-top: 6px;
   font-weight: 500;
 }
 
 /* ─── GAIA PILLARS ───────────────────────────────────────── */
 .gaia-pillars {
-  background: linear-gradient(180deg, var(--blue-navy) 0%, var(--blue-dark) 100%);
+  background: var(--blue-navy);
   padding: 120px 80px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
@@ -974,8 +1232,8 @@ a {
   gap: 16px;
 }
 .pillar-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--beige);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 40px 36px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
@@ -995,9 +1253,9 @@ a {
 }
 .pillar-card:hover {
   border-color: rgba(255, 138, 61, 0.35);
-  box-shadow: 0 20px 60px rgba(8,8,26,0.45), 0 0 0 1px rgba(255,138,61,0.2);
+  box-shadow: 0 12px 40px rgba(8,8,26,0.1), 0 0 0 1px rgba(255,138,61,0.2);
   transform: translateY(-6px);
-  background: rgba(255,255,255,0.08);
+  background: var(--cream);
 }
 .pillar-card:hover::before {
   opacity: 1;
@@ -1024,27 +1282,28 @@ a {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.25);
+  color: rgba(0,0,0,0.2);
 }
 .pillar-title {
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-size: 22px;
   font-weight: 700;
   letter-spacing: -0.3px;
-  color: white;
+  color: var(--text-dark);
   margin-bottom: 10px;
 }
 .pillar-desc {
   font-size: 14px;
-  line-height: 1.72;
-  color: var(--text-on-dark-muted);
+  line-height: 1.3;
+  color: var(--text-mid);
   max-width: none;
 }
 
 /* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
 .gaia-portfolio {
-  background: var(--cream);
+  background: var(--beige);
   padding: 120px 80px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
@@ -1057,22 +1316,28 @@ a {
 }
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 280px 240px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 260px);
   gap: 16px;
 }
-.portfolio-grid .port-item:nth-child(1) {
-  grid-column: 1 / 3;
-}
-.portfolio-grid .port-item:nth-child(4) {
-  grid-column: 2 / 4;
-}
+.portfolio-grid .port-item:nth-child(1) { grid-column: 1 / 5; }
+.portfolio-grid .port-item:nth-child(2) { grid-column: 5 / 7; }
+.portfolio-grid .port-item:nth-child(3) { grid-column: 1 / 3; }
+.portfolio-grid .port-item:nth-child(4) { grid-column: 3 / 7; }
+.portfolio-grid .port-item:nth-child(5) { grid-column: 1 / 4; }
+.portfolio-grid .port-item:nth-child(6) { grid-column: 4 / 7; }
 .port-item {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
   background: var(--beige-dark);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s;
+}
+.port-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 24px 60px rgba(8,8,26,0.28);
+  z-index: 2;
 }
 .port-item img {
   width: 100%;
@@ -1132,27 +1397,24 @@ a {
 
 /* ─── GAIA TESTIMONIALS ──────────────────────────────────── */
 .gaia-testimonials {
-  background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-mid) 55%, var(--blue-navy) 100%);
+  background: var(--beige);
   padding: 120px 0;
+  border-top: 1px solid rgba(165,145,120,0.28);
   overflow: hidden;
   position: relative;
 }
 .testi-inner {
   padding: 0 80px;
 }
-.testi-carousel {
-  margin-top: 56px;
-  position: relative;
-}
-.testi-track {
-  display: flex;
-  gap: 24px;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 48px;
 }
 .testi-card {
-  flex: 0 0 calc(50% - 12px);
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: white;
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 44px 48px;
   position: relative;
@@ -1169,9 +1431,9 @@ a {
 }
 .testi-text {
   font-size: 15px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.62);
-  margin-bottom: 36px;
+  line-height: 1.34;
+  color: var(--text-mid);
+  margin-bottom: 28px;
   font-style: normal;
   max-width: none;
   font-weight: 500;
@@ -1200,26 +1462,21 @@ a {
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-size: 15px;
   font-weight: 700;
-  color: white;
+  color: var(--text-dark);
 }
 .testi-role {
   font-size: 13px;
-  color: rgba(255,255,255,0.45);
+  color: var(--text-mid);
   margin-top: 2px;
 }
-.testi-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 36px;
-}
 .testi-btn {
+  display: none;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.15);
-  background: transparent;
-  color: white;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--text-dark);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1228,8 +1485,8 @@ a {
   flex-shrink: 0;
 }
 .testi-btn:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.3);
+  background: var(--beige-dark);
+  border-color: var(--orange);
 }
 .testi-dots {
   display: flex;
@@ -1240,7 +1497,7 @@ a {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.15);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 }
@@ -1248,15 +1505,11 @@ a {
   background: var(--orange);
   transform: scale(1.4);
 }
-/* Single-card mode (mobile) */
-.testi-card--single {
-  flex: 0 0 100%;
-}
 
 /* Logos marquee */
 .logos-strip {
   margin-top: 64px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--border);
   padding-top: 40px;
   overflow: hidden;
 }
@@ -1272,7 +1525,7 @@ a {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.2);
+  color: rgba(0,0,0,0.25);
   white-space: nowrap;
   text-transform: uppercase;
 }
@@ -1292,8 +1545,9 @@ a {
 }
 
 .gaia-process {
-  background: linear-gradient(180deg, var(--blue-navy) 0%, var(--blue-dark) 100%);
+  background: var(--beige);
   padding: 120px 80px 100px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
@@ -1312,8 +1566,9 @@ a {
   left: 22px;
   top: 44px;
   bottom: 44px;
-  width: 1px;
+  width: 2px;
   background: var(--border);
+  border-radius: 1px;
 }
 .process-line-fill {
   position: absolute;
@@ -1336,15 +1591,15 @@ a {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.05);
+  border: 1.5px solid var(--border);
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-size: 13px;
   font-weight: 700;
-  color: rgba(255,255,255,0.45);
+  color: rgba(0,0,0,0.35);
   flex-shrink: 0;
   transition: background 0.3s, border-color 0.3s, color 0.3s;
   position: relative;
@@ -1362,14 +1617,14 @@ a {
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: white;
+  color: var(--text-dark);
   margin-bottom: 8px;
   letter-spacing: -0.2px;
 }
 .step-desc {
   font-size: 14px;
-  line-height: 1.72;
-  color: var(--text-on-dark-muted);
+  line-height: 1.3;
+  color: var(--text-mid);
   max-width: none;
 }
 .process-visual {
@@ -1377,13 +1632,11 @@ a {
   top: 120px;
 }
 .process-visual-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: white;
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 48px;
-  box-shadow: 0 32px 80px rgba(8,8,26,0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 40px rgba(8,8,26,0.08);
 }
 .process-visual-label {
   font-size: 11px;
@@ -1395,7 +1648,7 @@ a {
 }
 .process-bar {
   height: 6px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.08);
   border-radius: 3px;
   margin-bottom: 10px;
   overflow: hidden;
@@ -1409,8 +1662,9 @@ a {
 
 /* ─── GAIA CTA ───────────────────────────────────────────── */
 .gaia-cta {
-  background: linear-gradient(145deg, var(--blue-dark) 0%, var(--blue-navy) 40%, var(--blue-mid) 100%);
+  background: var(--beige);
   padding: 120px 80px;
+  border-top: 1px solid rgba(165,145,120,0.28);
   position: relative;
   overflow: hidden;
 }
@@ -1418,9 +1672,7 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(255,138,61,0.1) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 80% at 85% 20%, rgba(32,32,138,0.14) 0%, transparent 60%);
+  background: none;
   pointer-events: none;
 }
 .cta-grid {
@@ -1432,13 +1684,11 @@ a {
   z-index: 1;
 }
 .cta-contact-form {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: white;
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 48px;
-  box-shadow: 0 40px 100px rgba(8,8,26,0.55), inset 0 1px 0 rgba(255,255,255,0.14);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 12px 40px rgba(8,8,26,0.08);
 }
 .form-row {
   display: grid;
@@ -1454,32 +1704,32 @@ a {
 .form-group label {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-mid);
   letter-spacing: 0.04em;
 }
 .form-input {
   width: 100%;
   padding: 12px 16px;
-  border: 1.5px solid rgba(255,255,255,0.15);
+  border: 1.5px solid var(--border);
   border-radius: 10px;
   font-size: 15px;
   font-family: 'Inter', sans-serif;
-  color: white;
-  background: rgba(255,255,255,0.07);
+  color: var(--text-dark);
+  background: var(--cream);
   transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
   outline: none;
 }
 .form-input:focus {
   border-color: var(--orange);
   box-shadow: 0 0 0 3px rgba(255,138,61,0.18);
-  background: rgba(255,255,255,0.1);
+  background: white;
 }
 .form-input::placeholder {
-  color: rgba(255,255,255,0.3);
+  color: rgba(0,0,0,0.3);
 }
 .form-input option {
-  background: var(--blue-dark);
-  color: white;
+  background: white;
+  color: var(--text-dark);
 }
 textarea.form-input {
   resize: vertical;
@@ -1493,7 +1743,7 @@ textarea.form-input {
 .form-success {
   text-align: center;
   padding: 24px;
-  color: white;
+  color: var(--text-dark);
   font-family: 'Nunito', 'Gotham Rounded', sans-serif;
   font-weight: 600;
 }
@@ -1765,9 +2015,6 @@ textarea.form-input {
 .section-label.dark {
   color: var(--orange);
 }
-.section-label.dark::before {
-  background: var(--orange);
-}
 .gaia-h2.on-blue {
   color: white;
 }
@@ -1816,54 +2063,45 @@ textarea.form-input {
 
 /* ─── CTA SECTION TEXT ───────────────────────────────────── */
 .gaia-cta .gaia-h2 {
-  color: white;
+  color: var(--blue-navy);
 }
 .gaia-cta .section-label {
   color: var(--orange);
 }
-.gaia-cta .section-label::before {
-  background: var(--orange);
-}
 .gaia-cta .section-sub {
-  color: var(--text-on-dark-muted);
+  color: var(--text-mid);
 }
 .gaia-cta .cta-contact-info-label {
-  color: rgba(255,255,255,0.4);
+  color: var(--text-mid);
 }
 .gaia-cta .cta-contact-info-value {
-  color: white;
+  color: var(--text-dark);
 }
 .gaia-cta .cta-contact-icon {
-  background: rgba(255,138,61,0.15);
+  background: rgba(255,138,61,0.1);
   border: 1px solid rgba(255,138,61,0.2);
 }
 
-/* ─── PILLARS SECTION HEADER ON DARK ────────────────────── */
+/* ─── PILLARS SECTION ON NAVY BLUE ──────────────────────── */
 .gaia-pillars .gaia-h2 {
   color: white;
 }
 .gaia-pillars .section-label {
   color: var(--orange);
 }
-.gaia-pillars .section-label::before {
-  background: var(--orange);
-}
 .gaia-pillars .section-sub {
-  color: var(--text-on-dark-muted);
+  color: rgba(255,255,255,0.65);
 }
 
-/* ─── PROCESS SECTION HEADER ON DARK ────────────────────── */
+/* ─── PROCESS SECTION HEADER ON BEIGE ───────────────────── */
 .gaia-process .gaia-h2 {
-  color: white;
+  color: var(--blue-navy);
 }
 .gaia-process .section-label {
   color: var(--orange);
 }
-.gaia-process .section-label::before {
-  background: var(--orange);
-}
 .gaia-process .process-line {
-  background: rgba(255,255,255,0.08);
+  background: var(--border);
 }
 
 /* ─── MARQUEE ENHANCED ───────────────────────────────────── */
@@ -1968,13 +2206,17 @@ textarea.form-input {
     margin-top: 0;
   }
 
-  /* Portfolio: 2+2+2 equal grid */
+  /* Portfolio: 2-col tablet, remove spans */
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 260px 260px 260px;
+    grid-template-rows: repeat(3, 260px);
   }
   .portfolio-grid .port-item:nth-child(1),
-  .portfolio-grid .port-item:nth-child(4) {
+  .portfolio-grid .port-item:nth-child(2),
+  .portfolio-grid .port-item:nth-child(3),
+  .portfolio-grid .port-item:nth-child(4),
+  .portfolio-grid .port-item:nth-child(5),
+  .portfolio-grid .port-item:nth-child(6) {
     grid-column: auto;
   }
 
@@ -2009,21 +2251,12 @@ textarea.form-input {
 /* ─── 768px — Tablet portrait ────────────────────────────── */
 @media (max-width: 768px) {
 
-  /* NAV: hide links, show hamburger */
+  /* NAV: compact padding on mobile */
   .gaia-nav {
     padding: 16px 24px;
   }
   .gaia-nav.solid {
     padding: 14px 24px;
-  }
-  .gaia-nav-links {
-    display: none;
-  }
-  .gaia-nav > .gaia-btn {
-    display: none;
-  }
-  .gaia-hamburger {
-    display: flex !important;
   }
 
   /* HERO: colonne unique, photo masquée, badges inline, stats en grille */
@@ -2070,10 +2303,68 @@ textarea.form-input {
         rgba(8, 14, 30, 0.98) 100%
       );
   }
-  /* Scroll indicator aligné à gauche */
-  .hero-scroll-indicator {
-    left: 28px;
-    transform: none;
+  /* Hero Eye — mobile : overlay plein écran, texte sur l'image */
+  .gaia-hero--eye {
+    justify-content: flex-end;
+    align-items: stretch;
+    min-height: 100dvh;
+  }
+  /* bg-wrap reste absolu (plein écran) — pas de stacking */
+  .gaia-hero--eye .hero-bg-wrap {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+  .gaia-hero--eye .hero-bg-img--eye {
+    object-position: center 22%;
+  }
+  .gaia-hero--eye .hero-bg-overlay--eye {
+    background:
+      linear-gradient(180deg,
+        rgba(8, 14, 30, 0.32) 0%,
+        rgba(8, 14, 30, 0.04) 25%,
+        rgba(8, 14, 30, 0.12) 48%,
+        rgba(8, 14, 30, 0.88) 68%,
+        rgba(8, 14, 30, 0.97) 100%
+      );
+  }
+  .hero-eye-void {
+    display: block;
+    flex: 1;
+  }
+  .hero-eye-content {
+    padding: 0 24px 52px;
+    background: transparent;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .hero-eye-text-block {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+  }
+  .hero-eye-h1 {
+    font-size: clamp(26px, 7.5vw, 38px);
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    white-space: normal;
+    text-align: center;
+  }
+  .hero-eye-sub {
+    font-size: clamp(11px, 3.5vw, 18px);
+    margin-bottom: 28px;
+    display: block;
+    text-align: center;
+    letter-spacing: 0.45em;
+    justify-content: initial;
+    width: auto;
+  }
+  .hero-eye-ctas {
+    width: 100%;
+  }
+  .hero-eye-ctas .gaia-btn {
+    width: 100%;
+    justify-content: center;
   }
   /* Stats : grille 3 colonnes avec séparateurs */
   .hero-stats {
@@ -2119,12 +2410,17 @@ textarea.form-input {
     color: var(--orange) !important;
   }
   .step-title {
-    color: rgba(255,255,255,0.85) !important;
+    color: var(--text-dark) !important;
   }
   .step-content > div:last-child {
     max-height: 30px !important;
     opacity: 1 !important;
     margin-top: 8px !important;
+  }
+
+  /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
+  .gaia-dna {
+    padding-bottom: 96px;
   }
 
   /* SECTION padding */
@@ -2142,15 +2438,36 @@ textarea.form-input {
   }
 
   /* SECTION headers: stack label + title left, sub below */
-  .gaia-services > div:first-child,
   .pillars-header {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
   }
-  .gaia-services .section-sub,
   .pillars-header .section-sub {
     text-align: left;
     margin-top: 8px;
+  }
+  /* Services top: keep subtitle to the right on all sizes */
+  .services-top {
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .services-top .section-sub {
+    font-size: 13px;
+    text-align: right;
+    flex-shrink: 0;
+    max-width: 45%;
+  }
+  /* Services accordion: stack photo above list */
+  .services-accordion-wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  .services-photo-col {
+    position: static;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
   }
 
   /* SERVICES: featured full-width (reset grid from 1200), others 2-col */
@@ -2206,18 +2523,21 @@ textarea.form-input {
     gap: 12px;
   }
   .portfolio-grid .port-item:nth-child(1),
-  .portfolio-grid .port-item:nth-child(4) {
+  .portfolio-grid .port-item:nth-child(2),
+  .portfolio-grid .port-item:nth-child(3),
+  .portfolio-grid .port-item:nth-child(4),
+  .portfolio-grid .port-item:nth-child(5),
+  .portfolio-grid .port-item:nth-child(6) {
     grid-column: auto;
   }
 
-  /* TESTIMONIALS: single card visible, horizontal slide */
+  /* TESTIMONIALS: stack to 1 column on tablet */
+  .testi-grid {
+    grid-template-columns: 1fr;
+  }
   .testi-card {
-    flex: 0 0 calc(100% - 0px);
     padding: 32px 28px;
   }
-  /* offset formula: 100% per card */
-  /* JS still works — but at 100% width the math changes.
-     We override via testi-track width math here via CSS only */
 
   /* PROCESS: steps full width, card masquée sur mobile */
   .process-grid {
@@ -2274,6 +2594,16 @@ textarea.form-input {
   .gaia-hero--fullbg-content {
     padding: 0 20px 48px;
   }
+  .hero-eye-content {
+    padding: 0 20px 44px;
+  }
+  .hero-eye-h1 {
+    font-size: clamp(22px, 6.5vw, 30px);
+  }
+  .hero-eye-sub {
+    font-size: clamp(9px, 3vw, 14px);
+    letter-spacing: 0.35em;
+  }
   .hero-sub {
     font-size: 15px;
   }
@@ -2297,7 +2627,7 @@ textarea.form-input {
 
   /* SECTION HEADERS mobile : label petit, h2 plus serré, sous-titre en dessous */
   .section-label {
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom: 10px;
   }
   .gaia-h2 {
@@ -2334,12 +2664,17 @@ textarea.form-input {
     color: var(--orange) !important;
   }
   .step-title {
-    color: rgba(255,255,255,0.85) !important;
+    color: var(--text-dark) !important;
   }
   .step-content > div:last-child {
     max-height: 30px !important;
     opacity: 1 !important;
     margin-top: 8px !important;
+  }
+
+  /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
+  .gaia-dna {
+    padding-bottom: 80px;
   }
 
   /* SECTION padding */
@@ -2447,6 +2782,8 @@ textarea.form-input {
     max-width: 320px;
     scroll-snap-align: start;
     margin-top: 0 !important;
+    border: none;
+    box-shadow: 0 4px 24px rgba(8,8,26,0.12);
   }
 
   /* DNA: stats horizontal on phone */
@@ -2457,45 +2794,95 @@ textarea.form-input {
     height: 180px;
   }
 
-  /* PORTFOLIO: bento mobile — item 1 large, 2+3 côte à côte,
-     4 large, 5+6 côte à côte. Exploite chaque pixel. */
+  /* PORTFOLIO: bento créatif — magazine asymétrique
+     Col 1 (large) + cols 2-3 (étroites) sur 3 lignes */
   .portfolio-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 180px 140px 180px 140px;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 170px 120px 150px;
     gap: 10px;
   }
-  /* Item 1: pleine largeur en haut */
+  /* Item 1: gauche large, 2 lignes */
   .portfolio-grid .port-item:nth-child(1) {
-    grid-column: 1 / -1;
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  /* Item 2: top droite, 2 cols étroites */
+  .portfolio-grid .port-item:nth-child(2) {
+    grid-column: 2 / 4;
     grid-row: 1;
   }
-  /* Items 2 et 3: côte à côte */
-  .portfolio-grid .port-item:nth-child(2) {
-    grid-column: 1;
-    grid-row: 2;
-  }
+  /* Item 3: mid col 2 */
   .portfolio-grid .port-item:nth-child(3) {
     grid-column: 2;
     grid-row: 2;
   }
-  /* Item 4: pleine largeur */
+  /* Item 4: mid col 3 */
   .portfolio-grid .port-item:nth-child(4) {
-    grid-column: 1 / -1;
+    grid-column: 3;
+    grid-row: 2;
+  }
+  /* Item 5: bottom gauche+centre */
+  .portfolio-grid .port-item:nth-child(5) {
+    grid-column: 1 / 3;
     grid-row: 3;
   }
-  /* Items 5 et 6: côte à côte */
-  .portfolio-grid .port-item:nth-child(5) {
-    grid-column: 1;
-    grid-row: 4;
-  }
+  /* Item 6: bottom droite */
   .portfolio-grid .port-item:nth-child(6) {
-    grid-column: 2;
-    grid-row: 4;
+    grid-column: 3;
+    grid-row: 3;
   }
 
-  /* TESTIMONIALS: full card, reduced padding */
+  /* PILLARS: fade right edge for scroll rail */
+  .gaia-pillars::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 72px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--blue-navy));
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* TESTIMONIALS: horizontal scroll rail like Titans */
+  .testi-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .testi-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    scroll-padding-left: 20px;
+    scrollbar-width: none;
+    grid-template-columns: unset;
+  }
+  .testi-grid::-webkit-scrollbar {
+    display: none;
+  }
   .testi-card {
-    padding: 28px 20px;
+    flex: 0 0 76vw;
+    max-width: 310px;
+    scroll-snap-align: start;
+    padding: 24px 20px;
+  }
+  /* Fade right edge for testimonials */
+  .gaia-testimonials::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 72px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--beige));
+    pointer-events: none;
+    z-index: 10;
   }
   .testi-quote-mark {
     font-size: 44px;
@@ -2530,5 +2917,23 @@ textarea.form-input {
   }
   .cta-contact-form {
     padding: 28px 20px;
+  }
+}
+
+/* ─── PC CONTENT MARGINS (≥ 1200px only) ─────────────────── */
+@media (min-width: 1200px) {
+  .gaia-services,
+  .gaia-dna,
+  .gaia-portfolio,
+  .process-scroll-wrapper,
+  .gaia-testimonials,
+  .gaia-cta {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  /* Pillars is full-width (no margin) — compensate with extra padding */
+  .gaia-pillars {
+    padding-left: 180px;
+    padding-right: 180px;
   }
 }

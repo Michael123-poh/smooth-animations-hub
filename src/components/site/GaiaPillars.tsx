@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import shape4 from "../../assets/deco/Gaia_Decorative_Shape_4@3x.png";
+import patternSombre from "../../assets/deco/Gaia_Decorative_Pattern_Fond_Sombre@3x.png";
 
 const pillars = [
   {
@@ -50,68 +49,47 @@ const pillars = [
 ];
 
 export function GaiaPillars() {
-  const shapeRef = useRef<HTMLDivElement>(null);
-  const raf = useRef<number>(0);
-
-  useEffect(() => {
-    const section = shapeRef.current?.closest("section");
-
-    function tick() {
-      if (shapeRef.current && section) {
-        const rect = section.getBoundingClientRect();
-        const progress = -rect.top / window.innerHeight;
-        shapeRef.current.style.transform = `translateY(${progress * -25}px) rotate(${progress * -5}deg)`;
-      }
-      raf.current = requestAnimationFrame(tick);
-    }
-
-    raf.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf.current);
-  }, []);
-
   return (
     <section className="gaia-pillars" id="valeurs" aria-labelledby="pillars-heading">
-      {/* Decorative shape 4 — parallax */}
-      <div
-        ref={shapeRef}
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: "-60px",
-          bottom: "-40px",
-          width: "320px",
-          opacity: 0.1,
-          pointerEvents: "none",
-          willChange: "transform",
-          zIndex: 0,
-        }}
-      >
-        <img src={shape4} alt="" style={{ width: "100%", height: "auto" }} />
-      </div>
 
-      {/* Ambient glow spots */}
-      <div aria-hidden="true" style={{
-        position: "absolute",
-        top: "10%",
-        right: "10%",
-        width: 400,
-        height: 400,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,138,61,0.08) 0%, transparent 70%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      }} />
-      <div aria-hidden="true" style={{
-        position: "absolute",
-        bottom: "10%",
-        left: "30%",
-        width: 300,
-        height: 300,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(32,32,138,0.10) 0%, transparent 70%)",
-        pointerEvents: "none",
-        zIndex: 0,
-      }} />
+      {/* Decorative layer */}
+      <div aria-hidden="true" style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
+        {/* Pattern texture */}
+        <div style={{
+          position: "absolute", inset: 0,
+          backgroundImage: `url(${patternSombre})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.06,
+        }} />
+        {/* Orange glow top-right */}
+        <div style={{
+          position: "absolute", top: "-10%", right: "-5%",
+          width: 500, height: 500,
+          background: "radial-gradient(circle, rgba(255,138,61,0.13) 0%, transparent 65%)",
+          borderRadius: "50%",
+        }} />
+        {/* Blue glow bottom-left */}
+        <div style={{
+          position: "absolute", bottom: "-15%", left: "-8%",
+          width: 420, height: 420,
+          background: "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%)",
+          borderRadius: "50%",
+        }} />
+        {/* Decorative ring top-right */}
+        <svg style={{ position: "absolute", top: -30, right: -30, opacity: 0.07 }}
+          width="360" height="360" viewBox="0 0 360 360" fill="none">
+          <circle cx="180" cy="180" r="170" stroke="white" strokeWidth="1.5" strokeDasharray="4 12" />
+          <circle cx="180" cy="180" r="120" stroke="white" strokeWidth="1" />
+          <circle cx="180" cy="180" r="60" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.6" />
+        </svg>
+        {/* Decorative ring bottom-left */}
+        <svg style={{ position: "absolute", bottom: -60, left: -60, opacity: 0.06 }}
+          width="280" height="280" viewBox="0 0 280 280" fill="none">
+          <circle cx="140" cy="140" r="130" stroke="white" strokeWidth="1" strokeDasharray="3 9" />
+          <circle cx="140" cy="140" r="80" stroke="#FF8A3D" strokeWidth="1" strokeOpacity="0.5" />
+        </svg>
+      </div>
 
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="pillars-header">

@@ -1,7 +1,5 @@
-import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import shape1 from "../../assets/deco/Gaia_Decorative_Shape_1@3x.png";
-import smileHero from "../../assets/Man Drawing An Emoji 2 copie 2.jpg.jpeg";
+import eyeHero from "../../assets/Black Man With Eye Wide Opened 4.jpg.jpeg";
 
 interface GaiaHeroProps {
   scrollY?: number;
@@ -9,101 +7,48 @@ interface GaiaHeroProps {
 
 export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
   const navigate = useNavigate();
-  const imgRef  = useRef<HTMLImageElement>(null);
-  const shapeRef = useRef<HTMLDivElement>(null);
-  const raf = useRef<number>(0);
-
-  useEffect(() => {
-    let lastY = 0;
-    function onScroll() { lastY = window.scrollY; }
-    function tick() {
-      // Léger parallax vers le bas sur l'image de fond
-      if (imgRef.current) {
-        imgRef.current.style.transform = `translateY(${lastY * 0.12}px) scale(1.08)`;
-      }
-      if (shapeRef.current) {
-        shapeRef.current.style.transform = `translateY(${lastY * 0.18}px) rotate(${lastY * 0.012}deg)`;
-      }
-      raf.current = requestAnimationFrame(tick);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    raf.current = requestAnimationFrame(tick);
-    return () => { window.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf.current); };
-  }, []);
 
   return (
-    <section className="gaia-hero gaia-hero--fullbg" id="accueil" aria-label="Section héros">
+    <section className="gaia-hero gaia-hero--eye" id="accueil" aria-label="Section héros">
 
-      {/* ── IMAGE DE FOND — smiley pleine largeur ── */}
+      {/* ── IMAGE DE FOND — œil fixe, pas de parallax ── */}
       <div className="hero-bg-wrap" aria-hidden="true">
         <img
-          ref={imgRef}
-          src={smileHero}
+          src={eyeHero}
           alt=""
-          className="hero-bg-img"
+          className="hero-bg-img hero-bg-img--eye"
         />
-        {/* Dégradé gauche pour lisibilité du texte */}
-        <div className="hero-bg-overlay" />
+        <div className="hero-bg-overlay hero-bg-overlay--eye" />
       </div>
 
-      {/* Deco shape — filigrane */}
-      <div ref={shapeRef} className="gaia-deco-shape parallax-layer" aria-hidden="true"
-        style={{ position: "absolute", right: "-40px", bottom: "-60px", width: "340px", opacity: 0.06, zIndex: 2, transformOrigin: "center center" }}>
-        <img src={shape1} alt="" style={{ width: "100%", height: "auto" }} />
-      </div>
+      {/* Vide contrôlé en haut — repousse le texte vers le bas */}
+      <div className="hero-eye-void" aria-hidden="true" />
 
-      {/* ── CONTENU — texte centré à gauche ── */}
-      <div className="gaia-hero-left gaia-hero--fullbg-content reveal d1" style={{ position: "relative", zIndex: 3 }}>
-
-        <h1 className="gaia-h1" style={{ fontSize: "clamp(38px, 5vw, 76px)" }}>
-          Derrière chaque marque,<br />
-          se cache <em>une histoire</em>
-        </h1>
-
-        <p className="hero-sub reveal d2">
-          Nous façonnons des identités visuelles qui parlent au cœur.
-          Le Made in Cameroun mérite de briller — et nous sommes là pour ça.
-        </p>
-
-        <div className="hero-ctas reveal d3">
+      {/* ── CONTENU centré ── */}
+      <div className="hero-eye-content reveal d1">
+        {/* Bloc inline-block : sa largeur = la ligne h1 la plus longue.
+            "que voient-ils ?" s'étire exactement sur cette même largeur. */}
+        <div className="hero-eye-text-block">
+          <h1 className="hero-eye-h1">
+            vos clients vous jugent<br />
+            en <em>07</em> secondes chrono
+          </h1>
+          <p className="hero-eye-sub" role="text" aria-label="que voient-ils ?">
+            {"que voient-ils ?".split("").map((char, i) => (
+              <span key={i} aria-hidden="true">{char === " " ? " " : char}</span>
+            ))}
+          </p>
+        </div>
+        <div className="hero-ctas hero-eye-ctas">
           <button className="gaia-btn" onClick={() => navigate("/contact")}>
             Discutons de votre projet
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-          <button
-            className="gaia-btn gaia-btn-ghost"
-            onClick={() => navigate("/portfolio")}
-            style={{ borderColor: "rgba(255,255,255,0.25)", color: "white" }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.1)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)"; }}
-          >
-            Voir nos réalisations
-          </button>
-        </div>
-
-        <div className="hero-stats reveal d4">
-          <div>
-            <div className="hero-stat-num">6+</div>
-            <div className="hero-stat-label">Années d'expertise</div>
-          </div>
-          <div>
-            <div className="hero-stat-num">120+</div>
-            <div className="hero-stat-label">Marques créées</div>
-          </div>
-          <div>
-            <div className="hero-stat-num">98%</div>
-            <div className="hero-stat-label">Clients satisfaits</div>
-          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="hero-scroll-indicator" aria-hidden="true">
-        <div className="hero-scroll-line" />
-        <span>Défiler</span>
-      </div>
     </section>
   );
 }

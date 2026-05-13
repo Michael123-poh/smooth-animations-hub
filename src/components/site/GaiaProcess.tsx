@@ -28,8 +28,8 @@ const steps = [
   },
 ];
 
-// Extra scroll distance per step — augmenter pour ralentir l'animation
-const SCROLL_PER_STEP = 120; // px de scroll supplémentaire par étape
+// Extra scroll distance per step — scroll space added to wrapper so sticky lasts longer
+const SCROLL_PER_STEP = 260; // px de scroll supplémentaire par étape
 
 export function GaiaProcess() {
   const [activeStep, setActiveStep] = useState(0);
@@ -109,14 +109,6 @@ export function GaiaProcess() {
             willChange: "transform",
           }}
         />
-        <div aria-hidden="true" style={{
-          position: "absolute",
-          top: "-100px", right: "-100px",
-          width: 500, height: 500,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,138,61,0.07) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }} />
 
         <div style={{ position: "relative", zIndex: 1 }}>
           <div style={{ marginBottom: 48 }}>
@@ -150,9 +142,9 @@ export function GaiaProcess() {
                     <div
                       className="step-num"
                       style={{
-                        background: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.18)" : "rgba(255,255,255,0.05)",
-                        borderColor: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.35)" : "rgba(255,255,255,0.15)",
-                        color: isActive ? "white" : isDone ? "var(--orange)" : "rgba(255,255,255,0.35)",
+                        background: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.12)" : "white",
+                        borderColor: isActive ? "var(--orange)" : isDone ? "rgba(255,138,61,0.35)" : "var(--border)",
+                        color: isActive ? "white" : isDone ? "var(--orange)" : "rgba(0,0,0,0.35)",
                         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                       }}
                       aria-hidden="true"
@@ -168,7 +160,7 @@ export function GaiaProcess() {
                       <h3
                         className="step-title"
                         style={{
-                          color: isActive ? "white" : isDone ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.38)",
+                          color: isActive ? "var(--text-dark)" : isDone ? "var(--text-mid)" : "rgba(0,0,0,0.35)",
                           transition: "color 0.4s",
                         }}
                       >
@@ -229,12 +221,12 @@ export function GaiaProcess() {
                         marginBottom: 6,
                         fontSize: 13,
                         fontWeight: 600,
-                        color: current ? "white" : done ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.2)",
+                        color: current ? "var(--text-dark)" : done ? "var(--text-mid)" : "rgba(0,0,0,0.2)",
                         transition: "color 0.4s",
                       }}>
                         <span>{s.title}</span>
                         <span style={{
-                          color: done ? "var(--orange)" : current ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.15)",
+                          color: done ? "var(--orange)" : current ? "rgba(0,0,0,0.35)" : "rgba(0,0,0,0.15)",
                           transition: "color 0.4s",
                         }}>
                           {done ? "✓" : s.num}
