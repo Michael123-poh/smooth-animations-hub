@@ -92,18 +92,16 @@ export function GaiaPillars() {
       </div>
 
       <div style={{ position: "relative", zIndex: 1 }}>
-        <div className="pillars-header">
+        <div className="section-header">
+          <div className="section-label">Nos Valeurs</div>
           <div>
-            <div className="section-label">Nos Valeurs</div>
-            <h2 className="gaia-h2 reveal" id="pillars-heading">
-              <span className="pillars-title-desktop">Les valeurs qui<br /><span style={{ color: "var(--orange)" }}>nous fondent</span></span>
-              <span className="pillars-title-mobile">Les valeurs<br />qui nous<br /><span style={{ color: "var(--orange)" }}>fondent</span></span>
+            <h2 className="gaia-h2" id="pillars-heading">
+              Ce en quoi nous<br />croyons profondément
             </h2>
+            <p className="section-sub">
+              Quatre <span style={{ color: "var(--orange)" }}>piliers</span> guident chacune de nos collaborations et<br />définissent la manière dont nous travaillons.
+            </p>
           </div>
-          <p className="section-sub reveal d2" style={{ marginTop: 0 }}>
-            Quatre engagements qui guident chacune de nos collaborations
-            et définissent la manière dont nous travaillons.
-          </p>
         </div>
 
         <div className="pillars-grid">

@@ -55,7 +55,7 @@ export default function Contact() {
   return (
     <>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
-      <GaiaNavbar solid={scrollY > 60} />
+      <GaiaNavbar />
 
       <main id="main-content">
         {/* Hero */}

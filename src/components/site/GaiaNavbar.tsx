@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import smileyBg from "../../assets/Man Drawing An Emoji 2 copie 2.jpg.jpeg";
 import logoSombre from "../../assets/logos/Gaia_logo_principal_declinaison_sur_fond_sombre@3x.png";
 import logoPrincipal from "../../assets/logos/Gaia_logo_principal@3x.png";
-
-interface NavbarProps {
-  solid: boolean;
-}
 
 const links = [
   {
@@ -67,10 +64,44 @@ const links = [
   },
 ];
 
-export function GaiaNavbar({ solid }: NavbarProps) {
+export function GaiaNavbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solid, setSolid] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const prevY = useRef(0);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const handler = () => {
+      const cur = window.scrollY;
+      const goingDown = cur > prevY.current;
+      const nearBottom = cur + window.innerHeight >= document.documentElement.scrollHeight - 80;
+      setSolid(cur > 60);
+      if (cur <= 80 || menuOpen) {
+        setVisible(true);
+      } else if (nearBottom) {
+        setVisible(false);
+      } else if (goingDown) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      prevY.current = cur;
+    };
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, [menuOpen]);
+
+  if (!visible && !menuOpen) return null;
+
+  // White bars only on the homepage hero (dark background), blue everywhere else
+  const onHero = location.pathname === "/" && !solid;
+
+  // Show logo in navbar on non-homepage pages when at the very top
+  const showNavLogo = location.pathname !== "/" && !solid;
+  // Contact has a dark top section → light logo; Portfolio has a light top → dark logo
+  const navLogoSrc = location.pathname === "/contact" ? logoSombre : logoPrincipal;
 
   function handleNav(href: string) {
     setMenuOpen(false);
@@ -93,16 +124,18 @@ export function GaiaNavbar({ solid }: NavbarProps) {
   return (
     <>
       <nav className={`gaia-nav${solid ? " solid" : ""}`} role="navigation" aria-label="Navigation principale">
-        <a href="/" className="gaia-nav-logo" onClick={(e) => { e.preventDefault(); handleNav("/"); }}>
-          <img
-            src={solid ? logoPrincipal : logoSombre}
-            alt="Gaïa Studio"
-            style={{ height: 48, width: "auto", display: "block", transition: "opacity 0.4s" }}
-          />
-        </a>
-
+        {showNavLogo && (
+          <a
+            href="/"
+            className="gaia-nav-logo"
+            style={{ marginRight: "auto" }}
+            onClick={(e) => { e.preventDefault(); navigate("/"); }}
+          >
+            <img src={navLogoSrc} alt="Gaïa Studio" style={{ height: 48, width: "auto", display: "block" }} />
+          </a>
+        )}
         <button
-          className={`gaia-hamburger${solid ? " dark" : ""}`}
+          className={`gaia-hamburger${onHero ? "" : " dark"}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={menuOpen}
@@ -114,11 +147,17 @@ export function GaiaNavbar({ solid }: NavbarProps) {
         </button>
       </nav>
 
-      {/* Navigation overlay — recouvre toute la page */}
+      {/* Navigation overlay */}
       <div
         id="nav-overlay"
         className={`gaia-mobile-menu${menuOpen ? " open" : ""}`}
         aria-hidden={!menuOpen}
+        style={{
+          backgroundImage: `url(${smileyBg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right bottom",
+          backgroundSize: "auto 85%",
+        }}
       >
         <ul className="gaia-mobile-links" role="list">
           {links.map((l, i) => (
@@ -135,7 +174,6 @@ export function GaiaNavbar({ solid }: NavbarProps) {
           ))}
         </ul>
 
-        {/* Réseaux sociaux */}
         <div className="nav-social-row">
           <a href="#" className="nav-social-link" aria-label="Facebook">
             <span className="nav-social-icon">

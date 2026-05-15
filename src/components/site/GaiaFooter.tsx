@@ -84,14 +84,6 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
 
         {/* Left — CTA */}
         <div className="footer-cta-col">
-          <p className="footer-cta-label">Parlons de</p>
-          <a
-            className="footer-cta-link"
-            href="/contact"
-            onClick={(e) => { e.preventDefault(); handleNav("/contact"); }}
-          >
-            votre projet…
-          </a>
           <div className="footer-contact-stack">
             <a href="tel:+237674410693">+237 674 410 693</a>
             <a href="mailto:hello@gaiaimagine.com">hello@gaiaimagine.com</a>

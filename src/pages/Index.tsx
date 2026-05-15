@@ -117,6 +117,55 @@ function useScroll() {
   return { y, hidden };
 }
 
+/* ─── Subtitle width = h2 longest line ──────────────────── */
+function useSyncSubtitleWidth() {
+  useEffect(() => {
+    function run() {
+      document.querySelectorAll<HTMLElement>(".section-header").forEach((hdr) => {
+        const h2 = hdr.querySelector<HTMLHeadingElement>("h2");
+        const sub = hdr.querySelector<HTMLElement>(".section-sub");
+        if (!h2 || !sub) return;
+
+        // Probe with h2's exact font to measure each line separately
+        const cs = getComputedStyle(h2);
+        const probe = document.createElement("span");
+        probe.style.cssText =
+          `position:fixed;top:-9999px;left:0;visibility:hidden;` +
+          `pointer-events:none;white-space:nowrap;` +
+          `font-family:${cs.fontFamily};font-size:${cs.fontSize};` +
+          `font-weight:${cs.fontWeight};letter-spacing:${cs.letterSpacing};`;
+        document.body.appendChild(probe);
+
+        let targetW = 0;
+        h2.childNodes.forEach((n) => {
+          if (n.nodeType !== Node.TEXT_NODE || !n.textContent?.trim()) return;
+          probe.textContent = n.textContent;
+          const w = probe.getBoundingClientRect().width;
+          if (w > targetW) targetW = w;
+        });
+        document.body.removeChild(probe);
+        if (targetW <= 0) return;
+
+        // Scale sub font so it fills exactly targetW on one line
+        sub.style.fontSize = "";
+        sub.style.whiteSpace = "nowrap";
+        sub.style.maxWidth = "";
+        const cssFS = parseFloat(getComputedStyle(sub).fontSize) || 15;
+        const naturalW = sub.scrollWidth;
+        if (naturalW <= 0) return;
+
+        const scaled = cssFS * (targetW / naturalW);
+        sub.style.fontSize = `${Math.max(8, scaled)}px`;
+        sub.style.maxWidth = `${Math.ceil(targetW)}px`;
+      });
+    }
+
+    document.fonts.ready.then(run);
+    window.addEventListener("resize", run, { passive: true });
+    return () => window.removeEventListener("resize", run);
+  }, []);
+}
+
 /* ─── Scroll reveal ──────────────────────────────────── */
 function useReveal() {
   useEffect(() => {
@@ -179,20 +228,20 @@ const Index = () => {
     <>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <CustomCursor />
-      {!footerVisible && !navHidden && <GaiaNavbar solid={scrollY > 60} />}
+      <GaiaNavbar />
       <main id="main-content">
         <GaiaHero scrollY={scrollY} />
         <div className="gaia-bridge">
           <p className="gaia-bridge-text reveal">
-            Derrière chaque marque se cache une histoire.<br />
-            chez Gaïa, nous la transformons<br />
-            en une <span style={{ color: "var(--orange)" }}>identité forte</span>.
+            Derrière chaque marque se cache une histoire,<br />
+            et chez Gaïa nous la transformons<br />
+            en une <span style={{ color: "var(--orange)" }}>identité forte</span>
           </p>
         </div>
         <GaiaServices />
+        <GaiaPortfolio />
         <GaiaDNA />
         <GaiaPillars />
-        <GaiaPortfolio />
         <GaiaProcess />
         <GaiaTestimonials />
         <GaiaCTA />

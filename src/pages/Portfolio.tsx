@@ -117,7 +117,7 @@ export default function Portfolio() {
   return (
     <>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
-      <GaiaNavbar solid={true} />
+      <GaiaNavbar />
 
       <main id="main-content">
         {/* Hero */}

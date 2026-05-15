@@ -1,3 +1,3 @@
 # Welcome to your Lovable project
 
-TODO: Document your project here
+Ce projet est le site Internet de l'entreprise GAIA qui fait dans la creation d'identité Visuel

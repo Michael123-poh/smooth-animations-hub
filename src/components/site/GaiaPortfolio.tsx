@@ -29,20 +29,6 @@ const projects = [
     img: "https://picsum.photos/seed/invest-link/800/400",
     color: "#7B3F2A",
   },
-  {
-    id: "isabella",
-    name: "Résidence Isabella",
-    category: "Identité de luxe",
-    img: "https://picsum.photos/seed/residence-isabella/600/400",
-    color: "#4A3728",
-  },
-  {
-    id: "kcare",
-    name: "K-Care Cosmetics",
-    category: "Brand & packaging",
-    img: "https://picsum.photos/seed/kcare-cosmetics/600/400",
-    color: "#6B2A5F",
-  },
 ];
 
 export function GaiaPortfolio() {
@@ -50,22 +36,23 @@ export function GaiaPortfolio() {
 
   return (
     <section className="gaia-portfolio" id="realisations" aria-labelledby="portfolio-heading">
-      <div className="portfolio-header">
-        <div>
-          <div className="section-label">Nos Récoltes</div>
-          <h2 className="gaia-h2 reveal" id="portfolio-heading">
-            Des marques<br />qui ont trouvé<br /><span style={{ color: "var(--orange)" }}>leur voix</span>
+      <div className="section-header">
+        <div className="section-label">Nos Récoltes</div>
+        <div className="portfolio-title-row">
+          <h2 className="gaia-h2" id="portfolio-heading">
+            Des marques qui<br />ont trouvé leur voix
           </h2>
+          <button
+            className="gaia-btn gaia-btn-ghost reveal d2"
+            onClick={() => navigate("/portfolio")}
+            style={{ flexShrink: 0 }}
+          >
+            Tous les projets
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
-        <button
-          className="gaia-btn gaia-btn-ghost reveal d2"
-          onClick={() => navigate("/portfolio")}
-        >
-          Tous les projets
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
       </div>
 
       <div className="portfolio-grid">

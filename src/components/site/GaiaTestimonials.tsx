@@ -1,45 +1,46 @@
+import logoOracle from "../../assets/Oracle_Education_Cosultancy.png";
+import logoIlma from "../../assets/Ilma_Consulting.png";
+import logoVitapro from "../../assets/Vitapro.png";
+import logoInvestLink from "../../assets/Invest_Link.png";
+import logoIsabella from "../../assets/Residence_Isabella.png";
+import logoKCare from "../../assets/K_Care_Cosmetics.png";
+
 const testimonials = [
   {
     text: "L'équipe Gaïa a été un partenaire fiable et dévoué tout au long de ce projet en mettant à notre service leur expertise avec bienveillance et professionnalisme.",
     name: "Le Management de OEC",
     role: "Oracle Education Consultancy",
-    initials: "OE",
-    color: "#16166A",
+    logo: logoOracle,
   },
   {
     text: "Confier notre branding à l'équipe Gaïa est la meilleure décision que j'ai prise après avoir décidé de mettre sur pied mon cabinet.",
     name: "Fred MILLA",
     role: "CEO · ILMA Consulting",
-    initials: "FM",
-    color: "#20208A",
+    logo: logoIlma,
   },
   {
     text: "L'équipe Gaïa a su nous révéler tout le potentiel de notre projet. Nous étions complètement stupéfaits par le résultat.",
     name: "Mmes MBANGO & YOUDOM",
     role: "Co-fondatrices de l'entreprise",
-    initials: "MB",
-    color: "#3D6B4F",
+    logo: logoVitapro,
   },
   {
     text: "Avec l'équipe Gaïa, construire notre identité visuelle était une belle aventure de collaboration et nous sommes ravis de les avoir à nos côtés jusqu'à ce jour.",
     name: "M. Eddy Ernest N.",
     role: "CEO · Invest Link",
-    initials: "EE",
-    color: "#7B3F2A",
+    logo: logoInvestLink,
   },
   {
     text: "Grâce au travail acharné de l'équipe Gaïa, notre résidence a gagné une place notoire en hôtellerie dans la zone de Douala 5ème.",
     name: "M. NZIMA S. Seraphin",
     role: "CEO · SCI Isabella",
-    initials: "NS",
-    color: "#4A3728",
+    logo: logoIsabella,
   },
   {
     text: "Nous sommes ravis d'avoir travaillé avec l'équipe Gaïa sur la conception et le déploiement de notre marque. Ils ont su trouver le juste milieu entre nos valeurs et les besoins du marché actuel.",
     name: "M. & Mme KUECHE",
     role: "Co-fondateurs de la marque",
-    initials: "KU",
-    color: "#6B2A5F",
+    logo: logoKCare,
   },
 ];
 
@@ -52,16 +53,16 @@ export function GaiaTestimonials() {
   return (
     <section className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
       <div className="testi-inner">
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 40 }}>
+        <div className="section-header">
+          <div className="section-label">Notre Écho</div>
           <div>
-            <div className="section-label" style={{ color: "var(--orange)" }}>Notre Écho</div>
             <h2 className="gaia-h2" id="testi-heading">
-              Ce que disent<br /><span style={{ color: "var(--orange)" }}>nos clients</span>
+              Ce qu'ils disent de nous
             </h2>
+            <p className="section-sub">
+              Ils nous ont fait <span style={{ color: "var(--orange)" }}>confiance</span>, voici ce qu'ils en pensent.
+            </p>
           </div>
-          <p className="section-sub" style={{ marginTop: 0, textAlign: "right", paddingTop: 36 }}>
-            Ils nous ont fait confiance.<br />Voilà ce qu'ils en pensent.
-          </p>
         </div>
 
         <div className="testi-grid">
@@ -77,12 +78,8 @@ export function GaiaTestimonials() {
               </div>
               <p className="testi-text">{t.text}</p>
               <div className="testi-author">
-                <div
-                  className="testi-avatar"
-                  style={{ background: `linear-gradient(135deg, ${t.color}, var(--orange))` }}
-                  aria-hidden="true"
-                >
-                  {t.initials}
+                <div className="testi-avatar" aria-hidden="true">
+                  <img src={t.logo} alt="" />
                 </div>
                 <div>
                   <div className="testi-name">{t.name}</div>

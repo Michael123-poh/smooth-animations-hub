@@ -38,9 +38,9 @@
   --navy-light:    var(--blue-light);
 
   /* —— Text */
-  --text-dark:     #0D0B09;
-  --text-mid:      #4A4540;
-  --text-muted:    rgba(0, 0, 0, 0.38);
+  --text-dark:     #3b527b;
+  --text-mid:      #3b527b;
+  --text-muted:    rgba(59, 82, 123, 0.38);
   --text-on-dark:  rgba(255,255,255,0.90);
   --text-on-dark-muted: rgba(255,255,255,0.52);
 
@@ -176,22 +176,20 @@ a {
   z-index: var(--z-nav);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Default = scrolled state: compact, dark, solid */
-  background: rgba(14, 14, 66, 0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.07), 0 8px 32px rgba(8,8,26,0.35);
-  padding: 14px 80px;
-  transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.3s ease;
-}
-.gaia-nav.solid {
-  /* Hero state: relaxed, transparent */
+  justify-content: flex-end;
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: none;
   padding: 20px 80px;
+  transition: padding 0.3s ease;
+}
+.gaia-nav.solid {
+  padding: 14px 80px;
+}
+/* White bars on hero (dark bg) */
+.gaia-hamburger-bar {
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.55));
 }
 .gaia-nav-logo {
   display: flex;
@@ -293,6 +291,29 @@ a {
   border-color: var(--navy);
   box-shadow: none;
   transform: translateY(-1px);
+}
+
+/* ─── HERO LOGO (logo uniquement dans le hero, pas dans la nav) ── */
+.hero-logo {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+  z-index: calc(var(--z-nav) + 1);
+}
+.hero-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+@media (max-width: 1200px) {
+  .hero-logo { left: 60px; }
+}
+@media (max-width: 768px) {
+  .hero-logo { left: 28px; top: 16px; }
+}
+@media (max-width: 480px) {
+  .hero-logo { left: 16px; }
+  .hero-logo img { height: 38px; }
 }
 
 /* ─── GAIA HERO ──────────────────────────────────────────── */
@@ -425,7 +446,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 52%;
+  max-width: 58%;
 }
 /* Bloc dont la largeur = plus longue ligne du h1 */
 .hero-eye-text-block {
@@ -435,33 +456,44 @@ a {
 }
 .hero-eye-h1 {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(36px, 4.5vw, 64px);
+  font-size: clamp(28px, 4vw, 58px);
   font-weight: 800;
-  line-height: 0.9;
+  line-height: 0.96;
   letter-spacing: -1px;
   color: white;
-  margin-bottom: 14px;
+  margin-bottom: 0;
   text-align: left;
   text-transform: lowercase;
   white-space: nowrap;
+}
+/* PC : chaque ligne sur son propre bloc */
+.hero-h1-line { display: block; }
+/* Virgule visible uniquement sur PC */
+.hero-h1-comma { display: inline; }
+/* Groupe : "07 secondes chrono." + sous-titre dans la même colonne */
+.hero-chrono-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 .hero-eye-h1 em {
   font-style: normal;
   color: var(--orange);
 }
-/* Chaque caractère = 1 flex item, space-between les répartit sur toute la largeur du h1 */
+/* Sous-titre : s'étire sur la même largeur que "07 secondes chrono." */
 .hero-eye-sub {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(13px, 1.55vw, 24px);
-  font-weight: 500;
+  font-size: clamp(14px, 1.45vw, 20px);
+  font-weight: 700;
   color: var(--orange);
-  margin-bottom: 36px;
   text-transform: lowercase;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   letter-spacing: 0;
+  margin-top: 8px;
+  margin-bottom: 32px;
 }
 .hero-eye-ctas {
   justify-content: flex-start;
@@ -596,7 +628,7 @@ a {
 .gaia-hamburger-bar.open-top  { transform: translateY(7px) rotate(45deg); }
 .gaia-hamburger-bar.open-mid  { opacity: 0; transform: scaleX(0); }
 .gaia-hamburger-bar.open-bot  { transform: translateY(-7px) rotate(-45deg); }
-.gaia-hamburger.dark .gaia-hamburger-bar { background: var(--blue-navy); transition: background 0.4s, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease; }
+.gaia-hamburger.dark .gaia-hamburger-bar { background: var(--blue-navy); filter: none; transition: background 0.4s, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease; }
 
 /* ─── MOBILE MENU OVERLAY ────────────────────────────────── */
 .gaia-mobile-menu {
@@ -893,31 +925,80 @@ a {
 .gaia-h2 {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(26px, 2.4vw, 36px);
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.5px;
-  line-height: 1.0;
-  line-height: 1.0;
+  line-height: 0.85;
   color: var(--blue-navy);
 }
 .gaia-h2.on-dark {
   color: white;
 }
 .section-sub {
-  font-size: 15px;
+  font-size: 11.5px;
+  font-weight: 500;
   line-height: 1.2;
-  color: var(--text-mid);
-  max-width: 280px;
+  color: var(--blue-navy);
   margin-top: 14px;
-  text-wrap: balance;
 }
 .section-sub.on-dark {
   color: rgba(255,255,255,0.6);
 }
 
+/* ─── UNIVERSAL SECTION HEADER (label gauche / titre+sous-titre droite) ── */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+.section-header .section-label {
+  margin-bottom: 0;
+  align-self: start;
+}
+.section-header .gaia-h2,
+.section-header .dna-h2 {
+  margin-bottom: 2px;
+}
+.section-header .section-sub {
+  max-width: 100%;
+  margin-top: 1px;
+  line-height: 1.15;
+}
+
+/* DNA: colonnes de texte internes */
+.dna-text-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.dna-cols-flex {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+.dna-cols-flex > div { flex: 1; }
+
+.portfolio-title-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* DNA: texte gauche + image droite */
+.dna-content-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
 /* ─── GAIA BRIDGE (hero → services) ─────────────────────── */
 .gaia-bridge {
   background: var(--beige);
-  border-top: 1px solid rgba(165,145,120,0.28);
   padding: 64px 80px;
   text-align: center;
   display: flex;
@@ -925,11 +1006,10 @@ a {
 }
 .gaia-bridge-text {
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(14px, 2.2vw, 32px);
+  font-size: clamp(16px, 2.4vw, 36px);
   font-weight: 800;
   line-height: 1.35;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--blue-navy);
   max-width: 860px;
   white-space: nowrap;
@@ -938,7 +1018,7 @@ a {
 /* ─── GAIA SERVICES ──────────────────────────────────────── */
 .gaia-services {
   background: var(--beige);
-  padding: 70px 80px;
+  padding: 60px 80px;
   border-top: none;
   position: relative;
   overflow: hidden;
@@ -1079,7 +1159,7 @@ a {
 }
 .services-photo-col {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: 20px 0 0 0;
   overflow: hidden;
   align-self: stretch;
 }
@@ -1156,18 +1236,13 @@ a {
 }
 .accordion-sub-list li {
   font-size: 14px;
-  color: var(--text-mid);
+  color: #3b527b;
   line-height: 1.15;
-  padding-left: 18px;
+  padding-left: 0;
   position: relative;
 }
 .accordion-sub-list li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--orange);
-  font-size: 10px;
-  top: 2px;
+  content: none;
 }
 
 /* ─── GAIA DNA ───────────────────────────────────────────── */
@@ -1176,8 +1251,7 @@ a {
 }
 .gaia-dna {
   background: var(--beige);
-  padding: 70px 80px 80px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 60px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -1187,13 +1261,17 @@ a {
 .dna-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  grid-template-rows: 1fr auto;
+  gap: 40px 80px;
+  align-items: start;
 }
-/* Stats span both columns on desktop */
 .dna-grid .dna-stats-row {
   grid-column: 1 / -1;
-  margin-top: 24px;
+  margin-top: 0;
+}
+/* Image: stays in right column, aligned to top */
+.dna-grid .dna-visual {
+  align-self: start;
 }
 .dna-tag {
   display: inline-block;
@@ -1210,17 +1288,16 @@ a {
 .dna-h2 {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(26px, 2.4vw, 36px);
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.5px;
-  line-height: 1.0;
+  line-height: 0.85;
   color: var(--blue-navy);
   margin-bottom: 18px;
 }
 .dna-body {
   font-size: 14px;
   line-height: 1.2;
-  color: var(--text-mid);
-  max-width: 520px;
+  color: #3b527b;
   margin-bottom: 16px;
 }
 .dna-quote {
@@ -1284,8 +1361,7 @@ a {
 /* ─── GAIA PILLARS ───────────────────────────────────────── */
 .gaia-pillars {
   background: var(--blue-navy);
-  padding: 70px 80px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 60px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -1312,7 +1388,7 @@ a {
 .pillar-card {
   background: var(--beige);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: 20px 0 0 0;
   padding: 32px 24px;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
   position: relative;
@@ -1340,6 +1416,7 @@ a {
 }
 .pillar-card:nth-child(even) {
   margin-top: 0;
+  border-radius: 0 20px 0 0;
 }
 .pillar-icon-wrap {
   width: 56px;
@@ -1360,7 +1437,7 @@ a {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(0,0,0,0.2);
+  color: rgba(61,74,98,0.2);
 }
 .pillar-title {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
@@ -1380,8 +1457,7 @@ a {
 /* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
 .gaia-portfolio {
   background: var(--beige);
-  padding: 70px 80px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 60px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -1409,7 +1485,7 @@ a {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 260px);
+  grid-template-rows: repeat(2, 260px);
   gap: 16px;
 }
 .portfolio-grid .port-item:nth-child(1) { grid-column: 1 / 5; }
@@ -1418,9 +1494,12 @@ a {
 .portfolio-grid .port-item:nth-child(4) { grid-column: 3 / 7; }
 .portfolio-grid .port-item:nth-child(5) { grid-column: 1 / 4; }
 .portfolio-grid .port-item:nth-child(6) { grid-column: 4 / 7; }
+.portfolio-grid .port-item:nth-child(2) { border-radius: 0 20px 0 0; }
+.portfolio-grid .port-item:nth-child(3) { border-radius: 0 0 0 20px; }
+.portfolio-grid .port-item:nth-child(4) { border-radius: 0 0 20px 0; }
 .port-item {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: 20px 0 0 0;
   overflow: hidden;
   cursor: pointer;
   background: var(--beige-dark);
@@ -1491,8 +1570,7 @@ a {
 /* ─── GAIA TESTIMONIALS ──────────────────────────────────── */
 .gaia-testimonials {
   background: var(--beige);
-  padding: 70px 0;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 60px 0;
   overflow: hidden;
   position: relative;
 }
@@ -1508,9 +1586,12 @@ a {
 .testi-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: 12px 0 0 0;
   padding: 20px 22px;
   position: relative;
+}
+.testi-card:nth-child(even) {
+  border-radius: 0 12px 0 0;
 }
 .testi-stars {
   display: flex;
@@ -1532,19 +1613,21 @@ a {
   gap: 14px;
 }
 .testi-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--orange), var(--navy-mid));
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-weight: 800;
-  font-size: 13px;
-  color: white;
   flex-shrink: 0;
   overflow: hidden;
+}
+.testi-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .testi-name {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
@@ -1613,7 +1696,7 @@ a {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: rgba(0,0,0,0.25);
+  color: rgba(61,74,98,0.45);
   white-space: nowrap;
   text-transform: uppercase;
 }
@@ -1623,7 +1706,8 @@ a {
 /* Wrapper : hauteur auto + padding-bottom ajouté via JS pour le scroll driver */
 .gaia-process {
   background: var(--beige);
-  padding: 70px 80px 80px;
+  padding: 60px 80px;
+  margin: 0;
   position: relative;
   overflow: hidden;
 }
@@ -1636,27 +1720,33 @@ a {
 }
 
 .process-card {
-  padding: 0 32px 0 28px;
-  border-left: 2px solid rgba(165,145,120,0.22);
+  padding: 0 24px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.process-card:first-child { border-left: none; padding-left: 0; }
+.process-card:first-child { padding-left: 0; }
 .process-visible .process-card { opacity: 1; transform: translateY(0); }
 
 .process-card-header {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 .process-card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--blue-navy);
+  color: #fff;
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--blue-navy);
+  letter-spacing: 0.05em;
   flex-shrink: 0;
 }
 .process-card-title {
@@ -1672,6 +1762,7 @@ a {
   line-height: 1.6;
   color: var(--text-mid);
   margin-bottom: 14px;
+  margin-left: 60px;
 }
 .process-card-duration {
   display: inline-flex;
@@ -1686,8 +1777,7 @@ a {
 /* ─── GAIA CTA ───────────────────────────────────────────── */
 .gaia-cta {
   background: var(--beige);
-  padding: 70px 80px;
-  border-top: 1px solid rgba(165,145,120,0.28);
+  padding: 60px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -1709,7 +1799,7 @@ a {
 .cta-contact-form {
   background: white;
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: 0 var(--radius-xl) 0 0;
   padding: 48px;
   box-shadow: 0 12px 40px rgba(8,8,26,0.08);
 }
@@ -1748,7 +1838,7 @@ a {
   background: white;
 }
 .form-input::placeholder {
-  color: rgba(0,0,0,0.3);
+  color: rgba(61,74,98,0.45);
 }
 .form-input option {
   background: white;
@@ -2188,8 +2278,7 @@ textarea.form-input {
 
 /* ─── SECTION DIVIDERS ───────────────────────────────────── */
 .section-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(255,138,61,0.25), transparent);
+  display: none;
 }
 
 /* ─── PROCESS LABEL DARK ─────────────────────────────────── */
@@ -2215,7 +2304,7 @@ textarea.form-input {
   color: var(--orange);
 }
 .gaia-cta .section-sub {
-  color: var(--text-mid);
+  color: var(--blue-navy);
 }
 .gaia-cta .cta-contact-info-label {
   color: var(--text-mid);
@@ -2358,8 +2447,10 @@ textarea.form-input {
   /* Portfolio: 2-col tablet, remove spans */
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 260px);
+    grid-template-rows: repeat(2, 260px);
   }
+  .portfolio-grid .port-item:nth-child(3) { border-radius: 0 0 0 20px; }
+  .portfolio-grid .port-item:nth-child(4) { border-radius: 0 0 20px 0; }
   .portfolio-grid .port-item:nth-child(1),
   .portfolio-grid .port-item:nth-child(2),
   .portfolio-grid .port-item:nth-child(3),
@@ -2547,12 +2638,7 @@ textarea.form-input {
 
   /* PROCESS : 2 colonnes sur tablette */
   .process-steps-row { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
-  .process-card:nth-child(3) { border-left: none; padding-left: 0; }
-
-  /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
-  .gaia-dna {
-    padding-bottom: 96px;
-  }
+  .process-card:nth-child(3) { padding-left: 0; }
 
   /* SECTION padding */
   .gaia-services,
@@ -2562,13 +2648,21 @@ textarea.form-input {
   .gaia-testimonials,
   .gaia-process,
   .gaia-cta {
-    padding: 72px 28px;
+    padding: 40px 28px;
   }
   .testi-inner {
     padding: 0 28px;
   }
 
-  /* SECTION headers: keep 2-col so sub stays level with h2 */
+  /* Section header mobile: empile label au-dessus du contenu */
+  .section-header {
+    grid-template-columns: 1fr;
+  }
+  /* DNA mobile: empile texte et image */
+  .dna-content-row {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
   .pillars-header {
     grid-template-columns: 1fr 1fr;
     align-items: start;
@@ -2586,7 +2680,7 @@ textarea.form-input {
     gap: 20px;
   }
   .services-top .section-sub {
-    font-size: 13px;
+    font-size: 9px;
     line-height: 1.2;
     text-align: right;
     flex-shrink: 0;
@@ -2615,7 +2709,7 @@ textarea.form-input {
     width: 100%;
     max-width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 12px;
+    border-radius: 12px 0 0 0;
     overflow: hidden;
   }
 
@@ -2642,15 +2736,15 @@ textarea.form-input {
   .dna-grid .reveal-left {
     opacity: 1 !important;
     transform: none !important;
-    order: 1;
   }
-  .dna-visual {
+  .dna-grid .dna-visual {
+    grid-row: auto;
+    align-self: auto;
+    margin-right: 0;
     height: auto;
-    order: 2;
     opacity: 1;
   }
   .dna-grid .dna-stats-row {
-    order: 3;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 0;
   }
@@ -2692,6 +2786,10 @@ textarea.form-input {
   }
   .testi-card {
     padding: 32px 28px;
+    border-radius: 12px 0 0 0;
+  }
+  .testi-card:nth-child(even) {
+    border-radius: 12px 0 0 0;
   }
 
   /* PROCESS: steps full width, card masquée sur mobile */
@@ -2757,15 +2855,19 @@ textarea.form-input {
     text-align: center;
   }
   .hero-eye-h1 {
-    font-size: clamp(22px, 6.5vw, 30px);
+    font-size: clamp(22px, 6vw, 32px);
+    white-space: normal;
     text-align: center;
   }
+  /* Mobile : toutes les lignes en inline → wrapping naturel */
+  .hero-h1-line { display: inline; }
+  .hero-h1-comma { display: none; }
+  /* Sous-titre : inline-flex devient block centré */
+  .hero-chrono-group { display: block; }
   .hero-eye-sub {
-    font-size: clamp(9px, 3vw, 14px);
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    letter-spacing: 0;
+    font-size: clamp(9px, 2.8vw, 13px);
+    margin-top: 4px;
+    margin-bottom: 24px;
   }
   .hero-eye-ctas .gaia-btn {
     padding: 11px 24px;
@@ -2800,37 +2902,51 @@ textarea.form-input {
   .gaia-h2 {
     font-size: clamp(22px, 6.5vw, 30px);
     letter-spacing: -0.5px;
-    line-height: 1.0;
+    line-height: 0.9;
   }
   .section-sub {
-    font-size: 13px;
+    font-size: 9px;
     line-height: 1.2;
     margin-top: 8px;
   }
 
-  /* PROCESS : horizontal scrollable sur mobile */
+  /* PROCESS : 2×2 grid sur mobile */
   .process-steps-row {
-    grid-template-columns: repeat(4, 72vw);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 0;
-    padding-bottom: 12px;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: unset;
+    scroll-snap-type: unset;
+    -webkit-overflow-scrolling: unset;
+    gap: 24px;
+    padding-bottom: 0;
   }
-  .process-steps-row::-webkit-scrollbar { display: none; }
+  /* DNA: stack text columns on mobile */
+  .dna-cols-flex {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dna-body {
+    margin-bottom: 0;
+  }
+  /* Portfolio: title left, button right on mobile */
+  .portfolio-title-row {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .portfolio-title-row .gaia-btn {
+    font-size: 11px;
+    padding: 8px 14px;
+    white-space: nowrap;
+  }
   .process-card {
-    scroll-snap-align: start;
-    border-left: 2px solid rgba(165,145,120,0.22);
-    padding-left: 20px;
-    padding-right: 20px;
-    border-top: none;
-    padding-top: 0;
+    border-left: none;
+    padding: 0;
   }
-  .process-card:first-child { border-left: none; padding-left: 0; }
-
-  /* DNA: extra bottom padding so beige gap is visible before navy Pillars */
-  .gaia-dna {
-    padding-bottom: 80px;
+  .process-card:first-child { padding-left: 0; }
+  .process-card-desc {
+    margin-left: 0;
+    font-size: 11px;
+    line-height: 1.5;
   }
 
   /* SECTION padding */
@@ -2841,10 +2957,10 @@ textarea.form-input {
   .gaia-testimonials,
   .gaia-process,
   .gaia-cta {
-    padding: 56px 20px;
+    padding: 36px 16px;
   }
   .testi-inner {
-    padding: 0 20px;
+    padding: 0;
   }
 
   /* SERVICES: bento asymétrique mobile.
@@ -2967,7 +3083,7 @@ textarea.form-input {
   /* PORTFOLIO: 2 colonnes égales sur mobile */
   .portfolio-grid {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, 160px);
+    grid-template-rows: repeat(2, 160px);
     gap: 10px;
   }
   .portfolio-grid .port-item:nth-child(1),
@@ -3024,11 +3140,7 @@ textarea.form-input {
     z-index: 10;
   }
 
-  /* TESTIMONIALS: horizontal scroll rail like Titans */
-  .testi-inner {
-    padding-left: 0;
-    padding-right: 0;
-  }
+  /* TESTIMONIALS: horizontal scroll rail */
   .testi-grid {
     display: flex;
     overflow-x: auto;
@@ -3036,9 +3148,9 @@ textarea.form-input {
     -webkit-overflow-scrolling: touch;
     gap: 12px;
     padding-bottom: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
-    scroll-padding-left: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
     scrollbar-width: none;
     grid-template-columns: unset;
   }
@@ -3098,7 +3210,7 @@ textarea.form-input {
   .gaia-services,
   .gaia-dna,
   .gaia-portfolio,
-  .process-scroll-wrapper,
+  .gaia-process,
   .gaia-testimonials,
   .gaia-cta {
     margin-left: 100px;
@@ -3117,5 +3229,9 @@ textarea.form-input {
   .gaia-nav.solid {
     padding-left: 180px;
     padding-right: 180px;
+  }
+  /* Hero text starts at same left edge as the logo */
+  .hero-eye-content {
+    padding-left: 180px;
   }
 }

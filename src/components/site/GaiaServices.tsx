@@ -1,5 +1,5 @@
 import { useState } from "react";
-import gaiaTeam from "../../assets/gaia-team.jpg";
+import ourGarden from "../../assets/Our Garden.png";
 
 const categories = [
   {
@@ -29,21 +29,21 @@ export function GaiaServices() {
 
   return (
     <section className="gaia-services" id="services" aria-labelledby="services-heading">
-      <div className="services-top">
+      <div className="section-header">
+        <div className="section-label">Notre Jardin</div>
         <div>
-          <div className="section-label">Notre Jardin</div>
-          <h2 className="gaia-h2 reveal" id="services-heading">
-            Ce que nous créons<br /><span style={{ color: "var(--orange)" }}>pour vous</span>
+          <h2 className="gaia-h2" id="services-heading">
+            Ce que nous<br />créons pour vous
           </h2>
+          <p className="section-sub">
+            Quatre <span style={{ color: "var(--orange)" }}>pôles d'expertise</span> au service de votre croissance.
+          </p>
         </div>
-        <p className="section-sub reveal d2" style={{ marginTop: 0, textAlign: "right" }}>
-          Quatre pôles d'expertise au service<br />de votre croissance.
-        </p>
       </div>
 
       <div className="services-accordion-wrap">
         <div className="services-photo-col">
-          <img src={gaiaTeam} alt="L'équipe Gaïa en atelier créatif" />
+          <img src={ourGarden} alt="Notre Jardin — l'univers créatif Gaïa" />
         </div>
 
         <div className="services-list-col">
