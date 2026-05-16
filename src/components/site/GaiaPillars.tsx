@@ -99,7 +99,7 @@ export function GaiaPillars() {
               Ce en quoi nous<br />croyons profondément
             </h2>
             <p className="section-sub">
-              Quatre <span style={{ color: "var(--orange)" }}>piliers</span> guident chacune de nos collaborations et<br />définissent la manière dont nous travaillons.
+              Quatre <span style={{ color: "var(--orange)" }}>piliers</span> guident chacune de nos collaborations<br />et définissent la manière dont nous travaillons.
             </p>
           </div>
         </div>

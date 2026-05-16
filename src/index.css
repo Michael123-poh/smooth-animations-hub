@@ -483,7 +483,7 @@ a {
 /* Sous-titre : s'étire sur la même largeur que "07 secondes chrono." */
 .hero-eye-sub {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(14px, 1.45vw, 20px);
+  font-size: clamp(17px, 1.9vw, 26px);
   font-weight: 700;
   color: var(--orange);
   text-transform: lowercase;
@@ -935,7 +935,7 @@ a {
 }
 .section-sub {
   font-size: 11.5px;
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1.2;
   color: var(--blue-navy);
   margin-top: 14px;
@@ -1006,7 +1006,7 @@ a {
 }
 .gaia-bridge-text {
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(16px, 2.4vw, 36px);
+  font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: 0.02em;
@@ -2692,10 +2692,10 @@ textarea.form-input {
     padding: 40px 20px;
   }
   .gaia-bridge-text {
-    font-size: clamp(10px, 3.2vw, 15px);
+    font-size: clamp(14px, 3.8vw, 17px);
     line-height: 1.4;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
+    letter-spacing: 0;
+    white-space: normal;
   }
 
   /* Services accordion: stack photo above list */
@@ -2839,7 +2839,7 @@ textarea.form-input {
     letter-spacing: -0.5px;
   }
   .gaia-h2 {
-    font-size: clamp(24px, 7vw, 32px);
+    font-size: clamp(22px, 6.4vw, 29px);
   }
 
   /* HERO: serré, boutons empilés */
@@ -2855,7 +2855,7 @@ textarea.form-input {
     text-align: center;
   }
   .hero-eye-h1 {
-    font-size: clamp(22px, 6vw, 32px);
+    font-size: clamp(28px, 8vw, 36px);
     white-space: normal;
     text-align: center;
   }
@@ -2865,7 +2865,7 @@ textarea.form-input {
   /* Sous-titre : inline-flex devient block centré */
   .hero-chrono-group { display: block; }
   .hero-eye-sub {
-    font-size: clamp(9px, 2.8vw, 13px);
+    font-size: clamp(11px, 3.5vw, 15px);
     margin-top: 4px;
     margin-bottom: 24px;
   }
@@ -2900,7 +2900,7 @@ textarea.form-input {
     margin-bottom: 10px;
   }
   .gaia-h2 {
-    font-size: clamp(22px, 6.5vw, 30px);
+    font-size: clamp(20px, 5.9vw, 27.5px);
     letter-spacing: -0.5px;
     line-height: 0.9;
   }

@@ -37,8 +37,8 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
             <span className="hero-h1-line">
               <span className="hero-chrono-group">
                 <span>en <em>07</em> secondes chrono</span>
-                <span className="hero-eye-sub" role="text" aria-label="que voient-ils ?">
-                  {"que voient-ils ?".split("").map((char, i) => (
+                <span className="hero-eye-sub" role="text" aria-label="que voient-ils?">
+                  {"que voient-ils?".split("").map((char, i) => (
                     <span key={i} aria-hidden="true">{char === " " ? " " : char}</span>
                   ))}
                 </span>

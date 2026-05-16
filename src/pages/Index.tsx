@@ -154,7 +154,7 @@ function useSyncSubtitleWidth() {
         const naturalW = sub.scrollWidth;
         if (naturalW <= 0) return;
 
-        const scaled = cssFS * (targetW / naturalW);
+        const scaled = cssFS * (targetW / naturalW); // 0.95 is a little safety margin
         sub.style.fontSize = `${Math.max(8, scaled)}px`;
         sub.style.maxWidth = `${Math.ceil(targetW)}px`;
       });
