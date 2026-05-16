@@ -2931,7 +2931,7 @@ textarea.form-input {
   .dna-cols-flex {
     flex-direction: column;
     gap: 0;
-    width: 85%;
+    width: 80%;
   }
   .dna-body {
     margin-bottom: 0;

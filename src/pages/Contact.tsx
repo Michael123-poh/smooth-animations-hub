@@ -60,6 +60,7 @@ export default function Contact() {
       <main id="main-content">
         {/* Hero */}
         <section
+          className="contact-hero"
           style={{
             background: "var(--navy)",
             padding: "140px 80px 80px",
@@ -87,8 +88,8 @@ export default function Contact() {
         <GaiaCTA />
 
         {/* FAQ */}
-        <section style={{ background: "var(--beige)", padding: "100px 80px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
+        <section className="faq-section" style={{ background: "var(--beige)", padding: "100px 80px" }}>
+          <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
               <div className="section-label">Questions fréquentes</div>
               <h2 className="gaia-h2 reveal" style={{ marginBottom: 0 }}>
