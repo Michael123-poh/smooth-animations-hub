@@ -48,7 +48,7 @@ export function GaiaDNA() {
           <div className="dna-cols-flex">
             <div style={{ flex: 1 }}>
               <p className="dna-body">
-                Gaïa est née d'une conviction profonde : les marques camerounaises ont une histoire
+                Gaïa est née d'une conviction profonde :<br /> les marques camerounaises ont une histoire
                 unique à raconter. Fondée à Douala, notre agence accompagne entrepreneurs et
                 entreprises locales dans la construction d'identités visuelles qui résonnent avec
                 authenticité et ambition.
@@ -81,7 +81,7 @@ export function GaiaDNA() {
                 width: "100%",
                 height: "auto",
                 display: "block",
-                objectFit: "cover",
+                objectFit: "contain",
                 aspectRatio: "4/3",
               }}
             />
