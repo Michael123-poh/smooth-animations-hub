@@ -55,14 +55,11 @@ export function GaiaDNA() {
               </p>
               <p className="dna-body">
                 Nous ne créons pas seulement des logos. Nous bâtissons des ponts émotionnels entre
-                votre marque et
+                votre marque etles gens qui comptent pour elle. Chaque projet est une graine que
+                nous plantons avec soin, pour qu'elle grandisse et s'épanouisse.
               </p>
             </div>
             <div style={{ flex: 1 }}>
-              <p className="dna-body">
-                les gens qui comptent pour elle. Chaque projet est une graine que
-                nous plantons avec soin, pour qu'elle grandisse et s'épanouisse.
-              </p>
               <p className="dna-body">
                 Nous sommes des passionnés qui transforment des idées en expériences mémorables —
                 parce que votre histoire mérite d'être racontée avec authenticité et excellence.

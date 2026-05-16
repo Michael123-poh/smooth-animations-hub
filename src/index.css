@@ -2931,7 +2931,7 @@ textarea.form-input {
   .dna-cols-flex {
     flex-direction: column;
     gap: 0;
-    width: 80%;
+    width: 84%;
   }
   .dna-body {
     margin-bottom: 0;
@@ -3213,6 +3213,23 @@ textarea.form-input {
   }
   .cta-contact-form {
     padding: 28px 20px;
+  }
+
+  /* CONTACT PAGE */
+  .contact-hero {
+    padding: 100px 20px 60px !important;
+  }
+  .faq-section {
+    padding: 60px 20px !important;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* DNA paragraphs: ligne vide entre eux */
+  .dna-body {
+    margin-bottom: 1.4em;
   }
 }
 
