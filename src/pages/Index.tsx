@@ -154,8 +154,16 @@ function useSyncSubtitleWidth() {
         const naturalW = sub.scrollWidth;
         if (naturalW <= 0) return;
 
-        const scaled = cssFS * (targetW / naturalW); // 0.95 is a little safety margin
-        sub.style.fontSize = `${Math.max(8, scaled)}px`;
+        if (window.innerWidth <= 480) {
+          // Let CSS handle size on mobile — just reset any previous JS overrides
+          sub.style.fontSize = "";
+          sub.style.whiteSpace = "normal";
+          sub.style.maxWidth = "";
+          return;
+        }
+        const minSize = 8;
+        const scaled = cssFS * (targetW / naturalW);
+        sub.style.fontSize = `${Math.max(minSize, scaled)}px`;
         sub.style.maxWidth = `${Math.ceil(targetW)}px`;
       });
     }
