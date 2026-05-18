@@ -185,7 +185,6 @@ export function GaiaCTA() {
                     className="form-input"
                     value={form.projet}
                     onChange={handleChange}
-                    style={{ cursor: "pointer" }}
                   >
                     <option value="">Choisir un service</option>
                     <option value="identite">Identité visuelle</option>
@@ -218,9 +217,8 @@ export function GaiaCTA() {
                 )}
                 <button
                   type="submit"
-                  className="gaia-btn"
+                  className="gaia-btn form-submit-btn"
                   disabled={status === "submitting"}
-                  style={{ width: "100%", justifyContent: "center", padding: "14px 24px", fontSize: 15, marginTop: 4 }}
                 >
                   {status === "submitting" ? "Envoi en cours..." : "Envoyer le message"}
                   {status !== "submitting" && (
