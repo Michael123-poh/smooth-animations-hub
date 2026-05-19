@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── GOTHAM ROUNDED ─────────────────────────────────────── */
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('/src/assets/fonts/GothamRounded-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('/src/assets/fonts/GothamRounded-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('/src/assets/fonts/GothamRounded-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('/src/assets/fonts/GothamRounded-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham Rounded';
+  src: url('/src/assets/fonts/GothamRounded-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ─── GAÏA BRAND SYSTEM ─────────────────────────────────── */
 /*
   Palette bleue extraite de l'image hero smiley :
@@ -167,6 +204,7 @@ a {
 .d4 { transition-delay: 0.32s; }
 .d5 { transition-delay: 0.40s; }
 
+
 /* ─── GAIA NAVBAR ────────────────────────────────────────── */
 .gaia-nav {
   position: fixed;
@@ -263,8 +301,8 @@ a {
   color: white;
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-weight: 700;
-  font-size: 14px;
-  padding: 11px 24px;
+  font-size: 13px;
+  padding: 9px 18px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -296,7 +334,7 @@ a {
 /* ─── HERO LOGO (logo uniquement dans le hero, pas dans la nav) ── */
 .hero-logo {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 80px;
   z-index: calc(var(--z-nav) + 1);
 }
@@ -306,13 +344,13 @@ a {
   display: block;
 }
 @media (max-width: 1200px) {
-  .hero-logo { left: 60px; }
+  .hero-logo { left: 80px; }
 }
 @media (max-width: 768px) {
-  .hero-logo { left: 28px; top: 16px; }
+  .hero-logo { left: 28px; top: 4px; }
 }
 @media (max-width: 480px) {
-  .hero-logo { left: 16px; }
+  .hero-logo { left: 16px; top: 9px; }
   .hero-logo img { height: 38px; }
 }
 
@@ -412,88 +450,88 @@ a {
 .gaia-hero--eye {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
   padding-top: 0;
 }
-/* Spacer — hidden on PC (justify-content:center handles it) */
 .hero-eye-void {
-  flex: 0;
-  min-height: 0;
+  flex: 0.38;
   pointer-events: none;
 }
-/* Eye shifted right so it's clearly separate from the text block */
-.hero-bg-img--eye {
-  object-position: 62% center;
+.hero-eye-void-bottom {
+  flex: 0.62;
+  pointer-events: none;
 }
-/* Gradient: dark left (text readability) → transparent right (eye visible) */
+.hero-bg-img--eye {
+  object-position: 94% 78%;
+  transform: scale(1) !important;
+}
 .hero-bg-overlay--eye {
   background:
-    linear-gradient(180deg, rgba(8,14,30,0.55) 0%, transparent 12%),
+    linear-gradient(180deg, rgba(0,0,2,0.6) 0%, transparent 10%),
     linear-gradient(
       105deg,
-      rgba(8,14,30,0.96) 0%,
-      rgba(8,14,30,0.82) 35%,
-      rgba(8,14,30,0.22) 60%,
-      rgba(8,14,30,0.04) 100%
+      rgba(0,0,2,0.97) 0%,
+      rgba(0,0,2,0.93) 32%,
+      rgba(0,0,2,0.30) 58%,
+      rgba(0,0,2,0.04) 100%
     );
 }
+/* Titre — reste dans le flux flex, positionné par les voids */
 .hero-eye-content {
   position: relative;
   z-index: 3;
-  padding: 0 60px 0 80px;
+  padding: 0 80px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  max-width: 58%;
-}
-/* Bloc dont la largeur = plus longue ligne du h1 */
-.hero-eye-text-block {
-  display: inline-block;
-  max-width: 100%;
-  text-align: left;
 }
 .hero-eye-h1 {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(28px, 4vw, 58px);
+  font-family: 'Gotham Rounded', sans-serif;
+  font-size: clamp(32px, 3.75vw, 54px);
   font-weight: 800;
   line-height: 0.96;
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
   color: white;
   margin-bottom: 0;
   text-align: left;
-  text-transform: lowercase;
   white-space: nowrap;
 }
-/* PC : chaque ligne sur son propre bloc */
 .hero-h1-line { display: block; }
-/* Virgule visible uniquement sur PC */
-.hero-h1-comma { display: inline; }
-/* Groupe : "07 secondes chrono." + sous-titre dans la même colonne */
-.hero-chrono-group {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: stretch;
-}
 .hero-eye-h1 em {
   font-style: normal;
   color: var(--orange);
 }
-/* Sous-titre : s'étire sur la même largeur que "07 secondes chrono." */
+/* Bas de page — indépendant du titre, ancré au bas de la section */
+.hero-eye-bottom-row {
+  position: absolute;
+  bottom: 155px;
+  left: 80px;
+  right: 80px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
 .hero-eye-sub {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(17px, 1.9vw, 26px);
+  font-family: 'Gotham Rounded';
+  font-size: clamp(12px, 1.1vw, 16px);
   font-weight: 700;
-  color: var(--orange);
-  text-transform: lowercase;
-  width: 100%;
+  color: rgba(255,255,255,0.85);
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  letter-spacing: 0;
-  margin-top: 8px;
-  margin-bottom: 32px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* Hero button — coin bas-gauche uniquement, rayon subtil */
+.hero-eye-bottom-row .gaia-btn {
+  border-radius: 0 0 0 12px;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 7px 14px;
+  gap: 6px;
 }
 .hero-eye-ctas {
   justify-content: flex-start;
@@ -907,27 +945,28 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 550 !important;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--orange);
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .section-label::before {
   content: '';
-  display: block;
-  width: 32px;
+  display: inline-block;
+  width: 22px;
   height: 2px;
   background: var(--orange);
   flex-shrink: 0;
+  vertical-align: middle;
 }
 .gaia-h2 {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 500;
   letter-spacing: -0.5px;
-  line-height: 0.85;
+  line-height: 0.9;
   color: var(--blue-navy);
 }
 .gaia-h2.on-dark {
@@ -1019,235 +1058,146 @@ a {
 }
 
 /* ─── GAIA SERVICES ──────────────────────────────────────── */
+/* ─── GAIA SERVICES ─────────────────────────────────────── */
 .gaia-services {
-  background: var(--beige);
-  padding: 60px 80px;
-  border-top: none;
-  position: relative;
+  background: #fcf7f2;
+  padding: 72px 80px 72px 0;
   overflow: hidden;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 16px;
-  margin-top: 60px;
-}
-.service-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 40px 36px;
-  cursor: pointer;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--orange);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-.service-card:hover {
-  border-color: rgba(255, 138, 61, 0.25);
-  box-shadow: var(--shadow-warm);
-  transform: translateY(-3px);
-}
-.service-card:hover::before {
-  transform: scaleX(1);
-}
-.service-card.featured {
-  grid-column: 1;
-  grid-row: 1 / 3;
-  background: var(--navy);
-  border-color: transparent;
-}
-.service-card.featured:hover {
-  border-color: transparent;
-  box-shadow: 0 24px 60px rgba(22,22,106,0.24);
-}
-.service-icon {
-  width: 52px;
-  height: 52px;
-  margin-bottom: 24px;
-}
-.service-card.featured .service-icon {
-  filter: invert(1) brightness(2);
-  opacity: 0.9;
-}
-.service-title {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text-dark);
-  margin-bottom: 10px;
-}
-.service-card.featured .service-title {
-  color: white;
-  font-size: 26px;
-  margin-bottom: 14px;
-}
-.service-desc {
-  font-size: 14px;
-  line-height: 1.3;
-  color: var(--text-mid);
-}
-.service-card.featured .service-desc {
-  color: rgba(255,255,255,0.62);
-  font-size: 15px;
-}
-.service-arrow {
-  position: absolute;
-  bottom: 28px;
-  right: 28px;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, border-color 0.2s;
-}
-.service-card:hover .service-arrow {
-  background: var(--orange);
-  border-color: var(--orange);
-  color: white;
-}
-.service-card.featured .service-arrow {
-  border-color: rgba(255,255,255,0.2);
-  color: white;
-}
-.service-card.featured:hover .service-arrow {
-  background: var(--orange);
-  border-color: var(--orange);
 }
 
-/* ─── SERVICES ACCORDION LAYOUT ─────────────────────────── */
-.services-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 0;
-  position: relative;
-  z-index: 1;
+/* Intro text */
+.services-intro-wrap {
+  display: block;
+  margin-bottom: 72px;
+  padding-left: 80px;
 }
-/* Sub aligns with h2, not section-label — compensate for label height (~36px) */
-.services-top .section-sub {
-  padding-top: 36px;
-  margin-top: 0;
-  text-align: right;
+.services-intro {
+  display: block;
 }
-.services-top .gaia-h2 {
-  line-height: 0.9;
+.services-intro-l1 {
+  font-family: 'Gotham Rounded', sans-serif;
+  font-size: clamp(15px, 1.5vw, 29px);
+  font-weight: 300;
+  color: var(--blue-navy);
+  display: block;
+  line-height: 0.75;
 }
-.services-top .section-sub {
-  line-height: 1.2;
+.services-intro-l2 {
+  font-family: 'Gotham Rounded', sans-serif;
+  font-size: clamp(14px, 1.4vw, 19px);
+  font-weight: 300;
+  color: var(--blue-navy);
+  display: block;
+  line-height: 1.5;
 }
-.services-accordion-wrap {
+.services-intro-l2 strong {
+  font-weight: 700;
+  color: var(--blue-navy);
+}
+/* Higher specificity to override .services-intro-l2 strong */
+.services-intro-l2 .services-intro-orange {
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* Main two-column layout */
+.services-main {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: 64px;
-  margin-top: 60px;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 72px;
   align-items: stretch;
 }
-.services-photo-col {
+
+/* Left orange card */
+.services-card-left {
+  background: var(--orange);
+  border-radius: 0 48px 0 0;
   position: relative;
-  border-radius: 20px 0 0 0;
   overflow: hidden;
-  align-self: stretch;
+  min-height: 460px;
 }
-.services-photo-col img {
+.services-img-stack {
+  position: absolute;
+  inset: 0;
+}
+.services-card-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  position: absolute;
-  inset: 0;
-  transform: scale(1.5) translateY(-12%);
-  transform-origin: center center;
+  object-position: center bottom;
+  transform: scale(1.28);
+  transform-origin: center bottom;
 }
+.services-img-gray {
+  filter: grayscale(1);
+  z-index: 1;
+}
+.services-img-color {
+  z-index: 2;
+}
+.services-card-content {
+  position: relative;
+  z-index: 3;
+  padding: 40px 36px 0 36px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.services-card-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 8px;
+}
+.services-card-h2 {
+  font-family: 'Gotham Rounded', sans-serif;
+  font-size: clamp(26px, 2.8vw, 38px);
+  font-weight: 700;
+  color: white;
+  line-height: 0.9;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* Right service list */
 .services-list-col {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
-.accordion-item {
-  border-bottom: 1px solid rgba(165,145,120,0.28);
-}
-.accordion-item:first-child {
-  border-top: none;
-}
-.accordion-trigger {
+.services-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 22px 0;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(22,22,106,0.12);
   cursor: pointer;
-  text-align: left;
-  gap: 16px;
-}
-.accordion-trigger-title {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 17px;
-  line-height: 1.15;
-  font-weight: 700;
-  color: var(--blue-navy);
-  letter-spacing: -0.2px;
   transition: color 0.2s;
 }
-.accordion-item.open .accordion-trigger-title,
-.accordion-trigger:hover .accordion-trigger-title {
+.services-list-item:first-child {
+  border-top: 1px solid rgba(22,22,106,0.12);
+}
+.services-list-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(17px, 1.3vw, 20px);
+  font-weight: 500;
+  color: var(--blue-navy);
+  transition: color 0.2s;
+}
+.services-list-item:hover .services-list-name {
   color: var(--orange);
 }
-.accordion-chevron {
+.services-list-arrow {
   font-size: 22px;
   color: var(--orange);
-  transition: transform 0.3s ease;
-  flex-shrink: 0;
-  line-height: 1;
-  display: inline-block;
   font-weight: 300;
-}
-.accordion-item.open .accordion-chevron {
-  transform: rotate(90deg);
-}
-.accordion-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-}
-.accordion-item.open .accordion-body {
-  max-height: 260px;
-}
-.accordion-sub-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 22px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-}
-.accordion-sub-list li {
-  font-size: 14px;
-  color: #3b527b;
-  line-height: 1.15;
-  padding-left: 0;
-  position: relative;
-}
-.accordion-sub-list li::before {
-  content: none;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 /* ─── GAIA DNA ───────────────────────────────────────────── */
@@ -1255,8 +1205,8 @@ a {
   color: var(--orange);
 }
 .gaia-dna {
-  background: var(--beige);
-  padding: 60px 80px;
+  background: #f7f8ff;
+  padding: 80px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -1265,7 +1215,7 @@ a {
 }
 .dna-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.15fr 0.85fr;
   grid-template-rows: 1fr auto;
   gap: 40px 80px;
   align-items: start;
@@ -1295,17 +1245,19 @@ a {
   font-size: clamp(26px, 2.4vw, 36px);
   font-weight: 500;
   letter-spacing: -0.5px;
-  line-height: 0.85;
+  line-height: 0.9;
   color: var(--blue-navy);
   margin-bottom: 18px;
 }
 .dna-body {
   font-size: 14px;
+  font-weight: 300;
   line-height: 1.2;
   color: #3b527b;
   margin-bottom: 16px;
   text-align: justify;
   hyphens: auto;
+  max-width: 420px;
 }
 .dna-quote {
   border-left: 3px solid var(--orange);
@@ -1337,142 +1289,171 @@ a {
   justify-content: center;
 }
 .dna-stats-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  gap: 96px;
+  align-items: flex-start;
   margin-top: 52px;
+  background: none;
+  overflow: visible;
 }
 .dna-stat {
-  background: white;
-  padding: 28px 24px;
+  background: none;
+  padding: 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dna-stat-ring-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: inline-block;
+}
+.dna-stat-ring-wrap svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.dna-stat-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .dna-stat-num {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--orange);
   letter-spacing: -0.5px;
+  line-height: 1;
   display: block;
 }
 .dna-stat-label {
-  font-size: 12px;
+  font-size: 9px;
   color: var(--text-mid);
-  margin-top: 6px;
-  font-weight: 500;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: pre-line;
+  text-align: center;
+  line-height: 1.4;
 }
 
 /* ─── GAIA PILLARS ───────────────────────────────────────── */
 .gaia-pillars {
+  background: #f7f8ff;
+  padding: 0 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+/* Image pleine largeur + texte par-dessus */
+.pillars-hero {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  border-radius: 0 0 60px 0;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+.pillars-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+.pillars-hero-text {
+  position: absolute;
+  top: 44px;
+  left: 80px;
+  z-index: 2;
+}
+.pillars-hero-text .section-label {
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.pillars-hero-text .gaia-h2 {
+  color: var(--blue-navy);
+}
+/* Cards row */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 80px;
+}
+.pillar-card {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+.pillar-icon-wrap {
+  width: 72px;
+  height: 72px;
+  background: var(--orange);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+.pillar-title {
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  color: var(--blue-navy);
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+.pillar-desc {
+  font-size: 9.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-mid);
+  text-align: justify;
+  max-width: 135px;
+  margin-bottom: 8px;
+}
+
+/* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
+.gaia-portfolio {
   background: var(--blue-navy);
   padding: 60px 80px;
   position: relative;
   overflow: hidden;
 }
-.pillars-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
-  margin-bottom: 56px;
+.gaia-portfolio .gaia-h2 {
+  color: white;
 }
-.pillars-header .section-sub {
-  padding-top: 36px;
-  margin-top: 0;
-  margin-left: auto;
-  text-align: right;
-  max-width: 320px;
-  line-height: 1.2;
+.gaia-portfolio .section-label {
+  color: var(--orange);
 }
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+/* Supprime la ligne CSS du section-label pour le portfolio — le "—" est dans le texte */
+.portfolio-label::before {
+  display: none;
 }
-.pillar-card {
-  background: var(--beige);
-  border: 1px solid var(--border);
-  border-radius: 20px 0 0 0;
-  padding: 32px 24px;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s, background 0.3s;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.portfolio-label {
+  font-weight: 550 !important;
 }
-.pillar-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(255,138,61,0.06) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-}
-.pillar-card:hover {
-  border-color: rgba(255, 138, 61, 0.35);
-  box-shadow: 0 12px 40px rgba(8,8,26,0.1), 0 0 0 1px rgba(255,138,61,0.2);
-  transform: translateY(-6px);
-  background: var(--cream);
-}
-.pillar-card:hover::before {
-  opacity: 1;
-}
-.pillar-card:nth-child(even) {
-  margin-top: 0;
-  border-radius: 0 20px 0 0;
-}
-.pillar-icon-wrap {
-  width: 56px;
-  height: 56px;
-  background: rgba(255,138,61,0.15);
-  border: 1px solid rgba(255,138,61,0.25);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.pillar-number {
-  position: absolute;
-  top: 24px;
-  right: 28px;
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: rgba(61,74,98,0.2);
-}
-.pillar-title {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--blue-navy);
-  margin-bottom: 8px;
-}
-.pillar-desc {
-  font-size: 13px;
-  line-height: 1.2;
-  color: var(--text-mid);
-  max-width: none;
-}
-
-/* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
-.gaia-portfolio {
-  background: var(--beige);
-  padding: 60px 80px;
-  position: relative;
-  overflow: hidden;
+.portfolio-btn svg {
+  color: var(--orange);
 }
 .portfolio-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   gap: 40px;
 }
 .portfolio-header .gaia-h2 {
@@ -1480,11 +1461,25 @@ a {
   line-height: 1.0;
   margin-bottom: 0;
 }
+.portfolio-btn {
+  font-size: 11px;
+  padding: 7px 14px;
+  gap: 6px;
+  border-radius: 0 0 0 12px;
+  white-space: nowrap;
+  background: white !important;
+  color: var(--blue-navy) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.portfolio-btn:hover {
+  background: var(--beige-dark) !important;
+  color: var(--blue-navy) !important;
+}
 .portfolio-header .gaia-btn {
   margin-top: 36px;
   flex-shrink: 0;
 }
-.pillars-title-mobile { display: none; }
 .portfolio-header .section-sub {
   padding-top: 50px;
   margin-top: 0;
@@ -1492,21 +1487,18 @@ a {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 260px);
-  gap: 16px;
+  grid-template-rows: repeat(2, 290px);
+  gap: 25px;
 }
-.portfolio-grid .port-item:nth-child(1) { grid-column: 1 / 5; }
-.portfolio-grid .port-item:nth-child(2) { grid-column: 5 / 7; }
-.portfolio-grid .port-item:nth-child(3) { grid-column: 1 / 3; }
-.portfolio-grid .port-item:nth-child(4) { grid-column: 3 / 7; }
+.portfolio-grid .port-item:nth-child(1) { grid-column: 1 / 5; border-radius: 0 0 48px 0; }
+.portfolio-grid .port-item:nth-child(2) { grid-column: 5 / 7; border-radius: 0 0 0 48px; }
+.portfolio-grid .port-item:nth-child(3) { grid-column: 1 / 3; border-radius: 0 48px 0 0; }
+.portfolio-grid .port-item:nth-child(4) { grid-column: 3 / 7; border-radius: 48px 0 0 0; }
 .portfolio-grid .port-item:nth-child(5) { grid-column: 1 / 4; }
 .portfolio-grid .port-item:nth-child(6) { grid-column: 4 / 7; }
-.portfolio-grid .port-item:nth-child(2) { border-radius: 0 20px 0 0; }
-.portfolio-grid .port-item:nth-child(3) { border-radius: 0 0 0 20px; }
-.portfolio-grid .port-item:nth-child(4) { border-radius: 0 0 20px 0; }
 .port-item {
   position: relative;
-  border-radius: 20px 0 0 0;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
   background: var(--beige-dark);
@@ -1576,26 +1568,57 @@ a {
 
 /* ─── GAIA TESTIMONIALS ──────────────────────────────────── */
 .gaia-testimonials {
-  background: var(--beige);
-  padding: 60px 0;
+  background: var(--orange);
+  padding: 80px 0;
   overflow: hidden;
   position: relative;
 }
 .testi-inner {
   padding: 0 80px;
 }
+/* Header row: smiley left | text center | smiley right */
+.testi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 0;
+}
+.testi-smiley {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.testi-header-center {
+  flex: 1;
+  text-align: center;
+}
+.testi-header-center .section-label {
+  color: var(--blue-navy);
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.testi-header-center .section-label::before {
+  background: var(--blue-navy);
+}
+.testi-header-center .gaia-h2 {
+  color: white;
+}
 .testi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 36px;
+  gap: 20px;
+  margin-top: 40px;
 }
 .testi-card {
   background: white;
   border: 1px solid var(--border);
   border-radius: 12px 0 0 0;
-  padding: 20px 22px;
+  padding: 28px 26px;
   position: relative;
+  transform-origin: center center;
+  will-change: transform, opacity;
 }
 .testi-card:nth-child(even) {
   border-radius: 0 12px 0 0;
@@ -1607,9 +1630,9 @@ a {
 }
 .testi-text {
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.45;
   color: var(--text-mid);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-style: normal;
   max-width: none;
   font-weight: 500;
@@ -1712,79 +1735,120 @@ a {
 
 /* Wrapper : hauteur auto + padding-bottom ajouté via JS pour le scroll driver */
 .gaia-process {
-  background: var(--beige);
-  padding: 60px 80px;
+  background: #fcf7f2;
+  padding: 80px 80px;
   margin: 0;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
-
-/* 4 étapes en ligne */
-.process-steps-row {
+.process-inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
 }
-
-.process-card {
-  padding: 0 24px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+/* Left column */
+.process-left {
+  display: flex;
+  flex-direction: column;
 }
-.process-card:first-child { padding-left: 0; }
-.process-visible .process-card { opacity: 1; transform: translateY(0); }
-
-.process-card-header {
+/* Steps */
+.process-steps-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 8px;
+}
+.process-step-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 20px;
+  background: white;
+  border-radius: 999px;
+  padding: 18px 28px 18px 18px;
+  max-width: 380px;
 }
-.process-card-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
+.process-step-icon {
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   background: var(--blue-navy);
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.process-step-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.process-step-title {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-}
-.process-card-title {
-  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(14px, 1.1vw, 17px);
-  font-weight: 800;
-  color: var(--blue-navy);
-  margin-bottom: 0;
-  line-height: 1.05;
-}
-.process-card-desc {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--text-mid);
-  margin-bottom: 14px;
-  margin-left: 60px;
-}
-.process-card-duration {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 700;
   color: var(--orange);
-  letter-spacing: 0.04em;
+  line-height: 1.25;
+  max-width: 180px;
+}
+.process-step-desc {
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-mid);
+}
+.process-step-desc strong {
+  font-weight: 700;
+  color: var(--blue-navy);
+}
+/* Right column: bulb + finger */
+.process-right {
+  position: relative;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+/* Bulb clip : overflow hidden vers le haut, l'image remonte dedans */
+.process-bulb-clip {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 340px;
+  overflow: hidden;
+}
+.process-bulb {
+  display: block;
+  width: 200px;
+  object-fit: contain;
+  will-change: transform;
+}
+/* Finger clip : overflow hidden vers le bas, la main remonte dedans */
+.process-finger-clip {
+  position: absolute;
+  bottom: -120px;
+  left: calc(50% - 10px);
+  transform: translateX(-50%);
+  width: 280px;
+  height: 420px;
+  overflow: hidden;
+}
+.process-finger {
+  display: block;
+  width: 280px;
+  height: 420px;
+  object-fit: contain;
+  object-position: top center;
+  will-change: transform;
 }
 
 /* ─── GAIA CTA ───────────────────────────────────────────── */
 .gaia-cta {
   background: var(--beige);
-  padding: 60px 80px;
+  padding: 80px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -2337,15 +2401,15 @@ textarea.form-input {
   border: 1px solid rgba(255,138,61,0.2);
 }
 
-/* ─── PILLARS SECTION ON NAVY BLUE ──────────────────────── */
+/* ─── PILLARS SECTION (LIGHT BG) ────────────────────────── */
 .gaia-pillars .gaia-h2 {
-  color: white;
+  color: var(--blue-navy);
 }
 .gaia-pillars .section-label {
   color: var(--orange);
 }
 .gaia-pillars .section-sub {
-  color: rgba(255,255,255,0.65);
+  color: var(--text-mid);
 }
 
 /* ─── PROCESS SECTION HEADER ON BEIGE ───────────────────── */
@@ -2567,8 +2631,8 @@ textarea.form-input {
   }
   /* Hero Eye — mobile : overlay plein écran, texte sur l'image */
   .gaia-hero--eye {
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
     min-height: 100dvh;
   }
   /* bg-wrap : plein écran absolu, image toujours visible */
@@ -2588,11 +2652,11 @@ textarea.form-input {
   .gaia-hero--eye .hero-bg-overlay--eye {
     background:
       linear-gradient(180deg,
-        rgba(8, 14, 30, 0.30) 0%,
-        rgba(8, 14, 30, 0.04) 25%,
-        rgba(8, 14, 30, 0.10) 48%,
-        rgba(8, 14, 30, 0.88) 68%,
-        rgba(8, 14, 30, 0.97) 100%
+        rgba(0, 0, 2, 0.30) 0%,
+        rgba(0, 0, 2, 0.04) 25%,
+        rgba(0, 0, 2, 0.10) 48%,
+        rgba(0, 0, 2, 0.88) 68%,
+        rgba(0, 0, 2, 0.97) 100%
       );
   }
   .hero-eye-void {
@@ -2600,41 +2664,41 @@ textarea.form-input {
     flex: 1;
     min-height: 60px;
   }
+  .hero-eye-void-bottom {
+    flex: 0;
+  }
   .hero-eye-content {
-    padding: 0 24px 52px;
+    padding: 0 28px;
     background: transparent;
-    align-items: center;
-    text-align: center;
-    max-width: 100%;
+    align-items: flex-start;
+    text-align: left;
   }
   .hero-eye-text-block {
     display: inline-block;
-    max-width: 90vw;
-    text-align: center;
+    max-width: 100%;
+    text-align: left;
+    margin-bottom: 24px;
   }
   .hero-eye-h1 {
     font-size: clamp(26px, 7.5vw, 38px);
     letter-spacing: -0.5px;
-    margin-bottom: 10px;
     white-space: normal;
-    text-align: center;
+    text-align: left;
+  }
+  .hero-eye-bottom-row {
+    left: 28px;
+    right: 28px;
+    bottom: 24px;
   }
   .hero-eye-sub {
-    font-size: clamp(11px, 3.5vw, 18px);
-    margin-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    letter-spacing: 0;
-  }
-  .hero-eye-ctas {
-    display: flex;
-    justify-content: center;
+    font-size: clamp(11px, 3.5vw, 15px);
+    letter-spacing: 0.12em;
   }
   .hero-eye-ctas .gaia-btn {
     width: auto;
-    padding: 12px 28px;
-    font-size: 14px;
+    padding: 12px 20px;
+    font-size: 13px;
+    white-space: nowrap;
   }
   /* Stats : grille 3 colonnes avec séparateurs */
   .hero-stats {
@@ -2656,9 +2720,8 @@ textarea.form-input {
     border-right: none;
   }
 
-  /* PROCESS : 2 colonnes sur tablette */
-  .process-steps-row { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
-  .process-card:nth-child(3) { padding-left: 0; }
+  /* PROCESS : 1 col tablette */
+  .process-inner { grid-template-columns: 1fr; }
 
   /* SECTION padding */
   .gaia-services,
@@ -2683,16 +2746,18 @@ textarea.form-input {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .pillars-header {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    gap: 20px;
+  .pillars-hero {
+    height: 280px;
+    border-radius: 0 0 40px 0;
   }
-  .pillars-header .section-sub {
-    padding-top: 36px;
-    margin-top: 0;
-    text-align: right;
-    margin-left: auto;
+  .pillars-hero-text {
+    left: 28px;
+    top: 28px;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 20px;
+    padding: 0 28px;
   }
   /* Services top: keep subtitle to the right on all sizes */
   .services-top {
@@ -2770,20 +2835,10 @@ textarea.form-input {
     margin-top: 0;
   }
 
-  /* PILLARS: mobile title variant */
-  .pillars-title-desktop { display: none; }
-  .pillars-title-mobile { display: inline; }
-
-  /* PILLARS: keep 2-col, tighter padding */
+  /* PILLARS: keep 2-col on tablet */
   .pillars-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .pillar-card {
-    padding: 28px 22px;
-  }
-  .pillar-card:nth-child(even) {
-    margin-top: 0;
+    gap: 14px;
   }
 
   /* PORTFOLIO: 2-col equal grid, all items same size */
@@ -2813,13 +2868,19 @@ textarea.form-input {
     border-radius: 12px 0 0 0;
   }
 
-  /* PROCESS: steps full width, card masquée sur mobile */
-  .process-grid {
+  /* PROCESS: empile sur mobile */
+  .process-inner {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 32px;
   }
-  .process-visual {
-    display: none;
+  .process-right {
+    height: 320px;
+  }
+  .process-bulb {
+    width: 120px;
+  }
+  .process-finger {
+    width: 180px;
   }
 
   /* CTA: form below text */
@@ -2871,28 +2932,23 @@ textarea.form-input {
     padding: 0 20px 48px;
   }
   .hero-eye-content {
-    padding: 0 20px 40px;
-    align-items: center;
-    text-align: center;
+    padding: 0 20px;
+    align-items: flex-start;
+    text-align: left;
   }
   .hero-eye-h1 {
     font-size: clamp(28px, 8vw, 36px);
     white-space: normal;
-    text-align: center;
+    text-align: left;
   }
-  /* Mobile : toutes les lignes en inline → wrapping naturel */
-  .hero-h1-line { display: inline; }
-  .hero-h1-comma { display: none; }
-  /* Sous-titre : inline-flex devient block centré */
-  .hero-chrono-group { display: block; }
+  .hero-h1-line { display: block; }
   .hero-eye-sub {
-    font-size: clamp(11px, 3.5vw, 15px);
-    margin-top: 4px;
-    margin-bottom: 24px;
+    font-size: clamp(10px, 3vw, 13px);
+    letter-spacing: 0.1em;
   }
   .hero-eye-ctas .gaia-btn {
-    padding: 11px 24px;
-    font-size: 13px;
+    padding: 11px 18px;
+    font-size: 12px;
   }
   .hero-sub {
     font-size: 15px;
@@ -2933,14 +2989,12 @@ textarea.form-input {
     max-width: 100%;
   }
 
-  /* PROCESS : 2×2 grid sur mobile */
-  .process-steps-row {
-    grid-template-columns: repeat(2, 1fr);
-    overflow-x: unset;
-    scroll-snap-type: unset;
-    -webkit-overflow-scrolling: unset;
-    gap: 24px;
-    padding-bottom: 0;
+  /* PROCESS : empile sur phone */
+  .process-inner {
+    grid-template-columns: 1fr;
+  }
+  .process-right {
+    height: 280px;
   }
   /* DNA: blocs empilés sur mobile */
   .dna-cols-flex {
@@ -2962,15 +3016,8 @@ textarea.form-input {
     padding: 8px 14px;
     white-space: nowrap;
   }
-  .process-card {
-    border-left: none;
-    padding: 0;
-  }
-  .process-card:first-child { padding-left: 0; }
-  .process-card-desc {
-    margin-left: 0;
-    font-size: 11px;
-    line-height: 1.5;
+  .process-step-card {
+    padding: 16px 18px;
   }
 
   /* SECTION padding */
@@ -3057,29 +3104,32 @@ textarea.form-input {
     font-size: 11.5px; line-height: 1.55;
   }
 
-  /* PILLARS: horizontal scroll rail on phone — 2 cards visible,
-     peek of a 3rd gives scroll affordance. Never stack. */
+  /* PILLARS: phone */
+  .pillars-hero {
+    height: 200px;
+    border-radius: 0 0 24px 0;
+  }
+  .pillars-hero-text {
+    left: 20px;
+    top: 20px;
+  }
   .pillars-grid {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 12px;
-    /* hide scrollbar visually but keep it functional */
+    gap: 16px;
+    padding: 0 20px 12px;
     scrollbar-width: none;
   }
   .pillars-grid::-webkit-scrollbar {
     display: none;
   }
   .pillar-card {
-    flex: 0 0 75vw;
-    max-width: 320px;
+    flex: 0 0 72vw;
+    max-width: 280px;
     scroll-snap-align: start;
-    margin-top: 0 !important;
-    border: none;
-    box-shadow: 0 4px 24px rgba(8,8,26,0.12);
   }
 
   /* DNA: stats horizontal on phone — equal columns, flush */
@@ -3129,39 +3179,15 @@ textarea.form-input {
     margin-top: 36px;
   }
 
-  /* PILLARS: boost decorative visibility on mobile */
-  .pillars-deco-pattern { opacity: 0.10 !important; }
-  .pillars-deco-glow-tr {
-    width: 260px !important;
-    height: 260px !important;
-    top: -5% !important;
-    right: -5% !important;
-    background: radial-gradient(circle, rgba(255,138,61,0.22) 0%, transparent 65%) !important;
-  }
-  .pillars-deco-ring-tr {
-    opacity: 0.14 !important;
-    top: -10px !important;
-    right: -10px !important;
-    width: 200px !important;
-    height: 200px !important;
-  }
-  .pillars-deco-ring-bl {
-    opacity: 0.12 !important;
-    bottom: -20px !important;
-    left: -20px !important;
-    width: 160px !important;
-    height: 160px !important;
-  }
-
   /* PILLARS: fade right edge for scroll rail */
   .gaia-pillars::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
     width: 72px;
-    height: 100%;
-    background: linear-gradient(to right, transparent, var(--blue-navy));
+    height: 60px;
+    background: linear-gradient(to right, transparent, #f7f8ff);
     pointer-events: none;
     z-index: 10;
   }
@@ -3209,7 +3235,7 @@ textarea.form-input {
   .process-visual {
     display: none;
   }
-  .process-grid {
+  .process-inner {
     grid-template-columns: 1fr;
   }
 
@@ -3250,17 +3276,58 @@ textarea.form-input {
 
 /* ─── PC CONTENT MARGINS (≥ 1200px only) ─────────────────── */
 @media (min-width: 1200px) {
-  .gaia-services,
+  /* Padding instead of margin → background extends edge-to-edge */
   .gaia-dna,
   .gaia-portfolio,
   .gaia-process,
   .gaia-testimonials,
   .gaia-cta {
-    margin-left: 100px;
-    margin-right: 100px;
+    padding-left: 180px;
+    padding-right: 180px;
   }
-  /* Pillars is full-width (no margin) — compensate with extra padding */
+  .gaia-services {
+    padding-left: 180px;
+    padding-right: 180px;
+  }
+  .services-intro-wrap {
+    padding-left: 0;
+  }
+  .services-intro-l1 {
+    font-size: 31px;
+  }
+  .services-intro-l2 {
+    font-size: 25px;
+  }
+  /* Harmonise tous les titres de section */
+  .gaia-h2,
+  .dna-h2 {
+    font-size: 27px;
+  }
+  .services-card-h2 {
+    font-size: 27px;
+  }
+  /* Card extends to left screen edge */
+  .services-card-left {
+    margin-left: -180px;
+  }
+  /* Card text re-aligned with content margin */
+  .services-card-content {
+    padding-left: 180px;
+  }
+  /* Pillars: header text uses 180px inset, cards grid too */
   .gaia-pillars {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .pillars-hero {
+    height: 500px;
+    border-radius: 0 0 80px 0;
+  }
+  .pillars-hero-text {
+    left: 180px;
+    top: 48px;
+  }
+  .pillars-grid {
     padding-left: 180px;
     padding-right: 180px;
   }
@@ -3273,8 +3340,16 @@ textarea.form-input {
     padding-left: 180px;
     padding-right: 180px;
   }
-  /* Hero text starts at same left edge as the logo */
+  /* Hero logo and content aligned with nav 180px margins */
+  .hero-logo {
+    left: 180px;
+  }
   .hero-eye-content {
     padding-left: 180px;
+    padding-right: 180px;
+  }
+  .hero-eye-bottom-row {
+    left: 180px;
+    right: 180px;
   }
 }

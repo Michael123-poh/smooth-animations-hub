@@ -239,13 +239,6 @@ const Index = () => {
       <GaiaNavbar />
       <main id="main-content">
         <GaiaHero scrollY={scrollY} />
-        <div className="gaia-bridge">
-          <p className="gaia-bridge-text reveal">
-            Derrière chaque marque se cache une histoire,<br />
-            et chez Gaïa nous la transformons<br />
-            en une <span style={{ color: "var(--orange)" }}>identité forte</span>
-          </p>
-        </div>
         <GaiaServices />
         <GaiaPortfolio />
         <GaiaDNA />

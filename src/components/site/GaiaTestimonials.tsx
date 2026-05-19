@@ -1,9 +1,11 @@
-import logoOracle from "../../assets/Oracle_Education_Cosultancy.png";
-import logoIlma from "../../assets/Ilma_Consulting.png";
-import logoVitapro from "../../assets/Vitapro.png";
+import { useEffect, useRef } from "react";
+import smiley from "../../assets/smileyOrange.png";
+import logoOracle from "../../assets/smileyOrange.png";
+import logoIlma from "../../assets/ilma.jpg";
+import logoVitapro from "../../assets/smileyOrange.png";
 import logoInvestLink from "../../assets/Invest_Link.png";
 import logoIsabella from "../../assets/Residence_Isabella.png";
-import logoKCare from "../../assets/K_Care_Cosmetics.png";
+import logoKCare from "../../assets/k-care.jpg";
 
 const testimonials = [
   {
@@ -50,25 +52,94 @@ const logos = [
 ];
 
 export function GaiaTestimonials() {
+  const sectionRef   = useRef<HTMLElement>(null);
+  const smileyLRef   = useRef<HTMLImageElement>(null);
+  const smileyRRef   = useRef<HTMLImageElement>(null);
+  const headerRef    = useRef<HTMLDivElement>(null);
+  const gridRef      = useRef<HTMLDivElement>(null);
+  const animatedRef  = useRef(false);
+
+  useEffect(() => {
+    const section  = sectionRef.current;
+    const smileyL  = smileyLRef.current;
+    const smileyR  = smileyRRef.current;
+    const header   = headerRef.current;
+    const grid     = gridRef.current;
+    if (!section || !smileyL || !smileyR || !header || !grid) return;
+
+    // Smileys start touching at center
+    smileyL.style.transform  = "translateX(calc(50vw - 50% - 8px))";
+    smileyR.style.transform  = "translateX(calc(-50vw + 50% + 8px))";
+    smileyL.style.transition = "none";
+    smileyR.style.transition = "none";
+
+    // Header hidden
+    header.style.opacity   = "0";
+    header.style.transform = "translateY(10px)";
+    header.style.transition = "none";
+
+    // Cards hidden — tiny scale
+    const cards = grid.querySelectorAll<HTMLElement>(".testi-card");
+    cards.forEach((c) => {
+      c.style.opacity    = "0";
+      c.style.transform  = "scale(0.15)";
+      c.style.transition = "none";
+    });
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || animatedRef.current) return;
+        animatedRef.current = true;
+
+        // Step 1: smileys separate to their positions
+        const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
+        smileyL.style.transition = `transform 1s ${easing}`;
+        smileyR.style.transition = `transform 1s ${easing}`;
+        smileyL.style.transform  = "translateX(0)";
+        smileyR.style.transform  = "translateX(0)";
+
+        // Step 2: header reveals as smileys part
+        setTimeout(() => {
+          header.style.transition = `opacity 0.7s ease, transform 0.7s ${easing}`;
+          header.style.opacity    = "1";
+          header.style.transform  = "translateY(0)";
+        }, 400);
+
+        // Step 3: cards grow from tiny to full size with stagger
+        cards.forEach((c, i) => {
+          setTimeout(() => {
+            c.style.transition = `opacity 0.5s ease, transform 0.6s ${easing}`;
+            c.style.opacity    = "1";
+            c.style.transform  = "scale(1)";
+          }, 900 + i * 80);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    io.observe(section);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
+    <section ref={sectionRef} className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
       <div className="testi-inner">
-        <div className="section-header">
-          <div className="section-label">Notre Écho</div>
-          <div>
+
+        {/* Smileys + header row */}
+        <div className="testi-top">
+          <img ref={smileyLRef} src={smiley} alt="" aria-hidden="true" className="testi-smiley testi-smiley-l" />
+          <div ref={headerRef} className="testi-header-center">
+            <div className="section-label">Notre Écho</div>
             <h2 className="gaia-h2" id="testi-heading">
               Ce qu'ils disent de nous
             </h2>
-            <p className="section-sub">
-              Ils nous ont fait <span style={{ color: "var(--orange)" }}>confiance</span>, voici ce qu'ils en pensent.
-            </p>
           </div>
+          <img ref={smileyRRef} src={smiley} alt="" aria-hidden="true" className="testi-smiley testi-smiley-r" />
         </div>
 
-        <div className="testi-grid">
+        <div ref={gridRef} className="testi-grid">
           {testimonials.map((t, i) => (
             <article key={i} className="testi-card">
-              {/* Stars */}
               <div className="testi-stars" aria-label="5 étoiles">
                 {[...Array(5)].map((_, s) => (
                   <svg key={s} width="12" height="12" viewBox="0 0 12 12" fill="var(--orange)" aria-hidden="true">
@@ -90,7 +161,6 @@ export function GaiaTestimonials() {
           ))}
         </div>
 
-        {/* Client logos marquee */}
         <div className="logos-strip" aria-hidden="true">
           <div className="logos-track">
             {logos.map((l, i) => (

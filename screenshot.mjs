@@ -10,8 +10,9 @@ const page = await browser.newPage();
 
 // ── PC ──
 await page.setViewport({ width: 1440, height: 900 });
-await page.goto('http://localhost:8080', { waitUntil: 'domcontentloaded', timeout: 15000 });
-await new Promise(r => setTimeout(r, 3000));
+await page.goto('http://localhost:8080', { waitUntil: 'networkidle0', timeout: 15000 });
+await page.reload({ waitUntil: 'networkidle0' });
+await new Promise(r => setTimeout(r, 2000));
 
 const pcH = await page.evaluate(() => document.body.scrollHeight);
 for (let y = 0; y < pcH; y += 900) {
@@ -23,8 +24,9 @@ for (let y = 0; y < pcH; y += 900) {
 
 // ── Mobile ──
 await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
-await page.goto('http://localhost:8080', { waitUntil: 'domcontentloaded', timeout: 15000 });
-await new Promise(r => setTimeout(r, 3000));
+await page.goto('http://localhost:8080', { waitUntil: 'networkidle0', timeout: 15000 });
+await page.reload({ waitUntil: 'networkidle0' });
+await new Promise(r => setTimeout(r, 2000));
 
 const mobH = await page.evaluate(() => document.body.scrollHeight);
 for (let y = 0; y < mobH; y += 844) {
