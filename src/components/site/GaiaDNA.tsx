@@ -41,6 +41,8 @@ export function GaiaDNA() {
     stats.style.transform = "translateY(16px)";
     stats.style.transition = "none";
 
+    const target = wrap.closest("section") ?? wrap;
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || animatedRef.current) return;
@@ -72,10 +74,10 @@ export function GaiaDNA() {
           }, 130);
         }, 900);
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
-    io.observe(wrap);
+    io.observe(target);
     return () => io.disconnect();
   }, []);
 
@@ -120,7 +122,7 @@ export function GaiaDNA() {
         </div>
 
         {/* Right — text, hidden until tap */}
-        <div ref={textColRef}>
+        <div ref={textColRef} className="dna-text-col">
           <div className="section-label">Notre ADN</div>
           <h2 className="dna-h2" id="dna-heading" style={{ marginBottom: 24 }}>
             Connecting<br />brands to people

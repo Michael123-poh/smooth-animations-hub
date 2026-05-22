@@ -73,12 +73,14 @@ export function GaiaCTA() {
         {/* Left — text */}
         <div className="reveal-left">
           <div className="section-label">Travaillons ensemble</div>
-          <h2 className="gaia-h2" id="cta-heading" style={{ marginBottom: 20 }}>
-            Votre prochaine<br />grande marque<br />commence <span style={{ color: "var(--orange)" }}>ici</span>
+          <h2 className="cta-h2" id="cta-heading" style={{ marginBottom: 20 }}>
+            <span className="cta-line cta-line-1">Vous méritez</span>
+            <span className="cta-line cta-line-2">une marque à la</span>
+            <span className="cta-line cta-line-3">hauteur de ce que</span>
+            <span className="cta-line cta-line-4">vous construisez</span>
           </h2>
           <p className="section-sub">
-            Partagez-nous votre projet et nous vous répondons sous 48h.
-            Pas de jargon, pas de vente forcée — juste une conversation honnête.
+            Parlons de<br /><span style={{ color: "var(--orange)" }}>votre projet…</span>
           </p>
 
           {/* Contact details */}
@@ -220,7 +222,7 @@ export function GaiaCTA() {
                   className="gaia-btn form-submit-btn"
                   disabled={status === "submitting"}
                 >
-                  {status === "submitting" ? "Envoi en cours..." : "Envoyer le message"}
+                  {status === "submitting" ? "Envoi en cours..." : "Envoyer"}
                   {status !== "submitting" && (
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
                       <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

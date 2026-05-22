@@ -1,8 +1,8 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ─── GOTHAM ROUNDED ─────────────────────────────────────── */
+/* â”€â”€â”€ GOTHAM ROUNDED â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @font-face {
   font-family: 'Gotham Rounded';
   src: url('/src/assets/fonts/GothamRounded-Light.otf') format('opentype');
@@ -39,49 +39,49 @@
   font-display: swap;
 }
 
-/* ─── GAÏA BRAND SYSTEM ─────────────────────────────────── */
+/* â”€â”€â”€ GAÃA BRAND SYSTEM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /*
   Palette bleue extraite de l'image hero smiley :
-  Bleu cobalt électrique ≈ #1818C8
-  On dérive 5 teintes : du plus profond (presque noir-bleu)
-  au plus vif (bleu cobalt saturé), en gardant la même
-  logique de rôles qu'avant (deep → dark → navy → mid → bright).
+  Bleu cobalt Ã©lectrique â‰ˆ #1818C8
+  On dÃ©rive 5 teintes : du plus profond (presque noir-bleu)
+  au plus vif (bleu cobalt saturÃ©), en gardant la mÃªme
+  logique de rÃ´les qu'avant (deep â†’ dark â†’ navy â†’ mid â†’ bright).
 */
 :root {
-  /* —— Primary: Blue indigo palette (doux, tiré de la navbar) */
+  /* â€”â€” Primary: Blue indigo palette (doux, tirÃ© de la navbar) */
   --blue-deep:     #080818;   /* quasi noir-indigo, fond le plus sombre          */
-  --blue-dark:     #0E0E42;   /* indigo nuit — navbar, mobile menu               */
-  --blue-navy:     #16166A;   /* indigo de base — sections principales           */
-  --blue-mid:      #20208A;   /* indigo moyen — sections secondaires, gradients  */
-  --blue-bright:   #2E2EAA;   /* indigo clair — accents, hovers                  */
+  --blue-dark:     #0E0E42;   /* indigo nuit â€” navbar, mobile menu               */
+  --blue-navy:     #16166A;   /* indigo de base â€” sections principales           */
+  --blue-mid:      #20208A;   /* indigo moyen â€” sections secondaires, gradients  */
+  --blue-bright:   #2E2EAA;   /* indigo clair â€” accents, hovers                  */
   --blue-light:    rgba(22, 22, 106, 0.08);
   --blue-glass:    rgba(22, 22, 106, 0.72);
 
-  /* —— Accent: Orange (inchangé — contraste parfait sur cobalt) */
+  /* â€”â€” Accent: Orange (inchangÃ© â€” contraste parfait sur cobalt) */
   --orange:        #FF8A3D;
   --orange-dark:   #E6721C;
   --orange-light:  #FFB07B;
   --orange-pale:   #FFF3EA;
 
-  /* —— Secondary: Beige/Cream (inchangé) */
+  /* â€”â€” Secondary: Beige/Cream (inchangÃ©) */
   --cream:         #FFFFFF;
   --beige:         #F7F7F5;
   --beige-dark:    #EDEDEB;
 
-  /* —— Legacy aliases (pour compatibilité composants) */
+  /* â€”â€” Legacy aliases (pour compatibilitÃ© composants) */
   --navy:          var(--blue-navy);
   --navy-dark:     var(--blue-dark);
   --navy-mid:      var(--blue-mid);
   --navy-light:    var(--blue-light);
 
-  /* —— Text */
+  /* â€”â€” Text */
   --text-dark:     #3b527b;
   --text-mid:      #3b527b;
   --text-muted:    rgba(59, 82, 123, 0.38);
   --text-on-dark:  rgba(255,255,255,0.90);
   --text-on-dark-muted: rgba(255,255,255,0.52);
 
-  /* —— UI */
+  /* â€”â€” UI */
   --border:        rgba(180, 155, 130, 0.22);
   --border-dark:   rgba(255, 255, 255, 0.10);
   --border-hover:  rgba(255, 138, 61, 0.35);
@@ -93,13 +93,13 @@
   --radius-lg:     20px;
   --radius-xl:     32px;
 
-  /* —— Z-index scale */
+  /* â€”â€” Z-index scale */
   --z-nav:         100;
   --z-modal:       200;
   --z-overlay:     50;
 }
 
-/* ─── BASE ───────────────────────────────────────────────── */
+/* â”€â”€â”€ BASE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -120,7 +120,7 @@ body {
   cursor: none;
 }
 
-/* Grain overlay for depth — more visible for premium feel */
+/* Grain overlay for depth â€” more visible for premium feel */
 body::after {
   content: '';
   position: fixed;
@@ -146,12 +146,12 @@ a {
   text-decoration: none;
 }
 
-/* ─── SCROLLBAR ──────────────────────────────────────────── */
+/* â”€â”€â”€ SCROLLBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--blue-deep); }
 ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 4px; }
 
-/* ─── SKIP TO CONTENT ────────────────────────────────────── */
+/* â”€â”€â”€ SKIP TO CONTENT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -167,7 +167,7 @@ a {
   left: 1rem;
 }
 
-/* ─── SCROLL REVEAL ──────────────────────────────────────── */
+/* â”€â”€â”€ SCROLL REVEAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -205,7 +205,7 @@ a {
 .d5 { transition-delay: 0.40s; }
 
 
-/* ─── GAIA NAVBAR ────────────────────────────────────────── */
+/* â”€â”€â”€ GAIA NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-nav {
   position: fixed;
   top: 0;
@@ -331,7 +331,7 @@ a {
   transform: translateY(-1px);
 }
 
-/* ─── HERO LOGO (logo uniquement dans le hero, pas dans la nav) ── */
+/* â”€â”€â”€ HERO LOGO (logo uniquement dans le hero, pas dans la nav) â”€â”€ */
 .hero-logo {
   position: absolute;
   top: 10px;
@@ -346,7 +346,7 @@ a {
 @media (max-width: 1200px) {
   .hero-logo { left: 80px; }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero-logo { left: 28px; top: 4px; }
 }
 @media (max-width: 480px) {
@@ -354,7 +354,7 @@ a {
   .hero-logo img { height: 38px; }
 }
 
-/* ─── GAIA HERO ──────────────────────────────────────────── */
+/* â”€â”€â”€ GAIA HERO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-hero {
   min-height: 100dvh;
   background: var(--blue-deep);
@@ -398,7 +398,7 @@ a {
   min-height: 600px;
 }
 
-/* ── Hero pleine largeur avec image de fond ── */
+/* â”€â”€ Hero pleine largeur avec image de fond â”€â”€ */
 .gaia-hero--fullbg {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -424,7 +424,7 @@ a {
 .hero-bg-overlay {
   position: absolute;
   inset: 0;
-  /* Dégradé fort à gauche pour le texte, s'efface vers la droite pour laisser voir le smiley */
+  /* DÃ©gradÃ© fort Ã  gauche pour le texte, s'efface vers la droite pour laisser voir le smiley */
   background:
     linear-gradient(90deg,
       rgba(8, 14, 30, 0.82) 0%,
@@ -446,7 +446,7 @@ a {
   z-index: 3;
   align-self: center;
 }
-/* ─── GAIA HERO EYE VARIANT ──────────────────────────────── */
+/* â”€â”€â”€ GAIA HERO EYE VARIANT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-hero--eye {
   display: flex;
   flex-direction: column;
@@ -477,7 +477,7 @@ a {
       rgba(0,0,2,0.04) 100%
     );
 }
-/* Titre — reste dans le flux flex, positionné par les voids */
+/* Titre â€” reste dans le flux flex, positionnÃ© par les voids */
 .hero-eye-content {
   position: relative;
   z-index: 3;
@@ -503,7 +503,7 @@ a {
   font-style: normal;
   color: var(--orange);
 }
-/* Bas de page — indépendant du titre, ancré au bas de la section */
+/* Bas de page â€” indÃ©pendant du titre, ancrÃ© au bas de la section */
 .hero-eye-bottom-row {
   position: absolute;
   bottom: 155px;
@@ -525,7 +525,7 @@ a {
   white-space: nowrap;
   flex-shrink: 0;
 }
-/* Hero button — coin bas-gauche uniquement, rayon subtil */
+/* Hero button â€” coin bas-gauche uniquement, rayon subtil */
 .hero-eye-bottom-row .gaia-btn {
   border-radius: 0 0 0 12px;
   white-space: nowrap;
@@ -642,7 +642,7 @@ a {
   font-weight: 500;
 }
 
-/* ─── HAMBURGER BUTTON ───────────────────────────────────── */
+/* â”€â”€â”€ HAMBURGER BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-hamburger {
   display: flex;
   flex-direction: column;
@@ -668,7 +668,7 @@ a {
 .gaia-hamburger-bar.open-bot  { transform: translateY(-7px) rotate(-45deg); }
 .gaia-hamburger.dark .gaia-hamburger-bar { background: var(--blue-navy); filter: none; transition: background 0.4s, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease; }
 
-/* ─── MOBILE MENU OVERLAY ────────────────────────────────── */
+/* â”€â”€â”€ MOBILE MENU OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-mobile-menu {
   position: fixed;
   inset: 0;
@@ -738,7 +738,7 @@ a {
   opacity: 1;
 }
 
-/* ─── NAV SOCIAL ROW ─────────────────────────────────────── */
+/* â”€â”€â”€ NAV SOCIAL ROW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .nav-social-row {
   display: flex;
   gap: 32px;
@@ -784,7 +784,7 @@ a {
   color: var(--orange);
 }
 
-/* ─── CIRCLE MOTIF (SVG wrapper) ─────────────────────────── */
+/* â”€â”€â”€ CIRCLE MOTIF (SVG wrapper) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .circle-motif-wrap {
   position: absolute;
   inset: 0;
@@ -841,7 +841,7 @@ a {
   flex-shrink: 0;
 }
 
-/* Badges inline — visibles uniquement sur mobile (768px) */
+/* Badges inline â€” visibles uniquement sur mobile (768px) */
 .hero-badges-inline {
   display: none;
   flex-direction: row;
@@ -864,7 +864,7 @@ a {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* ─── MARQUEE BAR ────────────────────────────────────────── */
+/* â”€â”€â”€ MARQUEE BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-marquee {
   background: var(--cream);
   padding: 16px 0;
@@ -921,7 +921,7 @@ a {
   opacity: 0.6;
 }
 
-/* ─── TEXT BALANCE — applied everywhere ──────────────────── */
+/* â”€â”€â”€ TEXT BALANCE â€” applied everywhere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .section-sub,
 .dna-body,
 .dna-h2,
@@ -939,7 +939,7 @@ a {
   text-wrap: balance;
 }
 
-/* ─── SECTION COMMONS ────────────────────────────────────── */
+/* â”€â”€â”€ SECTION COMMONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .section-label {
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
   display: inline-flex;
@@ -983,7 +983,7 @@ a {
   color: rgba(255,255,255,0.6);
 }
 
-/* ─── UNIVERSAL SECTION HEADER (label gauche / titre+sous-titre droite) ── */
+/* â”€â”€â”€ UNIVERSAL SECTION HEADER (label gauche / titre+sous-titre droite) â”€â”€ */
 .section-header {
   display: flex;
   flex-direction: column;
@@ -1035,7 +1035,7 @@ a {
   margin-bottom: 48px;
 }
 
-/* ─── GAIA BRIDGE (hero → services) ─────────────────────── */
+/* â”€â”€â”€ GAIA BRIDGE (hero â†’ services) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-bridge {
   background: var(--beige);
   padding: 64px 80px;
@@ -1057,8 +1057,8 @@ a {
   font-weight: 800;
 }
 
-/* ─── GAIA SERVICES ──────────────────────────────────────── */
-/* ─── GAIA SERVICES ─────────────────────────────────────── */
+/* â”€â”€â”€ GAIA SERVICES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ GAIA SERVICES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-services {
   background: #fcf7f2;
   padding: 72px 80px 72px 0;
@@ -1200,7 +1200,7 @@ a {
   flex-shrink: 0;
 }
 
-/* ─── GAIA DNA ───────────────────────────────────────────── */
+/* â”€â”€â”€ GAIA DNA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-dna .section-label {
   color: var(--orange);
 }
@@ -1345,7 +1345,7 @@ a {
   line-height: 1.4;
 }
 
-/* ─── GAIA PILLARS ───────────────────────────────────────── */
+/* â”€â”€â”€ GAIA PILLARS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-pillars {
   background: #f7f8ff;
   padding: 0 0 100px;
@@ -1426,7 +1426,7 @@ a {
   margin-bottom: 8px;
 }
 
-/* ─── GAIA PORTFOLIO ─────────────────────────────────────── */
+/* â”€â”€â”€ GAIA PORTFOLIO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-portfolio {
   background: var(--blue-navy);
   padding: 60px 80px;
@@ -1439,7 +1439,7 @@ a {
 .gaia-portfolio .section-label {
   color: var(--orange);
 }
-/* Supprime la ligne CSS du section-label pour le portfolio — le "—" est dans le texte */
+/* Supprime la ligne CSS du section-label pour le portfolio â€” le "â€”" est dans le texte */
 .portfolio-label::before {
   display: none;
 }
@@ -1566,7 +1566,7 @@ a {
   transform: scale(1) rotate(0deg);
 }
 
-/* ─── GAIA TESTIMONIALS ──────────────────────────────────── */
+/* â”€â”€â”€ GAIA TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-testimonials {
   background: var(--orange);
   padding: 80px 0;
@@ -1587,8 +1587,11 @@ a {
 .testi-smiley {
   width: 180px;
   height: 180px;
+  min-width: 180px;
+  min-height: 180px;
   object-fit: contain;
   flex-shrink: 0;
+  flex-grow: 0;
 }
 .testi-header-center {
   flex: 1;
@@ -1731,9 +1734,9 @@ a {
   text-transform: uppercase;
 }
 
-/* ─── GAIA PROCESS ───────────────────────────────────────── */
+/* â”€â”€â”€ GAIA PROCESS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-/* Wrapper : hauteur auto + padding-bottom ajouté via JS pour le scroll driver */
+/* Wrapper : hauteur auto + padding-bottom ajoutÃ© via JS pour le scroll driver */
 .gaia-process {
   background: #fcf7f2;
   padding: 80px 80px;
@@ -1845,7 +1848,7 @@ a {
   will-change: transform;
 }
 
-/* ─── GAIA CTA ───────────────────────────────────────────── */
+/* â”€â”€â”€ GAIA CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-cta {
   background: var(--beige);
   padding: 80px 80px;
@@ -1945,7 +1948,7 @@ textarea.form-input {
   font-weight: 600;
 }
 
-/* ─── PORTFOLIO PAGE ─────────────────────────────────────── */
+/* â”€â”€â”€ PORTFOLIO PAGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .portfolio-page-hero {
   background: var(--beige);
   padding: 140px 80px 60px;
@@ -1996,7 +1999,7 @@ textarea.form-input {
   gap: 20px;
 }
 
-/* Carte photo-first — pas de description */
+/* Carte photo-first â€” pas de description */
 .port-card {
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -2064,7 +2067,7 @@ textarea.form-input {
   letter-spacing: 0.04em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .portfolio-page-hero { padding: 100px 24px 48px; }
   .portfolio-page-grid { padding: 36px 24px 64px; }
   .portfolio-cards-grid { gap: 14px; }
@@ -2078,7 +2081,7 @@ textarea.form-input {
 }
 
 
-/* ─── GAIA FOOTER ────────────────────────────────────────── */
+/* â”€â”€â”€ GAIA FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-footer {
   background: var(--blue-deep);
   position: relative;
@@ -2272,7 +2275,7 @@ textarea.form-input {
   line-height: 1.2;
 }
 
-/* ─── UTILITY ANIMATIONS ─────────────────────────────────── */
+/* â”€â”€â”€ UTILITY ANIMATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -2280,7 +2283,7 @@ textarea.form-input {
 .spin-slow { animation: spin-slow 24s linear infinite; }
 .spin-slow-reverse { animation: spin-slow 32s linear infinite reverse; }
 
-/* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+/* â”€â”€â”€ CUSTOM CURSOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-cursor {
   position: fixed;
   pointer-events: none;
@@ -2305,7 +2308,7 @@ textarea.form-input {
               width 0.3s, height 0.3s, border-color 0.2s;
 }
 
-/* ─── PARALLAX UTILITIES ─────────────────────────────────── */
+/* â”€â”€â”€ PARALLAX UTILITIES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .parallax-layer {
   will-change: transform;
   transform: translateZ(0);
@@ -2314,7 +2317,7 @@ textarea.form-input {
 .parallax-medium { --parallax-speed: 0.4; }
 .parallax-fast   { --parallax-speed: 0.6; }
 
-/* ─── DECORATIVE SHAPES ──────────────────────────────────── */
+/* â”€â”€â”€ DECORATIVE SHAPES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-deco-shape {
   position: absolute;
   pointer-events: none;
@@ -2331,7 +2334,7 @@ textarea.form-input {
   mix-blend-mode: soft-light;
 }
 
-/* ─── SECTION LABEL ON DARK ──────────────────────────────── */
+/* â”€â”€â”€ SECTION LABEL ON DARK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .section-label.dark {
   color: var(--orange);
 }
@@ -2342,7 +2345,7 @@ textarea.form-input {
   color: var(--text-on-dark-muted);
 }
 
-/* ─── SPOTLIGHT CARD EFFECT ──────────────────────────────── */
+/* â”€â”€â”€ SPOTLIGHT CARD EFFECT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .spotlight-card {
   position: relative;
   overflow: hidden;
@@ -2360,12 +2363,12 @@ textarea.form-input {
   opacity: 1;
 }
 
-/* ─── SECTION DIVIDERS ───────────────────────────────────── */
+/* â”€â”€â”€ SECTION DIVIDERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .section-divider {
   display: none;
 }
 
-/* ─── PROCESS LABEL DARK ─────────────────────────────────── */
+/* â”€â”€â”€ PROCESS LABEL DARK â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .process-step-label-dark {
   display: inline-flex;
   align-items: center;
@@ -2380,10 +2383,32 @@ textarea.form-input {
   font-weight: 600;
 }
 
-/* ─── CTA SECTION TEXT ───────────────────────────────────── */
+/* â”€â”€â”€ CTA SECTION TEXT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-cta .gaia-h2 {
   color: var(--blue-navy);
 }
+.gaia-cta .section-sub {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.cta-h2 {
+  font-family: 'Gotham Rounded', 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--blue-navy);
+  line-height: 1.0;
+  display: block;
+  letter-spacing: -0.5px;
+}
+.cta-line {
+  display: block;
+  white-space: nowrap;
+}
+/* Chaque ligne calibrÃ©e pour finir au mÃªme bord droit */
+.cta-line-1 { font-size: 38px; }
+.cta-line-2 { font-size: 31px; }
+.cta-line-3 { font-size: 28px; }
+.cta-line-4 { font-size: 31px; }
 .gaia-cta .section-label {
   color: var(--orange);
 }
@@ -2401,7 +2426,7 @@ textarea.form-input {
   border: 1px solid rgba(255,138,61,0.2);
 }
 
-/* ─── PILLARS SECTION (LIGHT BG) ────────────────────────── */
+/* â”€â”€â”€ PILLARS SECTION (LIGHT BG) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-pillars .gaia-h2 {
   color: var(--blue-navy);
 }
@@ -2412,7 +2437,7 @@ textarea.form-input {
   color: var(--text-mid);
 }
 
-/* ─── PROCESS SECTION HEADER ON BEIGE ───────────────────── */
+/* â”€â”€â”€ PROCESS SECTION HEADER ON BEIGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-process .gaia-h2 {
   color: var(--blue-navy);
 }
@@ -2423,7 +2448,7 @@ textarea.form-input {
   background: var(--border);
 }
 
-/* ─── MARQUEE ENHANCED ───────────────────────────────────── */
+/* â”€â”€â”€ MARQUEE ENHANCED â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-marquee {
   background: var(--orange);
 }
@@ -2440,7 +2465,7 @@ textarea.form-input {
   background: rgba(255,255,255,0.5);
 }
 
-/* ─── HOVER TILT CARD (feature cards) ───────────────────── */
+/* â”€â”€â”€ HOVER TILT CARD (feature cards) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @keyframes float-bob {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   33% { transform: translateY(-8px) rotate(0.5deg); }
@@ -2450,111 +2475,163 @@ textarea.form-input {
 .float-bob-delay { animation: float-bob 7s ease-in-out 2.5s infinite; }
 
 
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE — 3 breakpoints
-   ─ 1200px  Large tablet / small laptop
-   ─ 768px   Tablet portrait / mobile landscape
-   ─ 480px   Phone
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RESPONSIVE â€” 3 breakpoints
+   â”€ 1200px  Large tablet / small laptop
+   â”€ 768px   Tablet portrait / mobile landscape
+   â”€ 480px   Phone
    Philosophy: adapt composition, don't just stack.
-   ═══════════════════════════════════════════════════════════ */
+   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* ─── 1200px — Large tablet ──────────────────────────────── */
+/* â”€â”€â”€ 1200px â€” Large tablet : layout identique au PC, polices lÃ©gÃ¨rement rÃ©duites â”€â”€ */
 @media (max-width: 1200px) {
-  /* Hero: keep 2-col but compress. Right gets slightly smaller. */
-  .gaia-hero {
-    grid-template-columns: 1fr 0.85fr;
-    padding-top: 90px;
-  }
-  .gaia-hero-left {
-    padding: 60px 40px 60px 60px;
-  }
-  .gaia-hero-right {
-    padding: 40px 40px 40px 0;
-    min-height: 500px;
-  }
-  /* Hero fullbg — tablette : recadrer sur le smiley */
-  .gaia-hero--fullbg {
-    grid-template-columns: 1fr;
-    padding-top: 0;
-  }
-  .gaia-hero--fullbg-content {
-    padding: 110px 48px 72px 60px;
-    max-width: 560px;
-  }
-  .hero-bg-img {
-    object-position: 70% center;
-  }
+  /* Downscale global via font-size root */
+  html { font-size: 93%; }
 
-  /* Services: featured full-width top, 3 cards below */
-  .services-grid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-  }
-  .service-card.featured {
-    grid-column: 1 / -1;
-    grid-row: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-  .service-card.featured .service-icon {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  .service-card.featured .service-title {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .service-card.featured .service-desc {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    align-self: center;
-  }
+  /* Titres principaux */
+  .gaia-h2, .dna-h2 { font-size: clamp(26px, 3.2vw, 38px); }
+  .hero-h1           { font-size: clamp(32px, 4.5vw, 52px); }
 
-  /* DNA: keep side-by-side, reduce gap */
+  /* â”€â”€ HERO EYE â€” tablette â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* Centrer l'Å“il horizontalement */
+  .hero-bg-img--eye { object-position: 50% 40%; }
+  /* Logo agrandi */
+  .hero-logo { left: 60px; }
+  .hero-logo img { height: 58px; }
+  /* Hamburger agrandi */
+  .gaia-nav { padding: 20px 60px; }
+  .gaia-hamburger { width: 40px; height: 40px; }
+
+  /* Titre : 2 lignes, texte en bas sous l'Å“il */
+  .hero-eye-void { flex: 0.35; }
+  .hero-eye-void-bottom { flex: 0; min-height: 0; }
+  .hero-eye-content {
+    padding: 0 60px 40px;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-eye-h1 {
+    font-size: clamp(26px, 4vw, 40px);
+    white-space: normal;
+    line-height: 1.05;
+    text-align: center;
+    width: 100%;
+  }
+  /* Ligne 1 : "Vos clients vous jugent" â€” spans 1+2 inline */
+  /* Ligne 2 : "en 07 secondes chronoâ€¦" â€” span 3 block */
+  .hero-eye-h1 .hero-h1-line:nth-child(1) { display: inline; }
+  .hero-eye-h1 .hero-h1-line:nth-child(2) { display: inline; }
+  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; }
+
+  /* Tout le contenu dans le flux flex, ancrÃ© en bas */
+  .gaia-hero--eye {
+    justify-content: flex-end;
+    padding-bottom: 32px;
+  }
+  /* "Que voient-ils?" et bouton : position static, dans le flux */
+  .hero-eye-bottom-row {
+    position: static;
+    margin-top: 28px;
+    padding: 0 60px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+  }
+  .hero-eye-sub { font-size: 13px; letter-spacing: 0.18em; display: inline-block; justify-content: unset; white-space: nowrap; }
+  .hero-eye-bottom-row .gaia-btn {
+    font-size: 11px;
+    padding: 8px 14px;
+    border-radius: 0 0 0 12px;
+  }
+  /* Texte intro : taille lisible sur tablette */
+  .services-intro-l1 { font-size: 24px; }
+  .services-intro-l2 { font-size: 20px; }
+  /* Intro wrap : suit le padding de la section */
+  .services-intro-wrap { padding-left: 0; }
+  /* Carte gauche : colle au bord gauche de la section */
+  .services-card-left { margin-left: -60px; }
+
+  /* â”€â”€ 2. NOTRE ADN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* Layout : photo centrÃ©e, puis label+titre, puis 3 textes horizontaux */
   .dna-grid {
-    gap: 50px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    justify-items: center;
   }
-  .dna-visual {
-    height: auto;
+  /* Photo centrÃ©e, largeur maÃ®trisÃ©e â€” forcer reveal-left visible */
+  .dna-grid .dna-visual {
+    width: 240px;
+    margin: 0 auto;
+    opacity: 1 !important;
+    transform: none !important;
   }
+  /* Bloc texte pleine largeur */
+  .dna-text-col {
+    width: 100%;
+    text-align: center;
+  }
+  .dna-text-col .section-label { justify-content: center; }
+  .dna-text-col .dna-h2 { margin-bottom: 24px; }
+  /* 3 paragraphes cÃ´te Ã  cÃ´te */
+  .dna-text-col .dna-body {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    font-size: 11.5px;
+    line-height: 1.55;
+    width: 30%;
+    margin: 0 1.5%;
+  }
+  /* Stats pleine largeur */
+  .dna-stats-row { width: 100%; gap: 40px; }
+  .dna-stat-ring-wrap { width: 90px; height: 90px; }
+  .dna-stat-num  { font-size: 18px; }
+  .dna-stat-label { font-size: 7px; }
 
-  /* Pillars: 2-col at tablet landscape, remove vertical offset */
+  /* â”€â”€ 3. NOS VALEURS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* Image pleine largeur bord Ã  bord, plus courte, dezoomÃ©e */
+  .gaia-pillars { overflow: hidden; }
+  .pillars-hero {
+    width: 100vw;
+    margin-left: -60px;
+    height: 320px;
+    border-radius: 0 0 60px 0;
+    margin-bottom: 56px;
+  }
+  .pillars-hero-img {
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+  .pillars-hero-text { left: 60px; top: 36px; }
+  /* 4 colonnes conservÃ©es, espacement augmentÃ© */
   .pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .pillar-card:nth-child(even) {
-    margin-top: 0;
-  }
-
-  /* Portfolio: 2-col tablet, remove spans */
-  .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 260px);
-  }
-  .portfolio-grid .port-item:nth-child(3) { border-radius: 0 0 0 20px; }
-  .portfolio-grid .port-item:nth-child(4) { border-radius: 0 0 20px 0; }
-  .portfolio-grid .port-item:nth-child(1),
-  .portfolio-grid .port-item:nth-child(2),
-  .portfolio-grid .port-item:nth-child(3),
-  .portfolio-grid .port-item:nth-child(4),
-  .portfolio-grid .port-item:nth-child(5),
-  .portfolio-grid .port-item:nth-child(6) {
-    grid-column: auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+    padding: 0 60px;
   }
 
-  /* Process: keep side-by-side, tighter */
-  .process-grid {
-    gap: 48px;
+  /* Nos Valeurs cartes tablette */
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 48px 60px; padding: 0 40px; }
+  .pillar-desc { font-size: 12px; max-width: none; line-height: 1.7; }
+  .pillar-title { font-size: 16px; }
+
+  /* â”€â”€ 4. NOTRE RECETTE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  /* Conserver le layout 2 colonnes sur tablette landscape */
+  .process-inner { grid-template-columns: 1fr 1fr !important; gap: 40px; }
+  /* Bulb et finger : clips ancrés haut/bas */
+  .process-right { height: 560px !important; }
+  .process-bulb-clip {
+    top: -80px;
+    overflow: hidden;
+  }
+  .process-finger-clip {
+    bottom: -120px;
+    overflow: hidden;
   }
 
-  /* CTA: keep 2-col */
-  .cta-grid {
-    gap: 48px;
-  }
-
-  /* Sections: reduce horizontal padding */
+  /* Sections : lÃ©ger resserrement horizontal seulement */
   .gaia-services,
   .gaia-dna,
   .gaia-pillars,
@@ -2564,20 +2641,20 @@ textarea.form-input {
     padding-left: 60px;
     padding-right: 60px;
   }
-  .testi-inner {
-    padding: 0 60px;
-  }
-  .footer-top-row { padding: 40px 60px 28px; }
-  .footer-sep { margin: 0 60px; }
-  .footer-mid { padding: 44px 60px 32px; gap: 40px; }
+  .testi-inner { padding: 0 60px; }
+
+  /* Footer */
+  .footer-top-row  { padding: 40px 60px 28px; }
+  .footer-sep      { margin: 0 60px; }
+  .footer-mid      { padding: 44px 60px 32px; gap: 40px; }
   .footer-wordmark { padding: 0 60px; letter-spacing: -2px; }
-  .footer-legal { padding: 14px 60px 20px; }
+  .footer-legal    { padding: 14px 60px 20px; }
 }
 
-/* ─── 768px — Tablet portrait ────────────────────────────── */
-@media (max-width: 768px) {
+/* â”€â”€â”€ 768px â€” Tablet portrait â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 767px) {
 
-  /* NAV: compact padding on mobile — match section content padding */
+  /* NAV: compact padding on mobile â€” match section content padding */
   .gaia-nav {
     padding: 14px 28px;
   }
@@ -2585,14 +2662,14 @@ textarea.form-input {
     padding: 18px 28px;
   }
 
-  /* HERO: colonne unique, photo masquée, badges inline, stats en grille */
+  /* HERO: colonne unique, photo masquÃ©e, badges inline, stats en grille */
   .gaia-hero {
     grid-template-columns: 1fr;
     min-height: 100dvh;
     padding-top: 80px;
     align-items: flex-start;
   }
-  /* Photo droite : masquée complètement sur mobile (hero classique) */
+  /* Photo droite : masquÃ©e complÃ¨tement sur mobile (hero classique) */
   .gaia-hero-right {
     display: none;
   }
@@ -2607,7 +2684,7 @@ textarea.form-input {
   .hero-badges-inline {
     display: flex;
   }
-  /* Hero fullbg mobile — image recadrée sur le smiley, overlay renforcé */
+  /* Hero fullbg mobile â€” image recadrÃ©e sur le smiley, overlay renforcÃ© */
   .gaia-hero--fullbg {
     padding-top: 0;
     align-items: flex-end;
@@ -2629,13 +2706,13 @@ textarea.form-input {
         rgba(8, 14, 30, 0.98) 100%
       );
   }
-  /* Hero Eye — mobile : overlay plein écran, texte sur l'image */
+  /* Hero Eye — mobile : même disposition que tablette, contenu en bas */
   .gaia-hero--eye {
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: stretch;
     min-height: 100dvh;
+    padding-bottom: 48px;
   }
-  /* bg-wrap : plein écran absolu, image toujours visible */
   .gaia-hero--eye .hero-bg-wrap {
     position: absolute;
     inset: 0;
@@ -2646,61 +2723,61 @@ textarea.form-input {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 68% center;
+    object-position: 50% 35%;
     display: block;
   }
   .gaia-hero--eye .hero-bg-overlay--eye {
     background:
       linear-gradient(180deg,
         rgba(0, 0, 2, 0.30) 0%,
-        rgba(0, 0, 2, 0.04) 25%,
-        rgba(0, 0, 2, 0.10) 48%,
-        rgba(0, 0, 2, 0.88) 68%,
-        rgba(0, 0, 2, 0.97) 100%
+        rgba(0, 0, 2, 0.04) 20%,
+        rgba(0, 0, 2, 0.10) 45%,
+        rgba(0, 0, 2, 0.88) 65%,
+        rgba(0, 0, 2, 0.98) 100%
       );
   }
-  .hero-eye-void {
-    display: block;
-    flex: 1;
-    min-height: 60px;
-  }
-  .hero-eye-void-bottom {
-    flex: 0;
-  }
+  /* Void pousse le contenu vers le bas */
+  .hero-eye-void { flex: 0.7; min-height: 40px; }
+  .hero-eye-void-bottom { flex: 0; min-height: 0; }
+  /* Titre centré */
   .hero-eye-content {
-    padding: 0 28px;
-    background: transparent;
+    padding: 0 28px 0;
     align-items: flex-start;
     text-align: left;
   }
-  .hero-eye-text-block {
-    display: inline-block;
-    max-width: 100%;
-    text-align: left;
-    margin-bottom: 24px;
-  }
   .hero-eye-h1 {
-    font-size: clamp(26px, 7.5vw, 38px);
-    letter-spacing: -0.5px;
+    font-size: 22px;
     white-space: normal;
     text-align: left;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    width: 100%;
   }
+  /* Ligne 1 : “Vos clients vous jugent” — spans 1+2 inline */
+  /* Ligne 2 : “en 07 secondes chrono…” — span 3 block */
+  .hero-eye-h1 .hero-h1-line:nth-child(1) { display: inline; white-space: nowrap; }
+  .hero-eye-h1 .hero-h1-line:nth-child(2) { display: inline; white-space: nowrap; }
+  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; white-space: nowrap; }
+  /* “Que voient-ils?” et bouton : dans le flux sous le titre */
   .hero-eye-bottom-row {
-    left: 28px;
-    right: 28px;
-    bottom: 24px;
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 14px;
+    padding: 0 28px;
+    left: auto; right: auto; bottom: auto;
   }
   .hero-eye-sub {
-    font-size: clamp(11px, 3.5vw, 15px);
-    letter-spacing: 0.12em;
+    font-size: clamp(12px, 3.8vw, 16px);
+    letter-spacing: 0.16em;
   }
-  .hero-eye-ctas .gaia-btn {
-    width: auto;
-    padding: 12px 20px;
-    font-size: 13px;
+  .hero-eye-bottom-row .gaia-btn {
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 0 0 0 12px;
     white-space: nowrap;
   }
-  /* Stats : grille 3 colonnes avec séparateurs */
   .hero-stats {
     gap: 0;
     display: grid;
@@ -2814,7 +2891,7 @@ textarea.form-input {
     font-size: 22px;
   }
 
-  /* DNA: text → image → stats */
+  /* DNA: text â†’ image â†’ stats */
   .dna-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2912,7 +2989,7 @@ textarea.form-input {
   }
 }
 
-/* ─── 480px — Phone ──────────────────────────────────────── */
+/* â”€â”€â”€ 480px â€” Phone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 480px) {
 
   /* Typography: tighter but still impactful */
@@ -2924,7 +3001,7 @@ textarea.form-input {
     font-size: clamp(22px, 6.4vw, 29px);
   }
 
-  /* HERO: serré, boutons empilés */
+  /* HERO: serrÃ©, boutons empilÃ©s */
   .gaia-hero-left {
     padding: 32px 20px 48px;
   }
@@ -2971,7 +3048,7 @@ textarea.form-input {
     font-size: 11px;
   }
 
-  /* SECTION HEADERS mobile : label petit, h2 plus serré, sous-titre en dessous */
+  /* SECTION HEADERS mobile : label petit, h2 plus serrÃ©, sous-titre en dessous */
   .section-label {
     font-size: 11px;
     margin-bottom: 10px;
@@ -2996,7 +3073,7 @@ textarea.form-input {
   .process-right {
     height: 280px;
   }
-  /* DNA: blocs empilés sur mobile */
+  /* DNA: blocs empilÃ©s sur mobile */
   .dna-cols-flex {
     flex-direction: column;
     gap: 0;
@@ -3034,7 +3111,7 @@ textarea.form-input {
     padding: 0;
   }
 
-  /* SERVICES: bento asymétrique mobile.
+  /* SERVICES: bento asymÃ©trique mobile.
      Ligne 1 : featured pleine largeur, layout horizontal icon+texte
      Ligne 2 col-1 : branding (petite)
      Ligne 2 col-2 : supports (grande, span 2 lignes)
@@ -3044,7 +3121,7 @@ textarea.form-input {
     grid-template-rows: auto auto auto;
     gap: 10px;
   }
-  /* — Featured : ligne 1, pleine largeur, layout horizontal — */
+  /* â€” Featured : ligne 1, pleine largeur, layout horizontal â€” */
   .service-card.featured {
     grid-column: 1 / -1;
     grid-row: 1;
@@ -3073,22 +3150,22 @@ textarea.form-input {
     margin-left: auto;
     flex-shrink: 0;
   }
-  /* — Branding : col 1 ligne 2 — */
+  /* â€” Branding : col 1 ligne 2 â€” */
   .services-grid .service-card:nth-child(2) {
     grid-column: 1;
     grid-row: 2;
   }
-  /* — Supports : col 2, ligne 2 uniquement — même taille que les autres — */
+  /* â€” Supports : col 2, ligne 2 uniquement â€” mÃªme taille que les autres â€” */
   .services-grid .service-card:nth-child(4) {
     grid-column: 2;
     grid-row: 2;
   }
-  /* — UX : col 1 ligne 3 — */
+  /* â€” UX : col 1 ligne 3 â€” */
   .services-grid .service-card:nth-child(3) {
     grid-column: 1;
     grid-row: 3;
   }
-  /* Cartes secondaires : padding généreux, texte visible, hauteur auto */
+  /* Cartes secondaires : padding gÃ©nÃ©reux, texte visible, hauteur auto */
   .services-grid .service-card:not(.featured) {
     padding: 20px 16px 44px;
     display: flex;
@@ -3132,7 +3209,7 @@ textarea.form-input {
     scroll-snap-align: start;
   }
 
-  /* DNA: stats horizontal on phone — equal columns, flush */
+  /* DNA: stats horizontal on phone â€” equal columns, flush */
   .dna-grid .dna-stats-row {
     order: 3;
     grid-template-columns: repeat(3, 1fr);
@@ -3231,7 +3308,7 @@ textarea.form-input {
     font-size: 44px;
   }
 
-  /* PROCESS: visual card hidden on phone — too dense */
+  /* PROCESS: visual card hidden on phone â€” too dense */
   .process-visual {
     display: none;
   }
@@ -3271,12 +3348,27 @@ textarea.form-input {
   /* DNA paragraphs: ligne vide entre eux */
   .dna-body {
     margin-bottom: 1.4em;
+
+  /* SERVICES intro: taille reduite mobile */
+  .services-intro-l1 { font-size: 15px; line-height: 1.4; }
+  .services-intro-l2 { font-size: 13px; line-height: 1.4; }
+
+  /* Notre Jardin image: pleine largeur, coin bas-droit arrondi */
+  .services-card-left {
+    width: 100vw;
+    margin-left: -28px;
+    border-radius: 0 0 48px 0;
+    min-height: 280px;
+  }
+  .services-card-content {
+    padding-left: 28px;
+  }
   }
 }
 
-/* ─── PC CONTENT MARGINS (≥ 1200px only) ─────────────────── */
+/* â”€â”€â”€ PC CONTENT MARGINS (â‰¥ 1200px only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (min-width: 1200px) {
-  /* Padding instead of margin → background extends edge-to-edge */
+  /* Padding instead of margin â†’ background extends edge-to-edge */
   .gaia-dna,
   .gaia-portfolio,
   .gaia-process,
@@ -3353,3 +3445,4 @@ textarea.form-input {
     right: 180px;
   }
 }
+
