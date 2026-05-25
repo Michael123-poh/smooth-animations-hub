@@ -120,7 +120,7 @@ export function GaiaServices() {
             />
           </div>
           <div className="services-card-content">
-            <span className="services-card-label">_ Notre Jardin</span>
+            <span className="services-card-label">Notre Jardin</span>
             <h2 className="services-card-h2" id="services-heading">
               Ce que nous<br />créons pour vous
             </h2>

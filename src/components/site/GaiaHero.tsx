@@ -15,7 +15,11 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
   useEffect(() => {
     function sync() {
       if (!line2Ref.current || !subRef.current) return;
-      const w = line2Ref.current.getBoundingClientRect().width;
+      const el = line2Ref.current;
+      const prev = el.style.display;
+      el.style.display = "inline-block";
+      const w = el.getBoundingClientRect().width;
+      el.style.display = prev;
       if (w > 0) subRef.current.style.width = `${w}px`;
     }
     document.fonts.ready.then(sync);
@@ -42,8 +46,11 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
       <div className="hero-eye-content reveal d1">
         <h1 className="hero-eye-h1">
           <span className="hero-h1-line">Vos clients </span>
-          <span className="hero-h1-line" ref={line2Ref}>vous jugent </span>
-          <span className="hero-h1-line">en <em>07</em> secondes chrono…</span>
+          <span className="hero-h1-line">vous jugent</span>
+          <span className="hero-h1-line hero-h1-line--group" ref={line2Ref}>
+            <span>en <em>07</em> secondes </span>
+            <span>chrono…</span>
+          </span>
         </h1>
       </div>
       <div className="hero-eye-void-bottom" aria-hidden="true" />

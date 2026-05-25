@@ -347,10 +347,10 @@ a {
   .hero-logo { left: 80px; }
 }
 @media (max-width: 767px) {
-  .hero-logo { left: 28px; top: 4px; }
+  .hero-logo { left: -8px; top: 4px; }
 }
 @media (max-width: 480px) {
-  .hero-logo { left: 16px; top: 9px; }
+  .hero-logo { left: -8px; top: 9px; }
   .hero-logo img { height: 38px; }
 }
 
@@ -468,13 +468,13 @@ a {
 }
 .hero-bg-overlay--eye {
   background:
-    linear-gradient(180deg, rgba(0,0,2,0.6) 0%, transparent 10%),
+    linear-gradient(180deg, rgba(0,0,2,0.5) 0%, transparent 12%),
     linear-gradient(
       105deg,
-      rgba(0,0,2,0.97) 0%,
-      rgba(0,0,2,0.93) 32%,
-      rgba(0,0,2,0.30) 58%,
-      rgba(0,0,2,0.04) 100%
+      rgba(0,0,2,0.95) 0%,
+      rgba(0,0,2,0.80) 30%,
+      rgba(0,0,2,0.15) 55%,
+      rgba(0,0,2,0.02) 100%
     );
 }
 /* Titre â€” reste dans le flux flex, positionnÃ© par les voids */
@@ -496,9 +496,10 @@ a {
   color: white;
   margin-bottom: 0;
   text-align: left;
-  white-space: nowrap;
+  white-space: normal;
 }
 .hero-h1-line { display: block; }
+.hero-h1-line--group > span { display: block; }
 .hero-eye-h1 em {
   font-style: normal;
   color: var(--orange);
@@ -1008,8 +1009,8 @@ a {
 /* DNA: colonnes de texte internes */
 .dna-text-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 4px;
   align-items: start;
 }
 .dna-cols-flex {
@@ -1153,6 +1154,17 @@ a {
   text-transform: uppercase;
   color: rgba(255,255,255,0.75);
   margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.services-card-label::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background: rgba(255,255,255,0.75);
+  flex-shrink: 0;
 }
 .services-card-h2 {
   font-family: 'Gotham Rounded', sans-serif;
@@ -1217,7 +1229,7 @@ a {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   grid-template-rows: 1fr auto;
-  gap: 40px 80px;
+  gap: 40px 60px;
   align-items: start;
 }
 .dna-grid .dna-stats-row {
@@ -1226,7 +1238,16 @@ a {
 }
 /* Image: stays in right column, aligned to top */
 .dna-grid .dna-visual {
-  align-self: start;
+  align-self: stretch;
+  height: 100%;
+  padding-top: 40px;
+}
+.dna-grid .dna-visual > div {
+  height: 100%;
+}
+.dna-grid .dna-visual img {
+  height: 100%;
+  object-fit: cover;
 }
 .dna-tag {
   display: inline-block;
@@ -1242,22 +1263,22 @@ a {
 }
 .dna-h2 {
   font-family: 'Gotham Rounded', 'Nunito', sans-serif;
-  font-size: clamp(26px, 2.4vw, 36px);
+  font-size: clamp(20px, 1.8vw, 28px);
   font-weight: 500;
   letter-spacing: -0.5px;
   line-height: 0.9;
   color: var(--blue-navy);
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 }
 .dna-body {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.5;
   color: #3b527b;
-  margin-bottom: 16px;
+  margin-bottom: 3px;
   text-align: justify;
-  hyphens: auto;
-  max-width: 420px;
+  hyphens: none;
+  max-width: 100%;
 }
 .dna-quote {
   border-left: 3px solid var(--orange);
@@ -1439,10 +1460,6 @@ a {
 .gaia-portfolio .section-label {
   color: var(--orange);
 }
-/* Supprime la ligne CSS du section-label pour le portfolio â€” le "â€”" est dans le texte */
-.portfolio-label::before {
-  display: none;
-}
 .portfolio-label {
   font-weight: 550 !important;
 }
@@ -1622,6 +1639,11 @@ a {
   position: relative;
   transform-origin: center center;
   will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+}
+.testi-text {
+  flex: 1;
 }
 .testi-card:nth-child(even) {
   border-radius: 0 12px 0 0;
@@ -1754,6 +1776,7 @@ a {
 .process-left {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 /* Steps */
 .process-steps-col {
@@ -1761,6 +1784,7 @@ a {
   flex-direction: column;
   gap: 24px;
   margin-top: 8px;
+  align-items: stretch;
 }
 .process-step-card {
   display: flex;
@@ -2081,122 +2105,69 @@ textarea.form-input {
 }
 
 
-/* â”€â”€â”€ GAIA FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ─── GAIA FOOTER ────────────────────────────────────────────── */
 .gaia-footer {
   background: var(--blue-deep);
   position: relative;
   overflow: hidden;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
-/* TOP ROW: logo left + tagline right */
-.footer-top-row {
+/* MAIN GRID: 3 colonnes — infos | nav | visuel */
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.2fr 0.6fr 1fr;
+  gap: 60px;
+  align-items: end;
+  padding: 72px 80px 0;
+}
+
+/* Colonne gauche */
+.footer-left {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 48px 80px 36px;
+  flex-direction: column;
+  gap: 0;
 }
 .footer-logo {
-  height: 38px;
+  height: 42px;
   width: auto;
   display: block;
+  margin-bottom: 20px;
 }
-.footer-top-tagline {
+.footer-tagline {
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(13px, 1.1vw, 16px);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  line-height: 1;
-}
-.footer-o-circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--orange);
-  color: white;
   font-size: 11px;
-  font-weight: 900;
-  line-height: 1;
-}
-
-/* SEPARATOR */
-.footer-sep {
-  height: 1px;
-  margin: 0 80px;
-  background: rgba(255,255,255,0.08);
-}
-
-/* MIDDLE: CTA col + nav cols */
-.footer-mid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  padding: 52px 80px 40px;
-}
-
-/* Left CTA column */
-.footer-cta-col {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.footer-cta-label {
-  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(28px, 3.2vw, 52px);
-  font-weight: 800;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.0;
-  letter-spacing: -1px;
-}
-.footer-cta-link {
-  font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(28px, 3.2vw, 52px);
-  font-weight: 800;
-  color: var(--orange);
-  line-height: 1.0;
-  letter-spacing: -1px;
-  text-decoration: none;
-  font-style: italic;
-  transition: opacity 0.2s;
-  display: block;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
   margin-bottom: 32px;
 }
-.footer-cta-link:hover { opacity: 0.75; }
-
-.footer-contact-stack {
+.footer-contact {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  margin-bottom: 28px;
 }
-.footer-contact-stack a,
-.footer-contact-stack span {
+.footer-contact a,
+.footer-contact span {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.45);
   text-decoration: none;
-  line-height: 1.2;
   transition: color 0.2s;
+  line-height: 1.3;
 }
-.footer-contact-stack a:hover { color: rgba(255,255,255,0.85); }
+.footer-contact a:hover { color: rgba(255,255,255,0.9); }
 
 .footer-socials {
   display: flex;
   gap: 10px;
-  margin-top: 24px;
 }
 .footer-social-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.1);
   display: flex;
@@ -2212,41 +2183,58 @@ textarea.form-input {
   background: rgba(255,138,61,0.08);
 }
 
-/* Right nav columns */
-.footer-nav-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+/* Colonne navigation */
+.footer-nav {
+  display: flex;
+  flex-direction: column;
   padding-top: 8px;
 }
-.footer-col-title {
+.footer-nav-title {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.25);
   margin-bottom: 20px;
-  line-height: 1;
 }
-.footer-links {
+.footer-nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
-.footer-links a {
+.footer-nav ul a {
   font-size: 14px;
   font-weight: 500;
   color: rgba(255,255,255,0.45);
-  line-height: 1.2;
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-links a:hover { color: white; }
+.footer-nav ul a:hover { color: white; }
 
-/* BIG BRAND WORDMARK */
+/* Colonne visuelle — femme */
+.footer-visual {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.footer-woman {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* BOTTOM: wordmark + legal */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
 .footer-wordmark {
-  flex: 1;
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
   font-size: clamp(80px, 15vw, 220px);
   font-weight: 900;
@@ -2254,18 +2242,17 @@ textarea.form-input {
   color: rgba(255,255,255,0.04);
   line-height: 0.85;
   text-align: center;
-  padding: 0 80px 0;
+  width: 100%;
   user-select: none;
   pointer-events: none;
   overflow: hidden;
   white-space: nowrap;
 }
-
-/* LEGAL STRIP */
 .footer-legal {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding: 16px 80px 24px;
   font-size: 11px;
   font-weight: 500;
@@ -2503,47 +2490,45 @@ textarea.form-input {
   .gaia-hamburger { width: 40px; height: 40px; }
 
   /* Titre : 2 lignes, texte en bas sous l'Å“il */
-  .hero-eye-void { flex: 0.35; }
+  /* Hero Eye tablette — contenu sous l'œil */
+  .hero-eye-void { flex: 1; min-height: 0; }
   .hero-eye-void-bottom { flex: 0; min-height: 0; }
+  .gaia-hero--eye {
+    justify-content: flex-end;
+    padding-bottom: 8vh;
+  }
   .hero-eye-content {
-    padding: 0 60px 40px;
+    padding: 0 60px;
     align-items: center;
     text-align: center;
   }
   .hero-eye-h1 {
-    font-size: clamp(26px, 4vw, 40px);
+    font-size: clamp(34px, 4.5vw, 52px);
     white-space: normal;
-    line-height: 1.05;
+    line-height: 1.15;
     text-align: center;
     width: 100%;
   }
-  /* Ligne 1 : "Vos clients vous jugent" â€” spans 1+2 inline */
-  /* Ligne 2 : "en 07 secondes chronoâ€¦" â€” span 3 block */
-  .hero-eye-h1 .hero-h1-line:nth-child(1) { display: inline; }
-  .hero-eye-h1 .hero-h1-line:nth-child(2) { display: inline; }
-  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; }
-
-  /* Tout le contenu dans le flux flex, ancrÃ© en bas */
-  .gaia-hero--eye {
-    justify-content: flex-end;
-    padding-bottom: 32px;
-  }
-  /* "Que voient-ils?" et bouton : position static, dans le flux */
+  .hero-eye-h1 .hero-h1-line:nth-child(1) { display: inline; white-space: nowrap; }
+  .hero-eye-h1 .hero-h1-line:nth-child(2) { display: inline; white-space: nowrap; }
+  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; text-align: center; }
+  .hero-h1-line--group { display: block; }
+  .hero-h1-line--group > span { display: inline; white-space: nowrap; }
   .hero-eye-bottom-row {
     position: static;
-    margin-top: 28px;
+    margin-top: 16px;
     padding: 0 60px;
-    left: auto;
-    right: auto;
-    bottom: auto;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+    left: auto; right: auto; bottom: auto;
   }
-  .hero-eye-sub { font-size: 13px; letter-spacing: 0.18em; display: inline-block; justify-content: unset; white-space: nowrap; }
+  .hero-eye-sub { font-size: clamp(14px, 2vw, 22px); display: flex; justify-content: space-between; white-space: nowrap; }
   .hero-eye-bottom-row .gaia-btn {
     font-size: 11px;
-    padding: 8px 14px;
+    padding: 8px 20px;
     border-radius: 0 0 0 12px;
   }
-  /* Texte intro : taille lisible sur tablette */
   .services-intro-l1 { font-size: 24px; }
   .services-intro-l2 { font-size: 20px; }
   /* Intro wrap : suit le padding de la section */
@@ -2573,17 +2558,28 @@ textarea.form-input {
   .dna-text-col .section-label { justify-content: center; }
   .dna-text-col .dna-h2 { margin-bottom: 24px; }
   /* 3 paragraphes cÃ´te Ã  cÃ´te */
+  .dna-text-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 75%;
+    margin: 0 auto;
+  }
+  .dna-text-cols .dna-body:nth-child(3) {
+    display: none;
+  }
   .dna-text-col .dna-body {
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
-    font-size: 11.5px;
-    line-height: 1.55;
-    width: 30%;
-    margin: 0 1.5%;
+    display: block;
+    width: 100%;
+    text-align: justify;
+    font-size: 9px;
+    line-height: 1.5;
+    margin: 0;
+    hyphens: none;
+    max-width: 100%;
   }
   /* Stats pleine largeur */
-  .dna-stats-row { width: 100%; gap: 40px; }
+  .dna-stats-row { width: 100%; gap: 64px; }
   .dna-stat-ring-wrap { width: 90px; height: 90px; }
   .dna-stat-num  { font-size: 18px; }
   .dna-stat-label { font-size: 7px; }
@@ -2594,13 +2590,14 @@ textarea.form-input {
   .pillars-hero {
     width: 100vw;
     margin-left: -60px;
+    margin-right: -60px;
     height: 320px;
     border-radius: 0 0 60px 0;
     margin-bottom: 56px;
   }
   .pillars-hero-img {
     object-fit: cover;
-    object-position: center 30%;
+    object-position: 70% 30%;
     transform: scale(0.85);
     transform-origin: center center;
   }
@@ -2643,12 +2640,10 @@ textarea.form-input {
   }
   .testi-inner { padding: 0 60px; }
 
-  /* Footer */
-  .footer-top-row  { padding: 40px 60px 28px; }
-  .footer-sep      { margin: 0 60px; }
-  .footer-mid      { padding: 44px 60px 32px; gap: 40px; }
-  .footer-wordmark { padding: 0 60px; letter-spacing: -2px; }
-  .footer-legal    { padding: 14px 60px 20px; }
+  /* Footer tablette */
+  .footer-main { padding: 60px 60px 0; gap: 40px; }
+  .footer-legal { padding: 16px 60px 24px; }
+  .footer-woman { max-width: 260px; }
 }
 
 /* â”€â”€â”€ 768px â€” Tablet portrait â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -2706,12 +2701,12 @@ textarea.form-input {
         rgba(8, 14, 30, 0.98) 100%
       );
   }
-  /* Hero Eye — mobile : même disposition que tablette, contenu en bas */
+  /* Hero Eye mobile — contenu sous l'œil */
   .gaia-hero--eye {
     justify-content: flex-end;
     align-items: stretch;
     min-height: 100dvh;
-    padding-bottom: 48px;
+    padding-bottom: 10vh;
   }
   .gaia-hero--eye .hero-bg-wrap {
     position: absolute;
@@ -2723,54 +2718,52 @@ textarea.form-input {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 35%;
+    object-position: 65% 38%;
     display: block;
   }
   .gaia-hero--eye .hero-bg-overlay--eye {
     background:
       linear-gradient(180deg,
-        rgba(0, 0, 2, 0.30) 0%,
-        rgba(0, 0, 2, 0.04) 20%,
-        rgba(0, 0, 2, 0.10) 45%,
-        rgba(0, 0, 2, 0.88) 65%,
-        rgba(0, 0, 2, 0.98) 100%
+        rgba(0, 0, 2, 0.20) 0%,
+        rgba(0, 0, 2, 0.00) 12%,
+        rgba(0, 0, 2, 0.00) 45%,
+        rgba(0, 0, 2, 0.80) 63%,
+        rgba(0, 0, 2, 0.97) 100%
       );
   }
-  /* Void pousse le contenu vers le bas */
-  .hero-eye-void { flex: 0.7; min-height: 40px; }
+  .hero-eye-void { flex: 1; min-height: 0; }
   .hero-eye-void-bottom { flex: 0; min-height: 0; }
-  /* Titre centré */
   .hero-eye-content {
-    padding: 0 28px 0;
-    align-items: flex-start;
-    text-align: left;
+    padding: 0 28px;
+    align-items: center;
+    text-align: center;
   }
   .hero-eye-h1 {
-    font-size: 22px;
+    font-size: clamp(28px, 8vw, 42px) !important;
     white-space: normal;
-    text-align: left;
-    line-height: 1.15;
+    text-align: center;
+    line-height: 1.2;
     letter-spacing: -0.3px;
     width: 100%;
   }
-  /* Ligne 1 : “Vos clients vous jugent” — spans 1+2 inline */
-  /* Ligne 2 : “en 07 secondes chrono…” — span 3 block */
   .hero-eye-h1 .hero-h1-line:nth-child(1) { display: inline; white-space: nowrap; }
   .hero-eye-h1 .hero-h1-line:nth-child(2) { display: inline; white-space: nowrap; }
-  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; white-space: nowrap; }
-  /* “Que voient-ils?” et bouton : dans le flux sous le titre */
+  .hero-eye-h1 .hero-h1-line:nth-child(3) { display: block; }
+  .hero-h1-line--group > span { display: inline; white-space: nowrap; }
   .hero-eye-bottom-row {
     position: static;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    align-items: center;
+    gap: 24px;
     margin-top: 14px;
     padding: 0 28px;
     left: auto; right: auto; bottom: auto;
   }
   .hero-eye-sub {
-    font-size: clamp(12px, 3.8vw, 16px);
-    letter-spacing: 0.16em;
+    font-size: clamp(11px, 3.5vw, 16px);
+    display: flex;
+    justify-content: space-between;
+    white-space: nowrap;
   }
   .hero-eye-bottom-row .gaia-btn {
     font-size: 12px;
@@ -2826,7 +2819,11 @@ textarea.form-input {
   .pillars-hero {
     height: 280px;
     border-radius: 0 0 40px 0;
+    width: calc(100vw + 16px);
+    margin-left: -28px;
+    margin-right: -44px;
   }
+  .pillars-hero-img { object-position: 70% 30%; }
   .pillars-hero-text {
     left: 28px;
     top: 28px;
@@ -2896,6 +2893,53 @@ textarea.form-input {
     grid-template-columns: 1fr;
     gap: 32px;
   }
+  .dna-grid .dna-visual {
+    display: flex;
+    justify-content: center;
+  }
+  .dna-grid .dna-visual img {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .dna-text-col {
+    width: 100%;
+    text-align: left;
+  }
+  .dna-text-col .section-label { display: flex; justify-content: center; }
+  .dna-text-col .dna-h2 { text-align: center; }
+  .gaia-process .section-label { display: flex; justify-content: center; }
+  .gaia-process .gaia-h2 { text-align: center; }
+  .dna-grid .dna-visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .dna-grid .dna-visual > div {
+    margin: 0 auto;
+  }
+  .dna-text-col .dna-body {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0;
+    text-align: justify;
+  }
+  .dna-text-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  .dna-text-cols .dna-body:nth-child(3) {
+    display: none;
+  }
+  .dna-text-cols .dna-body {
+    max-width: 100%;
+    text-align: justify;
+    font-size: 11px;
+    line-height: 1.5;
+  }
   .dna-grid .reveal-left {
     opacity: 1 !important;
     transform: none !important;
@@ -2908,7 +2952,10 @@ textarea.form-input {
     opacity: 1;
   }
   .dna-grid .dna-stats-row {
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
     margin-top: 0;
   }
 
@@ -2947,17 +2994,65 @@ textarea.form-input {
 
   /* PROCESS: empile sur mobile */
   .process-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 32px;
+    position: relative;
   }
   .process-right {
-    height: 320px;
+    display: block;
+    position: absolute;
+    right: -16px;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    pointer-events: none;
+  }
+  .process-bulb-clip {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    overflow: visible;
+    height: auto;
+    width: auto;
   }
   .process-bulb {
-    width: 120px;
+    width: 80px;
+    opacity: 0.45;
   }
-  .process-finger {
-    width: 180px;
+  .process-finger-clip {
+    display: none;
+  }
+  .process-left {
+    width: 100%;
+    align-items: stretch;
+  }
+  .process-steps-col {
+    width: 100%;
+    align-items: stretch;
+  }
+  .process-step-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    align-self: stretch;
+    padding-right: 24px;
+  }
+  .process-step-card.d2 {
+    flex-direction: row-reverse;
+  }
+  .process-step-card.d2 .process-step-body {
+    text-align: right;
+  }
+  .process-step-title {
+    max-width: none;
+  }
+  .process-step-body {
+    flex: 1;
+    min-width: 0;
+  }
+  .process-step-desc {
+    font-size: 9px;
   }
 
   /* CTA: form below text */
@@ -2969,12 +3064,11 @@ textarea.form-input {
     padding: 32px 24px;
   }
 
-  /* FOOTER: tablet */
-  .footer-top-row { padding: 32px 28px 24px; }
-  .footer-sep { margin: 0 28px; }
-  .footer-mid { padding: 36px 28px 28px; gap: 32px; grid-template-columns: 1fr; }
-  .footer-nav-cols { grid-template-columns: 1fr 1fr; }
-  .footer-wordmark { font-size: clamp(60px, 12vw, 140px); padding: 0 28px; letter-spacing: -2px; }
+  /* FOOTER: tablet 767px */
+  .footer-main { grid-template-columns: 1fr 1fr; padding: 48px 28px 0; }
+  .footer-visual { display: none; }
+  .footer-wordmark { font-size: clamp(60px, 12vw, 140px); letter-spacing: -2px; }
+  .footer-legal { padding: 14px 28px 24px; }
   .footer-contact-row {
     gap: 8px;
   }
@@ -2998,7 +3092,7 @@ textarea.form-input {
     letter-spacing: -0.5px;
   }
   .gaia-h2 {
-    font-size: clamp(22px, 6.4vw, 29px);
+    font-size: clamp(15px, 4.5vw, 20px);
   }
 
   /* HERO: serrÃ©, boutons empilÃ©s */
@@ -3010,18 +3104,17 @@ textarea.form-input {
   }
   .hero-eye-content {
     padding: 0 20px;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
   }
   .hero-eye-h1 {
-    font-size: clamp(28px, 8vw, 36px);
+    font-size: clamp(26px, 7vw, 36px) !important;
     white-space: normal;
-    text-align: left;
+    text-align: center;
   }
-  .hero-h1-line { display: block; }
   .hero-eye-sub {
-    font-size: clamp(10px, 3vw, 13px);
-    letter-spacing: 0.1em;
+    font-size: clamp(10px, 3.2vw, 14px);
+    letter-spacing: 0.35em;
   }
   .hero-eye-ctas .gaia-btn {
     padding: 11px 18px;
@@ -3050,14 +3143,17 @@ textarea.form-input {
 
   /* SECTION HEADERS mobile : label petit, h2 plus serrÃ©, sous-titre en dessous */
   .section-label {
-    font-size: 11px;
+    font-size: 9px;
     margin-bottom: 10px;
   }
   .gaia-h2 {
-    font-size: clamp(20px, 5.9vw, 27.5px);
+    font-size: clamp(16px, 4.8vw, 22px);
     letter-spacing: -0.5px;
     line-height: 0.9;
   }
+  .pillar-title { font-size: 13px; }
+  .services-card-h2 { font-size: clamp(16px, 4.8vw, 22px); }
+  .dna-h2 { font-size: clamp(16px, 4.8vw, 22px); }
   .section-sub {
     font-size: 10px;
     line-height: 1.35;
@@ -3071,7 +3167,7 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
   .process-right {
-    height: 280px;
+    display: none;
   }
   /* DNA: blocs empilÃ©s sur mobile */
   .dna-cols-flex {
@@ -3095,6 +3191,9 @@ textarea.form-input {
   }
   .process-step-card {
     padding: 16px 18px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* SECTION padding */
@@ -3109,6 +3208,17 @@ textarea.form-input {
   }
   .testi-inner {
     padding: 0;
+  }
+  .testi-smiley {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+  }
+  .testi-header-center .section-label {
+    margin-bottom: 16px;
+  }
+  .testi-header-center .gaia-h2 {
+    margin-top: 8px;
   }
 
   /* SERVICES: bento asymÃ©trique mobile.
@@ -3191,22 +3301,24 @@ textarea.form-input {
     top: 20px;
   }
   .pillars-grid {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
-    padding: 0 20px 12px;
-    scrollbar-width: none;
-  }
-  .pillars-grid::-webkit-scrollbar {
-    display: none;
+    padding: 0 0 12px;
   }
   .pillar-card {
-    flex: 0 0 72vw;
-    max-width: 280px;
-    scroll-snap-align: start;
+    flex: unset;
+    max-width: none;
+  }
+  .pillar-desc {
+    max-width: 100%;
+    font-size: 10px;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .pillar-title {
+    white-space: normal;
+    font-size: 13px;
   }
 
   /* DNA: stats horizontal on phone â€” equal columns, flush */
@@ -3222,10 +3334,10 @@ textarea.form-input {
     padding: 20px 8px;
   }
   .dna-stat-num {
-    font-size: 24px;
+    font-size: 16px;
   }
   .dna-stat-label {
-    font-size: 11px;
+    font-size: 7px;
   }
   .dna-visual {
     height: auto;
@@ -3292,17 +3404,9 @@ textarea.form-input {
     scroll-snap-align: start;
     padding: 24px 20px;
   }
-  /* Fade right edge for testimonials */
+  /* Fade right edge for testimonials — disabled on mobile */
   .gaia-testimonials::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 72px;
-    height: 100%;
-    background: linear-gradient(to right, transparent, var(--beige));
-    pointer-events: none;
-    z-index: 10;
+    display: none;
   }
   .testi-quote-mark {
     font-size: 44px;
@@ -3317,13 +3421,11 @@ textarea.form-input {
   }
 
   /* FOOTER: phone */
-  .footer-top-row { padding: 28px 20px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .footer-sep { margin: 0 20px; }
-  .footer-mid { padding: 32px 20px 24px; }
-  .footer-nav-cols { grid-template-columns: 1fr 1fr; }
-  .footer-wordmark { font-size: clamp(52px, 16vw, 100px); padding: 0 20px; letter-spacing: -1px; }
-  .footer-legal { padding: 12px 20px 20px; flex-direction: column; gap: 6px; text-align: center; font-size: 11px;
-  }
+  .footer-main { grid-template-columns: 1fr; padding: 40px 20px 0; gap: 32px; }
+  .footer-visual { display: flex; }
+  .footer-woman { max-width: 200px; }
+  .footer-wordmark { font-size: clamp(52px, 16vw, 100px); letter-spacing: -1px; }
+  .footer-legal { padding: 12px 20px 20px; flex-direction: column; gap: 6px; text-align: center; font-size: 11px; }
 
   /* FORM */
   .form-row {
@@ -3348,21 +3450,35 @@ textarea.form-input {
   /* DNA paragraphs: ligne vide entre eux */
   .dna-body {
     margin-bottom: 1.4em;
+  }
 
   /* SERVICES intro: taille reduite mobile */
   .services-intro-l1 { font-size: 15px; line-height: 1.4; }
   .services-intro-l2 { font-size: 13px; line-height: 1.4; }
 
-  /* Notre Jardin image: pleine largeur, coin bas-droit arrondi */
+  /* Notre Jardin : layout colonne, image pleine largeur en haut */
+  .services-main {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
   .services-card-left {
     width: 100vw;
-    margin-left: -28px;
+    margin-left: -16px;
+    margin-right: -16px;
     border-radius: 0 0 48px 0;
-    min-height: 280px;
+    min-height: 180px;
+  }
+  .services-card-img {
+    object-position: 80% bottom;
+    transform: scale(1.0);
+    transform-origin: right bottom;
   }
   .services-card-content {
-    padding-left: 28px;
+    padding: 24px 16px 0;
   }
+  .services-list-col {
+    margin-top: 24px;
+    padding-right: 16px;
   }
 }
 

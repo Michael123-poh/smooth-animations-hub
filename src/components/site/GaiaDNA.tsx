@@ -127,27 +127,29 @@ export function GaiaDNA() {
           <h2 className="dna-h2" id="dna-heading" style={{ marginBottom: 24 }}>
             Connecting<br />brands to people
           </h2>
-          <p className="dna-body">
-            Bien plus qu'un studio créatif, nous sommes des passionés, des créatifs qui se positionnent
-            à l'intersection de l'humain et du design, nous transformons des idées en expériences
-            mémorables. Notre spécialité réside dans la création de solutions visuelles sur-mesure,
-            conçues pour capter l'attention de vos clients et construire un véritable lien émotionnel
-            avec votre public.
-          </p>
-          <p className="dna-body">
-            Chez Gaïa, nous croyons que chaque produit est conçu pour améliorer le quotidien, c'est
-            pourquoi nous plaçons l'humain au cœur de notre processus créatif, afin de façonner une
-            image qui parle à votre public. Pour nous, chaque projet est une occasion en or de{" "}
-            <strong style={{ fontWeight: 700 }}>tisser un lien émotionnel entre votre marque et sa cible</strong>,
-            nous appelons cela "Connecting Brands to People (B2P)."
-          </p>
-          <p className="dna-body">
-            Toute notre expertise est dédiée à donner vie à des identités visuelles, des images de
-            marque, des expériences utilisateur et des supports de communication qui propulseront vos
-            idées vers les sommets. Chez Gaïa, chaque pixel, chaque ligne, chaque couleur est
-            minutieusement pensé, rien n'est laissé au hasard. Oui, chaque détail compte. Nous sommes
-            convaincus que vous ne cherchez pas l'ordinaire, vous visez l'exception.
-          </p>
+          <div className="dna-text-cols">
+            <p className="dna-body">
+              Bien plus qu'un studio créatif, nous sommes des passionés, des créatifs qui se positionnent
+              à l'intersection de l'humain et du design, nous transformons des idées en expériences
+              mémorables. Notre spécialité réside dans la création de solutions visuelles sur-mesure,
+              conçues pour capter l'attention de vos clients et construire un véritable lien émotionnel
+              avec votre public.
+            </p>
+            <p className="dna-body">
+              Chez Gaïa, nous croyons que chaque produit est conçu pour améliorer le quotidien, c'est
+              pourquoi nous plaçons l'humain au cœur de notre processus créatif, afin de façonner une
+              image qui parle à votre public. Pour nous, chaque projet est une occasion en or de{" "}
+              <strong style={{ fontWeight: 700 }}>tisser un lien émotionnel entre votre marque et sa cible</strong>,
+              nous appelons cela "Connecting Brands to People (B2P)."
+            </p>
+            <p className="dna-body">
+              Toute notre expertise est dédiée à donner vie à des identités visuelles, des images de
+              marque, des expériences utilisateur et des supports de communication qui propulseront vos
+              idées vers les sommets. Chez Gaïa, chaque pixel, chaque ligne, chaque couleur est
+              minutieusement pensé, rien n'est laissé au hasard. Oui, chaque détail compte. Nous sommes
+              convaincus que vous ne cherchez pas l'ordinaire, vous visez l'exception.
+            </p>
+          </div>
         </div>
 
         {/* Stats — appear after tap */}
