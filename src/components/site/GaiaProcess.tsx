@@ -44,13 +44,13 @@ export function GaiaProcess() {
         if (!entry.isIntersecting || animatedRef.current) return;
         animatedRef.current = true;
 
-        bulb.style.transition   = "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)";
+        bulb.style.transition   = "transform 1.6s cubic-bezier(0.22, 1, 0.36, 1)";
         bulb.style.transform    = "translateY(0)";
 
-        finger.style.transition = "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.1s";
+        finger.style.transition = "transform 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s";
         finger.style.transform  = "translateY(0)";
       },
-      { threshold: 0.15 }
+      { threshold: 0.35 }
     );
     io.observe(section);
     return () => io.disconnect();

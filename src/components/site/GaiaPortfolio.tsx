@@ -58,13 +58,13 @@ export function GaiaPortfolio() {
         items.forEach((item, i) => {
           const delay = i * 80;
           setTimeout(() => {
-            item.style.transition = "opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1)";
+            item.style.transition = "opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1), transform 1.3s cubic-bezier(0.22, 1, 0.36, 1)";
             item.style.opacity    = "1";
             item.style.transform  = "translateX(0)";
           }, delay);
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 }
     );
 
     io.observe(section);

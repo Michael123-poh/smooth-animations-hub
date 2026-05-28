@@ -46,9 +46,9 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
       <div className="hero-eye-content reveal d1">
         <h1 className="hero-eye-h1">
           <span className="hero-h1-line">Vos clients </span>
-          <span className="hero-h1-line">vous jugent</span>
+          <span className="hero-h1-line">vous jugent <span className="hero-desktop-only">en</span></span>
           <span className="hero-h1-line hero-h1-line--group" ref={line2Ref}>
-            <span>en <em>07</em> secondes </span>
+            <span><span className="hero-mobile-only">en </span><em>07</em> secondes </span>
             <span>chrono…</span>
           </span>
         </h1>

@@ -1,17 +1,50 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ourGarden from "../../assets/Our Garden.jpg";
 
 const services = [
-  "Stratégie de marque",
-  "Identité & Image de marque",
-  "Expression de la marque",
-  "Supports de communication",
+  {
+    title: "Stratégie de marque",
+    points: [
+      "Audit de votre positionnement actuel",
+      "Clarification de votre promesse de marque",
+      "Définition de votre audience et de vos objectifs",
+      "Angle de différenciation clair face au marché",
+    ],
+  },
+  {
+    title: "Identité & Image de marque",
+    points: [
+      "Direction artistique sur mesure",
+      "Logo, couleurs et typographies cohérentes",
+      "Univers visuel reconnaissable en un regard",
+      "Guide de marque pour garder une identité stable",
+    ],
+  },
+  {
+    title: "Expression de la marque",
+    points: [
+      "Ton de voix adapté à votre public",
+      "Messages clés simples à retenir",
+      "Storytelling aligné avec votre positionnement",
+      "Cohérence sur vos points de contact",
+    ],
+  },
+  {
+    title: "Supports de communication",
+    points: [
+      "Déclinaisons web et réseaux sociaux",
+      "Templates de présentation et documents commerciaux",
+      "Supports print prêts à diffuser",
+      "Système visuel facile à réutiliser",
+    ],
+  },
 ];
 
 export function GaiaServices() {
   const imgGrayRef   = useRef<HTMLImageElement>(null); // calque gris (dessous)
   const imgColorRef  = useRef<HTMLImageElement>(null); // calque couleur (dessus, masqué)
   const animatedRef  = useRef(false);
+  const [openService, setOpenService] = useState<number | null>(null);
 
   useEffect(() => {
     const gray  = imgGrayRef.current;
@@ -129,9 +162,25 @@ export function GaiaServices() {
 
         <div className="services-list-col">
           {services.map((service, i) => (
-            <div key={i} className="services-list-item">
-              <span className="services-list-name">{service}</span>
-              <span className="services-list-arrow" aria-hidden="true">›</span>
+            <div key={i} className={`services-list-item${openService === i ? " is-open" : ""}`}>
+              <span className="services-list-copy">
+                <span className="services-list-name">{service.title}</span>
+                <span className="services-list-desc" id={`service-panel-${i}`}>
+                  {service.points.map((point) => (
+                    <span key={point} className="services-list-point">{point}</span>
+                  ))}
+                </span>
+              </span>
+              <button
+                type="button"
+                className="services-list-arrow"
+                aria-label={`${openService === i ? "Refermer" : "Ouvrir"} ${service.title}`}
+                aria-expanded={openService === i}
+                aria-controls={`service-panel-${i}`}
+                onClick={() => setOpenService(openService === i ? null : i)}
+              >
+                ›
+              </button>
             </div>
           ))}
         </div>

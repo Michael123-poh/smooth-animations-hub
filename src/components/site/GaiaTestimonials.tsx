@@ -93,28 +93,28 @@ export function GaiaTestimonials() {
 
         // Step 1: smileys separate to their positions
         const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
-        smileyL.style.transition = `transform 1s ${easing}`;
-        smileyR.style.transition = `transform 1s ${easing}`;
+        smileyL.style.transition = `transform 1.4s ${easing}`;
+        smileyR.style.transition = `transform 1.4s ${easing}`;
         smileyL.style.transform  = "translateX(0)";
         smileyR.style.transform  = "translateX(0)";
 
         // Step 2: header reveals as smileys part
         setTimeout(() => {
-          header.style.transition = `opacity 0.7s ease, transform 0.7s ${easing}`;
+          header.style.transition = `opacity 0.9s ease, transform 0.9s ${easing}`;
           header.style.opacity    = "1";
           header.style.transform  = "translateY(0)";
-        }, 400);
+        }, 600);
 
         // Step 3: cards grow from tiny to full size with stagger
         cards.forEach((c, i) => {
           setTimeout(() => {
-            c.style.transition = `opacity 0.5s ease, transform 0.6s ${easing}`;
+            c.style.transition = `opacity 0.7s ease, transform 0.8s ${easing}`;
             c.style.opacity    = "1";
             c.style.transform  = "scale(1)";
-          }, 900 + i * 80);
+          }, 1100 + i * 80);
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.35 }
     );
 
     io.observe(section);
