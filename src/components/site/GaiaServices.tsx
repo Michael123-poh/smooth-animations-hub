@@ -15,27 +15,28 @@ const services = [
     title: "Identité & Image de marque",
     points: [
       "Direction artistique sur mesure",
-      "Logo, couleurs et typographies cohérentes",
-      "Univers visuel reconnaissable en un regard",
-      "Guide de marque pour garder une identité stable",
+      "Indentité visuelle cohérente",
+      "Charte graphique 360°",
     ],
   },
   {
     title: "Expression de la marque",
     points: [
       "Ton de voix adapté à votre public",
-      "Messages clés simples à retenir",
       "Storytelling aligné avec votre positionnement",
-      "Cohérence sur vos points de contact",
+      "Stratégie de communication",
     ],
   },
   {
     title: "Supports de communication",
     points: [
-      "Déclinaisons web et réseaux sociaux",
-      "Templates de présentation et documents commerciaux",
-      "Supports print prêts à diffuser",
-      "Système visuel facile à réutiliser",
+      "Papetterie",
+      "Support publicitaire",
+      "Signalétique",
+      "Goodies",
+      "Packaging produit",
+      "Contenu digital",
+      "Webdesign",
     ],
   },
 ];
@@ -122,11 +123,9 @@ export function GaiaServices() {
 
       <div className="services-intro-wrap">
         <div className="services-intro">
-          <span className="services-intro-l1">Derrière chaque marque se cache une histoire,</span>
-          <span className="services-intro-l2">
-            et <strong>chez Gaïa</strong> <strong>nous la transformons en</strong>{" "}
-            <strong className="services-intro-orange">une identité forte.</strong>
-          </span>
+          <span className="services-intro-l1"><strong>Chez Gaïa nous transformons</strong></span>
+          <span className="services-intro-l2"><strong>chaque idée en une marque</strong></span>
+          <span className="services-intro-l3"><strong className="services-intro-orange">forte et engageante</strong></span>
         </div>
       </div>
 

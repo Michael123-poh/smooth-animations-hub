@@ -86,14 +86,7 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
 
       {/* ── CENTER: Big "Get in Touch" ── */}
       <div className="footer-center">
-        <h1 className="footer-main-title">Get in<br />Touch</h1>
-      </div>
-
-      {/* ── RIGHT: Email ── */}
-      <div className="footer-right-col">
-        <a href="mailto:hello@gaiaimagine.com" className="footer-email">
-          hello@gaiaimagine.com
-        </a>
+        <h1 className="footer-main-title">Get in Touch</h1>
       </div>
 
       {/* ── BOTTOM: Legal ── */}

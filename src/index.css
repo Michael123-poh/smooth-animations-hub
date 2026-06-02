@@ -1086,34 +1086,47 @@ a {
 .services-intro-wrap {
   display: block;
   margin-bottom: 72px;
-  padding-left: 80px;
+  padding-left: 0;
+  text-align: center;
 }
 .services-intro {
   display: block;
 }
 .services-intro-l1 {
   font-family: 'Gotham Rounded', sans-serif;
-  font-size: clamp(15px, 1.5vw, 29px);
-  font-weight: 300;
+  font-size: clamp(19px, 2.2vw, 38px);
+  font-weight: 650;
   color: var(--blue-navy);
   display: block;
-  line-height: 0.75;
+  line-height: 1.0;
 }
 .services-intro-l2 {
   font-family: 'Gotham Rounded', sans-serif;
-  font-size: clamp(14px, 1.4vw, 19px);
-  font-weight: 300;
+  font-size: clamp(19px, 2.2vw, 38px);
+  font-weight: 650;
   color: var(--blue-navy);
   display: block;
-  line-height: 1.5;
+  line-height: 1.0;
 }
 .services-intro-l2 strong {
-  font-weight: 700;
+  font-weight: 650;
   color: var(--blue-navy);
 }
-/* Higher specificity to override .services-intro-l2 strong */
-.services-intro-l2 .services-intro-orange {
-  font-weight: 700;
+.services-intro-l3 {
+  font-family: 'Gotham Rounded', sans-serif;
+  font-size: clamp(19px, 2.2vw, 38px);
+  font-weight: 650;
+  color: var(--blue-navy);
+  display: block;
+  line-height: 1.0;
+}
+.services-intro-l3 strong {
+  font-weight: 650;
+  color: var(--blue-navy);
+}
+/* Higher specificity to override .services-intro-l3 strong */
+.services-intro-l3 .services-intro-orange {
+  font-weight: 650;
   color: var(--orange);
 }
 
@@ -1202,7 +1215,7 @@ a {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 28px 0;
+  padding: 40px 0;
   border-bottom: 1px solid rgba(22,22,106,0.12);
   cursor: default;
   transition: color 0.2s;
@@ -1212,7 +1225,7 @@ a {
 }
 .services-list-name {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: clamp(12px, 0.9vw, 16px);
   font-weight: 500;
   color: var(--blue-navy);
   transition: color 0.2s;
@@ -1220,6 +1233,7 @@ a {
 .services-list-item:hover .services-list-name {
   color: var(--orange);
 }
+
 .services-list-copy {
   display: flex;
   flex-direction: column;
@@ -1231,8 +1245,8 @@ a {
   overflow: hidden;
   opacity: 0;
   color: rgba(22,22,106,0.68);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 300;
   line-height: 1.45;
   transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
               margin-top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -2169,7 +2183,7 @@ textarea.form-input {
   position: relative;
   overflow: hidden;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto auto;
   gap: 0;
   min-height: 100vh;
@@ -2209,7 +2223,7 @@ textarea.form-input {
 .footer-left-col {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 12px;
   grid-row: 2;
   grid-column: 1;
 }
@@ -2217,6 +2231,7 @@ textarea.form-input {
   height: 32px;
   width: auto;
   display: block;
+  object-fit: contain;
 }
 .footer-nav ul {
   list-style: none;
@@ -2232,7 +2247,7 @@ textarea.form-input {
   transition: color 0.2s;
 }
 .footer-nav a:first-child {
-  color: var(--orange);
+  color: white;
 }
 .footer-nav a:hover {
   color: var(--orange);
@@ -2247,37 +2262,40 @@ textarea.form-input {
   grid-column: 2;
   text-align: center;
   padding: 0 60px;
+  height: 100%;
 }
 .footer-main-title {
   font-family: 'Gotham Rounded', 'Nunito', system-ui, sans-serif;
-  font-size: clamp(48px, 8vw, 120px);
+  font-size: clamp(50px, 10vw, 150px);
   font-weight: 900;
   color: white;
   line-height: 1.1;
   margin: 0;
   letter-spacing: -2px;
+  white-space: nowrap;
 }
 
 /* ── RIGHT COLUMN: Email ── */
 .footer-right-col {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: flex-end;
   grid-row: 2;
-  grid-column: 3;
+  grid-column: 2;
+  padding-bottom: 40px;
 }
 .footer-email {
   font-size: 13px;
   font-weight: 500;
-  color: var(--orange);
+  color: white;
   text-decoration: none;
   transition: color 0.2s;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
+  writing-mode: horizontal-tb;
+  text-orientation: initial;
+  transform: none;
 }
 .footer-email:hover {
-  color: white;
+  color: var(--orange);
 }
 
 /* ── BOTTOM ROW: Legal ── */
@@ -2313,12 +2331,12 @@ textarea.form-input {
 }
 .footer-email-bottom {
   font-size: 11px;
-  color: var(--orange);
+  color: white;
   text-decoration: none;
   transition: color 0.2s;
 }
 .footer-email-bottom:hover {
-  color: white;
+  color: var(--orange);
 }
 
 /* â”€â”€â”€ UTILITY ANIMATIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -2590,9 +2608,9 @@ textarea.form-input {
     padding: 8px 20px;
     border-radius: 0 0 0 12px;
   }
-  .services-intro-l1 { font-size: 24px; }
-  .services-intro-l2 { font-size: 20px; }
-  /* Intro wrap : suit le padding de la section */
+  .services-intro-l1 { font-size: 30px; line-height: 1.0; font-weight: 650; }
+  .services-intro-l2 { font-size: 30px; line-height: 1.0; font-weight: 650; }
+  .services-intro-l3 { font-size: 30px; line-height: 1.0; font-weight: 650; }
   .services-intro-wrap { padding-left: 0; }
   /* Carte gauche : colle au bord gauche de la section */
   .services-card-left { margin-left: -60px; }
@@ -3507,7 +3525,7 @@ textarea.form-input {
   .footer-left-col {
     grid-row: 2;
     grid-column: 1;
-    gap: 20px;
+    gap: 12px;
   }
   .footer-logo {
     height: 28px;
@@ -3574,8 +3592,9 @@ textarea.form-input {
   }
 
   /* SERVICES intro: taille reduite mobile */
-  .services-intro-l1 { font-size: 15px; line-height: 1.4; }
-  .services-intro-l2 { font-size: 13px; line-height: 1.4; }
+  .services-intro-l1 { font-size: 17px; line-height: 1.0; font-weight: 650; }
+  .services-intro-l2 { font-size: 17px; line-height: 1.0; font-weight: 650; }
+  .services-intro-l3 { font-size: 17px; line-height: 1.0; font-weight: 650; }
 
   /* Notre Jardin : layout colonne, image pleine largeur en haut */
   .services-main {
@@ -3606,6 +3625,9 @@ textarea.form-input {
 /* â”€â”€â”€ PC CONTENT MARGINS (â‰¥ 1200px only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (min-width: 1200px) {
   /* Padding instead of margin â†’ background extends edge-to-edge */
+  .gaia-nav {
+    padding-left: 250px;
+  }
   .gaia-dna,
   .gaia-portfolio,
   .gaia-process,
@@ -3661,10 +3683,19 @@ textarea.form-input {
     padding-left: 0;
   }
   .services-intro-l1 {
-    font-size: 34px;
+    font-size: 44px;
+    line-height: 1.0;
+    font-weight: 650;
   }
   .services-intro-l2 {
-    font-size: 28px;
+    font-size: 44px;
+    line-height: 1.0;
+    font-weight: 650;
+  }
+  .services-intro-l3 {
+    font-size: 44px;
+    line-height: 1.0;
+    font-weight: 650;
   }
   /* Harmonise tous les titres de section */
   .gaia-h2,
@@ -3686,12 +3717,12 @@ textarea.form-input {
   }
   .services-list-item {
     align-items: flex-start;
-    padding: 26px 0;
+    padding: 38px 0;
     outline: none;
     cursor: default;
   }
   .services-list-name {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 400;
   }
   .services-list-desc {
@@ -3702,8 +3733,8 @@ textarea.form-input {
     overflow: hidden;
     opacity: 0;
     color: rgba(22,22,106,0.68);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 300;
     line-height: 1.45;
     transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
                 margin-top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
