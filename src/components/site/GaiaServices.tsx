@@ -163,7 +163,12 @@ export function GaiaServices() {
           {services.map((service, i) => (
             <div key={i} className={`services-list-item${openService === i ? " is-open" : ""}`}>
               <span className="services-list-copy">
-                <span className="services-list-name">{service.title}</span>
+                <span 
+                  className="services-list-name"
+                  onClick={() => setOpenService(openService === i ? null : i)}
+                >
+                  {service.title}
+                </span>
                 <span className="services-list-desc" id={`service-panel-${i}`}>
                   {service.points.map((point) => (
                     <span key={point} className="services-list-point">{point}</span>

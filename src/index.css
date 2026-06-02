@@ -1265,6 +1265,7 @@ a {
   font-weight: 500;
   color: var(--blue-navy);
   transition: color 0.2s;
+  cursor: pointer;
 }
 .services-list-item:hover .services-list-name {
   color: var(--orange);
@@ -1282,7 +1283,7 @@ a {
   opacity: 0;
   color: rgba(22,22,106,0.68);
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.45;
   transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
               margin-top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
@@ -3784,7 +3785,8 @@ textarea.form-input {
   }
   .services-list-name {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
+    cursor: pointer;
   }
   .services-list-desc {
     display: block;
@@ -3795,7 +3797,7 @@ textarea.form-input {
     opacity: 0;
     color: rgba(22,22,106,0.68);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.45;
     transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
                 margin-top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
