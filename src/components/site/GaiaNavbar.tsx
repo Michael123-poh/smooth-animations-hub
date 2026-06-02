@@ -155,8 +155,8 @@ export function GaiaNavbar() {
         style={{
           backgroundImage: `url(${smileyBg})`,
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "right bottom",
-          backgroundSize: "auto 85%",
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
         }}
       >
         <ul className="gaia-mobile-links" role="list">
@@ -168,7 +168,7 @@ export function GaiaNavbar() {
                 className={location.pathname === l.href ? "active" : ""}
               >
                 <span className="mobile-link-icon">{l.icon}</span>
-                {l.label}
+                <span className="mobile-link-text">{l.label}</span>
               </a>
             </li>
           ))}

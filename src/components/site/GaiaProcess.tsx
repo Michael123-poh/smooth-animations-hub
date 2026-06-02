@@ -14,7 +14,7 @@ const steps = [
   {
     icon: iconCustom,
     title: "Accompagnement sur-mesure",
-    desc: "Chaque projet est unique et nous nous engageons à vous proposer des solutions personnalisées adaptées à vos enjeux.",
+    desc: <>Chaque projet est unique et nous nous engageons à vous proposer des <strong>solutions personnalisées</strong> adaptées à vos enjeux.</>,
   },
   {
     icon: iconExpert,
