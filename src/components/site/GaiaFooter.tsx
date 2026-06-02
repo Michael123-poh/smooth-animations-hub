@@ -16,10 +16,6 @@ const socialLinks = [
     label: "LinkedIn",
     href: "#",
   },
-  {
-    label: "Behance",
-    href: "#",
-  },
 ];
 
 export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
@@ -88,6 +84,7 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
       <div className="footer-center">
         <h1 className="footer-main-title">Get in Touch</h1>
       </div>
+
 
       {/* ── BOTTOM: Legal ── */}
       <div className="footer-bottom">
