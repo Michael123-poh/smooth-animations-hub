@@ -30,8 +30,8 @@ const services = [
   {
     title: "Supports de communication",
     points: [
-      "Papetterie",
-      "Support publicitaire",
+      "Papeterie",
+      "Supports publicitaires",
       "Signalétique",
       "Goodies",
       "Packaging produit",
