@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaHero } from "../components/site/GaiaHero";
 import { GaiaServices } from "../components/site/GaiaServices";
@@ -234,6 +235,13 @@ const Index = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Gaïa — Agence Branding, Design Graphique &amp; Identité Visuelle à Douala</title>
+        <meta name="description" content="Gaïa Studio, studio créatif à Douala. Branding, identité visuelle, image de marque, supports de communication, signalétique et goodies pour connecter vos marques aux personnes." />
+        <link rel="canonical" href="https://gaiaimagine.com/" />
+        <meta property="og:url" content="https://gaiaimagine.com/" />
+        <meta property="og:title" content="Gaïa — Agence Branding &amp; Design Graphique à Douala" />
+      </Helmet>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <CustomCursor />
       <GaiaNavbar />

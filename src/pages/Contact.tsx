@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaFooter } from "../components/site/GaiaFooter";
 import { GaiaCTA } from "../components/site/GaiaCTA";
@@ -54,6 +55,13 @@ export default function Contact() {
 
   return (
     <>
+      <Helmet>
+        <title>Contact — Gaïa Studio | Agence Marketing &amp; Publicité à Douala</title>
+        <meta name="description" content="Contactez Gaïa Studio, votre agence marketing, publicité et studio créatif à Douala, Cameroun. Démarrons votre projet de branding, design graphique ou identité visuelle." />
+        <link rel="canonical" href="https://gaiaimagine.com/contact" />
+        <meta property="og:url" content="https://gaiaimagine.com/contact" />
+        <meta property="og:title" content="Contact — Gaïa Studio | Agence Marketing Douala" />
+      </Helmet>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <GaiaNavbar />
 

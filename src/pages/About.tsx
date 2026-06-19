@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaFooter } from "../components/site/GaiaFooter";
 import { GaiaCircleMotif } from "../components/site/GaiaCircleMotif";
@@ -41,6 +42,13 @@ export default function About() {
 
   return (
     <>
+      <Helmet>
+        <title>À propos — Gaïa Studio | Agence Branding &amp; Communication Douala</title>
+        <meta name="description" content="Découvrez Gaïa Studio, agence de branding et communication créative à Douala, Cameroun. Notre mission : connecter vos marques aux personnes avec une identité visuelle forte." />
+        <link rel="canonical" href="https://gaiaimagine.com/a-propos" />
+        <meta property="og:url" content="https://gaiaimagine.com/a-propos" />
+        <meta property="og:title" content="À propos — Gaïa Studio | Agence Branding Douala" />
+      </Helmet>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <GaiaNavbar solid={scrollY > 60} />
 

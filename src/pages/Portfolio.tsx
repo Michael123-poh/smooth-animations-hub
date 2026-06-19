@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaFooter } from "../components/site/GaiaFooter";
 import { GaiaCTA } from "../components/site/GaiaCTA";
@@ -116,6 +117,13 @@ export default function Portfolio() {
 
   return (
     <>
+      <Helmet>
+        <title>Portfolio — Gaïa Studio | Design Graphique, Branding &amp; Identité Visuelle</title>
+        <meta name="description" content="Découvrez les projets de Gaïa Studio : design graphique, branding, identité visuelle, UI/UX et corporate branding pour des entreprises camerounaises et africaines." />
+        <link rel="canonical" href="https://gaiaimagine.com/portfolio" />
+        <meta property="og:url" content="https://gaiaimagine.com/portfolio" />
+        <meta property="og:title" content="Portfolio — Gaïa Studio | Design Graphique &amp; Branding" />
+      </Helmet>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <GaiaNavbar />
 
