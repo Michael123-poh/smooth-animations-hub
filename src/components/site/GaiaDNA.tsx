@@ -125,7 +125,7 @@ export function GaiaDNA() {
         <div ref={textColRef} className="dna-text-col">
           <div className="section-label">Notre ADN</div>
           <h2 className="dna-h2" id="dna-heading" style={{ marginBottom: 24 }}>
-            Connecting<br />brands to people
+            Agence de Branding<br />&amp; Design à Douala
           </h2>
           <div className="dna-text-cols">
             <p className="dna-body">
