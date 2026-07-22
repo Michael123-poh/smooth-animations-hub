@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import smiley from "../../assets/smileyOrange.png";
+import echoWoman from "../../assets/Ressources Site Web 2/Notre Echo/Notre_Echo.png";
 import logoOracle from "../../assets/smileyOrange.png";
 import logoIlma from "../../assets/ilma.jpg";
 import logoVitapro from "../../assets/smileyOrange.png";
@@ -53,25 +53,15 @@ const logos = [
 
 export function GaiaTestimonials() {
   const sectionRef   = useRef<HTMLElement>(null);
-  const smileyLRef   = useRef<HTMLImageElement>(null);
-  const smileyRRef   = useRef<HTMLImageElement>(null);
   const headerRef    = useRef<HTMLDivElement>(null);
   const gridRef      = useRef<HTMLDivElement>(null);
   const animatedRef  = useRef(false);
 
   useEffect(() => {
     const section  = sectionRef.current;
-    const smileyL  = smileyLRef.current;
-    const smileyR  = smileyRRef.current;
     const header   = headerRef.current;
     const grid     = gridRef.current;
-    if (!section || !smileyL || !smileyR || !header || !grid) return;
-
-    // Smileys start touching at center
-    smileyL.style.transform  = "translateX(calc(50vw - 50% - 8px))";
-    smileyR.style.transform  = "translateX(calc(-50vw + 50% + 8px))";
-    smileyL.style.transition = "none";
-    smileyR.style.transition = "none";
+    if (!section || !header || !grid) return;
 
     // Header hidden
     header.style.opacity   = "0";
@@ -91,27 +81,20 @@ export function GaiaTestimonials() {
         if (!entry.isIntersecting || animatedRef.current) return;
         animatedRef.current = true;
 
-        // Step 1: smileys separate to their positions
         const easing = "cubic-bezier(0.22, 1, 0.36, 1)";
-        smileyL.style.transition = `transform 1.4s ${easing}`;
-        smileyR.style.transition = `transform 1.4s ${easing}`;
-        smileyL.style.transform  = "translateX(0)";
-        smileyR.style.transform  = "translateX(0)";
 
-        // Step 2: header reveals as smileys part
-        setTimeout(() => {
-          header.style.transition = `opacity 0.9s ease, transform 0.9s ${easing}`;
-          header.style.opacity    = "1";
-          header.style.transform  = "translateY(0)";
-        }, 600);
+        // Step 1: header reveals
+        header.style.transition = `opacity 0.9s ease, transform 0.9s ${easing}`;
+        header.style.opacity    = "1";
+        header.style.transform  = "translateY(0)";
 
-        // Step 3: cards grow from tiny to full size with stagger
+        // Step 2: cards grow from tiny to full size with stagger
         cards.forEach((c, i) => {
           setTimeout(() => {
             c.style.transition = `opacity 0.7s ease, transform 0.8s ${easing}`;
             c.style.opacity    = "1";
             c.style.transform  = "scale(1)";
-          }, 1100 + i * 80);
+          }, 500 + i * 80);
         });
       },
       { threshold: 0.35 }
@@ -125,16 +108,16 @@ export function GaiaTestimonials() {
     <section ref={sectionRef} className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
       <div className="testi-inner">
 
-        {/* Smileys + header row */}
-        <div className="testi-top">
-          <img ref={smileyLRef} src={smiley} alt="" aria-hidden="true" className="testi-smiley testi-smiley-l" />
-          <div ref={headerRef} className="testi-header-center">
-            <div className="section-label">Notre Écho</div>
-            <h2 className="gaia-h2" id="testi-heading">
-              Ce qu'ils disent de nous
-            </h2>
-          </div>
-          <img ref={smileyRRef} src={smiley} alt="" aria-hidden="true" className="testi-smiley testi-smiley-r" />
+        {/* Header row: label + titre avec le pill photo inline */}
+        <div ref={headerRef} className="testi-top">
+          <div className="section-label">Notre Écho</div>
+          <h2 className="gaia-h2 testi-h2" id="testi-heading">
+            Ce qu'ils disent<br />
+            de nous{" "}
+            <span className="testi-pill" aria-hidden="true">
+              <img src={echoWoman} alt="" />
+            </span>
+          </h2>
         </div>
 
         <div ref={gridRef} className="testi-grid">

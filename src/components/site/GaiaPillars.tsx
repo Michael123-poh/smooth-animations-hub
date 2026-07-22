@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import thumbUp from "../../assets/thumb_up.jpg";
+import womanTop from "../../assets/Ressources Site Web 2/Nos Valeurs/Woman_Standing_Top_View.png";
 import iconExcellence from "../../assets/badge_icon_1.svg";
 import iconEngagement from "../../assets/shaking_hand_icon_2.svg";
 import iconConvivialite from "../../assets/people_arrows_icon_3.svg";
@@ -41,7 +41,7 @@ export function GaiaPillars() {
     if (!img || !text || !section) return;
 
     // Image starts off-screen to the right, text hidden
-    img.style.transform  = "translateX(-100%)";
+    img.style.transform  = "translateX(-100%) rotate(30deg)";
     img.style.transition = "none";
     text.style.opacity   = "0";
     text.style.transform = "translateY(14px)";
@@ -54,7 +54,7 @@ export function GaiaPillars() {
 
         // Image slides in from the left
         img.style.transition = "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)";
-        img.style.transform  = "translateX(0)";
+        img.style.transform  = "translateX(0) rotate(30deg)";
 
         // Text appears after image lands
         setTimeout(() => {
@@ -74,25 +74,29 @@ export function GaiaPillars() {
     <section ref={sectionRef} className="gaia-pillars" id="valeurs" aria-labelledby="pillars-heading">
 
       <div className="pillars-hero">
-        <img ref={imgRef} src={thumbUp} alt="" aria-hidden="true" className="pillars-hero-img" />
         <div ref={textRef} className="pillars-hero-text">
           <div className="section-label">Nos Valeurs</div>
           <h2 className="gaia-h2" id="pillars-heading">
             Ce en quoi nous<br />croyons profondément
           </h2>
         </div>
+        <img ref={imgRef} src={womanTop} alt="" aria-hidden="true" className="pillars-hero-img" />
       </div>
 
-      <div className="pillars-grid">
-        {pillars.map((p, i) => (
-          <div key={p.title} className={`pillar-card reveal d${i + 1}`}>
-            <div className="pillar-icon-wrap" aria-hidden="true">
-              <img src={p.icon} alt="" style={{ width: 48, height: 48, objectFit: "contain" }} />
+      <div className="pillars-panel">
+        <div className="pillars-grid">
+          {pillars.map((p, i) => (
+            <div key={p.title} className={`pillar-card reveal d${i + 1}`}>
+              <div className="pillar-icon-title-wrap">
+                <div className="pillar-icon-wrap" aria-hidden="true">
+                  <img src={p.icon} alt="" style={{ width: 52, height: 52, objectFit: "contain" }} />
+                </div>
+                <h3 className="pillar-title">{p.title}</h3>
+              </div>
+              <p className="pillar-desc">{p.desc}</p>
             </div>
-            <h3 className="pillar-title">{p.title}</h3>
-            <p className="pillar-desc">{p.desc}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
     </section>

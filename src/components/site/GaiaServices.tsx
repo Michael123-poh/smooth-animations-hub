@@ -122,11 +122,13 @@ export function GaiaServices() {
     <section className="gaia-services" id="services" aria-labelledby="services-heading">
 
       <div className="services-intro-wrap">
-        <div className="services-intro">
-          <span className="services-intro-l1"><strong>Chez Gaïa nous transformons</strong></span>
-          <span className="services-intro-l2"><strong>chaque idée en une marque</strong></span>
-          <span className="services-intro-l3"><strong className="services-intro-orange">forte et engageante</strong></span>
-        </div>
+        <h2 className="services-intro" id="services-heading">
+          <span className="services-intro-l1">Chez Gaïa nous transformons chaque idée</span>
+          <span className="services-intro-l2">
+            en <strong className="services-intro-bold">une marque</strong>{" "}
+            <strong className="services-intro-orange">forte et engageante.</strong>
+          </span>
+        </h2>
       </div>
 
       <div className="services-main">
@@ -153,9 +155,9 @@ export function GaiaServices() {
           </div>
           <div className="services-card-content">
             <span className="services-card-label">Notre Jardin</span>
-            <h2 className="services-card-h2" id="services-heading">
-              Ce que nous<br />créons pour vous
-            </h2>
+            <h3 className="services-card-h2">
+              Ce que nous<br />créons pour<br />vous
+            </h3>
           </div>
         </div>
 

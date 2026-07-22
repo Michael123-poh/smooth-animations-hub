@@ -4,6 +4,7 @@ import imgOceanic from "../../assets/oceanic.jpg";
 import imgIlma from "../../assets/ilma.jpg";
 import imgInvest from "../../assets/Invest_Link.png";
 import imgKCare from "../../assets/k-care.jpg";
+import signPanel from "../../assets/Ressources Site Web 2/Nos Récoltes/Sign_Panel_Brand_Choice.png";
 
 const projects = [
   {
@@ -35,11 +36,13 @@ const projects = [
 export function GaiaPortfolio() {
   const navigate   = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
+  const panelRef   = useRef<HTMLImageElement>(null);
   const animatedRef = useRef(false);
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const panel   = panelRef.current;
+    if (!section || !panel) return;
 
     const items = section.querySelectorAll<HTMLElement>(".port-item");
 
@@ -49,6 +52,11 @@ export function GaiaPortfolio() {
       item.style.transform = i % 2 === 0 ? "translateX(-100vw)" : "translateX(100vw)";
       item.style.transition = "none";
     });
+
+    // Panneau : caché derrière la carte, plus bas, invisible
+    panel.style.opacity   = "0";
+    panel.style.transform = "translateY(180px)";
+    panel.style.transition = "none";
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -63,6 +71,14 @@ export function GaiaPortfolio() {
             item.style.transform  = "translateX(0)";
           }, delay);
         });
+
+        // Panneau : remonte à sa place peu après le début de l'entrée des cartes
+        const cardsSettleDelay = 550;
+        setTimeout(() => {
+          panel.style.transition = "opacity 1.1s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1)";
+          panel.style.opacity    = "1";
+          panel.style.transform  = "translateY(0)";
+        }, cardsSettleDelay);
       },
       { threshold: 0.3 }
     );
@@ -73,23 +89,33 @@ export function GaiaPortfolio() {
 
   return (
     <section ref={sectionRef} className="gaia-portfolio" id="realisations" aria-labelledby="portfolio-heading">
+
+      <img
+        ref={panelRef}
+        src={signPanel}
+        alt=""
+        aria-hidden="true"
+        className="portfolio-sign-panel"
+      />
+
       <div className="section-header">
         <div className="section-label portfolio-label">Nos Récoltes</div>
-        <div className="portfolio-title-row">
-          <h2 className="gaia-h2" id="portfolio-heading">
-            Des marques qui<br />ont trouvé leur voix
-          </h2>
+        <h2 className="gaia-h2 portfolio-h2" id="portfolio-heading">
+          Des marques qui ont<br />
+          trouvé leur voix{" "}
           <button
-            className="gaia-btn portfolio-btn"
+            className="portfolio-more-pill"
             onClick={() => navigate("/portfolio")}
-            style={{ flexShrink: 0 }}
+            aria-label="Voir plus de projets"
           >
-            Voir nos projets
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <span>Voir plus…</span>
+            <span className="portfolio-more-avatars" aria-hidden="true">
+              <img src={imgOceanic} alt="" />
+              <img src={imgIlma} alt="" />
+              <img src={imgKCare} alt="" />
+            </span>
           </button>
-        </div>
+        </h2>
       </div>
 
       <div className="portfolio-grid">
