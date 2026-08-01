@@ -61,6 +61,36 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- ── Zoom proportionnel global (desktop ≥1504px) ──────────────
+         Le site est calibré au pixel près pour un écran de référence de
+         1504px de large. Au-delà, on agrandit TOUT le contenu du même ratio
+         (zoom = largeur / 1504), plafonné à 1.7, pour conserver des
+         proportions identiques au lieu de laisser du vide apparaître entre
+         les éléments. Sous 1504px : aucun zoom, le responsive mobile/tablette
+         d'origine reste intact. Appliqué avant le paint pour éviter tout flash. -->
+    <script>
+      (function () {
+        var REF = 1504;      // largeur de référence
+        var MAX = 1.7;       // plafond de zoom
+        var EASE = 0.95;     // atténuation -5% : fait rentrer les sections les
+                             // plus hautes (pillars/portfolio/testimonials) en 1 écran
+        var root = document.getElementById('root');
+        function applyZoom() {
+          var w = window.innerWidth;
+          var z = w >= REF ? Math.min(w / REF, MAX) * EASE : 1;
+          root.style.zoom = z;
+          // Exposé en variable CSS pour compenser les hauteurs plein écran
+          // (100vh / 100dvh) qui, sous zoom, occupent z fois l'écran.
+          document.documentElement.style.setProperty('--zoom', z);
+        }
+        applyZoom();
+        var raf;
+        window.addEventListener('resize', function () {
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(applyZoom);
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

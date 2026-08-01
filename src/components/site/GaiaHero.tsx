@@ -63,8 +63,8 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
       <div className="hero-eye-void" aria-hidden="true" />
       <div className="hero-eye-content reveal d1">
         <h1 className="hero-eye-h1">
-          <span className="hero-h1-line">Vos clients</span>
-          <span className="hero-h1-line">vous jugent</span>
+          <span className="hero-h1-line hero-h1-line--1">Vos clients</span>
+          <span className="hero-h1-line hero-h1-line--2">vous jugent</span>
           <span className="hero-h1-line">en <em>07</em>s chrono.</span>
           <span className="hero-h1-line hero-h1-line--accent">Que voient-ils&#8202;?</span>
         </h1>

@@ -85,18 +85,6 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
         <p className="footer-main-title">Get in Touch</p>
       </div>
 
-
-      {/* ── SEO text block ── */}
-      <div style={{ padding: "0 40px 32px", maxWidth: 900 }}>
-        <p style={{ fontSize: 13, lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: 0 }}>
-          Gaïa Studio est une <strong style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>agence de branding et design graphique</strong> basée à Douala, Cameroun.
-          Nous accompagnons les entreprises dans la création de leur <strong style={{ color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>identité visuelle</strong>, image de marque,
-          corporate branding et supports de communication. Nos services incluent : stratégie de marque, design graphique,
-          UI/UX design, signalétique, packaging, goodies personnalisés et webdesign.
-          Agence marketing et agence publicité à Douala — nous connectons vos marques aux personnes.
-        </p>
-      </div>
-
       {/* ── BOTTOM: Legal ── */}
       <div className="footer-bottom">
         <div className="footer-legal-left">

@@ -41,7 +41,7 @@ const links = [
     ),
   },
   {
-    label: "Nos Titans",
+    label: "Nos Valeurs",
     href: "/#valeurs",
     icon: (
       <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -95,13 +95,23 @@ export function GaiaNavbar() {
 
   if (!visible && !menuOpen) return null;
 
-  // White bars only on the homepage hero (dark background), blue everywhere else
-  const onHero = location.pathname === "/" && !solid;
+  // Pages avec un haut sombre (hero accueil, portfolio, contact) → logo blanc + barres blanches
+  const darkTopPage =
+    location.pathname === "/" ||
+    location.pathname === "/portfolio" ||
+    location.pathname === "/contact";
 
-  // Show logo in navbar on non-homepage pages when at the very top
-  const showNavLogo = location.pathname !== "/" && !solid;
-  // Contact has a dark top section → light logo; Portfolio has a light top → dark logo
-  const navLogoSrc = location.pathname === "/contact" ? logoSombre : logoPrincipal;
+  // Menu ouvert → fond bleu : logo + barres en blanc.
+  // Sinon : barres blanches sur les pages à haut sombre non défilées.
+  const onHero = menuOpen || (darkTopPage && !solid);
+
+  // Logo dans la navbar : menu ouvert (toutes pages), ou pages non-accueil en haut
+  const showNavLogo = menuOpen || (location.pathname !== "/" && !solid);
+  // Fond sombre (menu ouvert, contact, portfolio) → logo clair ; sinon logo principal
+  const navLogoSrc =
+    menuOpen || location.pathname === "/contact" || location.pathname === "/portfolio"
+      ? logoSombre
+      : logoPrincipal;
 
   function handleNav(href: string) {
     setMenuOpen(false);
@@ -131,7 +141,15 @@ export function GaiaNavbar() {
             style={{ marginRight: "auto" }}
             onClick={(e) => { e.preventDefault(); navigate("/"); }}
           >
-            <img src={navLogoSrc} alt="Gaïa Studio" style={{ height: 48, width: "auto", display: "block" }} />
+            <img
+              src={navLogoSrc}
+              alt="Gaïa Studio"
+              style={{
+                height: location.pathname === "/portfolio" ? 68 : 48,
+                width: "auto",
+                display: "block",
+              }}
+            />
           </a>
         )}
         <button

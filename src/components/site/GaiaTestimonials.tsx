@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import echoWoman from "../../assets/Ressources Site Web 2/Notre Echo/Notre_Echo.png";
+import echoBg from "../../assets/Ressources Site Web 2/photo_2026-07-30_03-25-10.jpg";
 import logoOracle from "../../assets/smileyOrange.png";
 import logoIlma from "../../assets/ilma.jpg";
 import logoVitapro from "../../assets/smileyOrange.png";
@@ -105,7 +106,17 @@ export function GaiaTestimonials() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="gaia-testimonials" id="temoignages" aria-labelledby="testi-heading">
+    <section
+      ref={sectionRef}
+      className="gaia-testimonials"
+      id="temoignages"
+      aria-labelledby="testi-heading"
+      style={{
+        backgroundImage: `url(${echoBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="testi-inner">
 
         {/* Header row: label + titre avec le pill photo inline */}
