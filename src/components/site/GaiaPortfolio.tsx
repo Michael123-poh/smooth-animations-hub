@@ -12,24 +12,28 @@ const projects = [
     name: "Oceanic Trade & Logistics",
     category: "Identité visuelle",
     img: imgOceanic,
+    slug: "logistique-transport",
   },
   {
     id: "ilma",
     name: "ILMA Consulting",
     category: "Image de marque",
     img: imgIlma,
+    slug: "business-finance",
   },
   {
     id: "investlink",
     name: "Invest Link",
     category: "Branding digital",
     img: imgInvest,
+    slug: "business-finance",
   },
   {
     id: "kcare",
     name: "K-Care Cosmetics",
     category: "Identité & packaging",
     img: imgKCare,
+    slug: "cosmetique-bien-etre",
   },
 ];
 
@@ -123,7 +127,7 @@ export function GaiaPortfolio() {
           <article
             key={p.id}
             className="port-item"
-            onClick={() => navigate("/portfolio")}
+            onClick={() => navigate(`/portfolio/${p.slug}`)}
             style={{ cursor: "pointer" }}
             aria-label={`${p.name} — ${p.category}`}
           >

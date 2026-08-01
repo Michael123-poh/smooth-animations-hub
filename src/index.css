@@ -2634,16 +2634,11 @@ textarea.form-input {
   .portfolio-page-hero { padding: 100px 24px 48px; }
   .portfolio-page-grid { padding: 36px 24px 64px; }
   .portfolio-cards-grid { gap: 14px; }
-  /* Récoltes mobile : image en fond plein cadre, texte par-dessus assombri */
+  /* Récoltes mobile : image tunnel plein cadre, SANS voile sombre */
   .recolte-page { padding: 100px 24px 64px; }
   .recolte-visual { width: 100%; }
   .recolte-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(8, 8, 24, 0.92) 0%,
-      rgba(8, 8, 24, 0.86) 55%,
-      rgba(8, 8, 24, 0.94) 100%
-    );
+    background: none;
   }
   .recolte-left { max-width: 100%; }
   .recolte-pills { max-width: 100%; }
@@ -2657,7 +2652,7 @@ textarea.form-input {
   .portfolio-filter-btn { font-size: 11px; padding: 7px 6px; }
   .portfolio-page-grid { padding: 28px 20px 56px; }
   .portfolio-cards-grid { gap: 10px; grid-template-columns: 1fr; }
-  .recolte-cat-grid { grid-template-columns: 1fr; }
+  /* Reste en 2 colonnes même sur petit téléphone */
 }
 
 
@@ -3389,25 +3384,27 @@ textarea.form-input {
   .portfolio-sign-panel {
     display: none;
   }
-  /* « Voir plus » : juste le mot, blanc, aligné à droite (mobile) */
+  /* « Voir plus » : vrai bouton (même style que les autres CTA du site),
+     à droite, aligné au sous-titre (mobile) */
   .portfolio-more-pill {
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
-    margin: 12px 0 0;
-    border-radius: 0;
+    background: var(--orange);
+    box-shadow: 0 2px 12px rgba(255, 138, 61, 0.3);
+    padding: 9px 18px;
+    margin: 10px 0 0;
+    border-radius: 8px;
     display: flex;
-    width: 100%;
-    justify-content: flex-end;
+    width: fit-content;
+    margin-left: auto;
+    justify-content: center;
   }
   .portfolio-more-pill:hover {
-    transform: none;
-    box-shadow: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(255, 138, 61, 0.4);
   }
   .portfolio-more-pill span:first-child {
     color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    font-weight: 700;
+    text-decoration: none;
   }
   .portfolio-more-avatars {
     display: none;
@@ -3802,6 +3799,56 @@ textarea.form-input {
     flex: 1;
     height: auto;
     min-height: 0;
+  }
+
+  /* â•â•â• NOS VALEURS MOBILE (PC non concerné) â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     1) Titre/sous-titre pleinement alignés à gauche (comme les autres
+        sections), en flux normal (plus de position absolute décalée).
+     2) Image de la dame retirée sur mobile.
+     3) Icône ronde + titre centrés par rapport au bloc de texte de la card.
+     4) Espace au-dessus/en-dessous du contenu de la card grise resserré. */
+  .pillars-hero-img {
+    display: none;
+  }
+  .pillars-hero {
+    display: block;
+    height: auto;
+    padding: 28px 24px;
+  }
+  .pillars-hero-text {
+    position: static;
+    left: auto;
+    top: auto;
+    max-width: 100%;
+  }
+  /* Card grise : espace resserré au-dessus/en-dessous du contenu */
+  .pillars-panel {
+    padding: 28px 24px;
+    min-height: 0;
+  }
+  /* Icône + titre centrés par rapport au bloc de texte en dessous */
+  .pillar-card {
+    align-items: center;
+    text-align: center;
+  }
+  .pillar-icon-title-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+  }
+  .pillar-icon-wrap {
+    position: static;
+    transform: none;
+    left: auto;
+    margin-bottom: 14px;
+  }
+  .pillar-title {
+    white-space: normal;
+    text-align: center;
+  }
+  .pillar-desc {
+    text-align: center;
   }
 }
 
