@@ -3021,6 +3021,16 @@ textarea.form-input {
 /* â”€â”€â”€ CTA SECTION TEXT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-cta .gaia-h2 {
   color: var(--blue-navy);
+
+/* Hero lead text color (requested) */
+.hero-eye-lead {
+  color: #D6DAED;
+}
+
+/* Make the arrow inside the ghost CTA orange */
+.hero-cta-ghost svg path {
+  stroke: #FF8A3D;
+}
 }
 .gaia-cta .section-sub {
   font-size: 22px;
