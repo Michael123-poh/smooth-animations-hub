@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
-import { GaiaCursor } from "../components/site/GaiaCursor";
 import { recoltes } from "../data/recoltes";
 
 import tunnelImg from "../assets/Ressources Site Web 2/Nos Récoltes/Nos_Récoltes-100.jpg";
@@ -21,7 +20,6 @@ export default function Portfolio() {
         <meta property="og:url" content="https://gaiaimagine.com/portfolio" />
         <meta property="og:title" content="Portfolio — Gaïa Studio | Design Graphique &amp; Branding" />
       </Helmet>
-      <GaiaCursor />
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
       <GaiaNavbar />
 

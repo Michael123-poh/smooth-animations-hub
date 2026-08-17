@@ -11,86 +11,7 @@ import { GaiaProcess } from "../components/site/GaiaProcess";
 import { GaiaCTA } from "../components/site/GaiaCTA";
 import { GaiaFooter } from "../components/site/GaiaFooter";
 
-/* ─── Custom cursor ──────────────────────────────────── */
-function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef({ x: -100, y: -100 });
-  const ringPos = useRef({ x: -100, y: -100 });
-  const raf = useRef<number>(0);
-
-  useEffect(() => {
-    function onMove(e: MouseEvent) {
-      posRef.current = { x: e.clientX, y: e.clientY };
-    }
-
-    function tick() {
-      if (dotRef.current) {
-        dotRef.current.style.left = `${posRef.current.x}px`;
-        dotRef.current.style.top = `${posRef.current.y}px`;
-      }
-      // Ring follows with lag (lerp)
-      ringPos.current.x += (posRef.current.x - ringPos.current.x) * 0.13;
-      ringPos.current.y += (posRef.current.y - ringPos.current.y) * 0.13;
-      if (ringRef.current) {
-        ringRef.current.style.left = `${ringPos.current.x}px`;
-        ringRef.current.style.top = `${ringPos.current.y}px`;
-      }
-      raf.current = requestAnimationFrame(tick);
-    }
-
-    function onEnterLink() {
-      ringRef.current?.style.setProperty("width", "60px");
-      ringRef.current?.style.setProperty("height", "60px");
-      ringRef.current?.style.setProperty("border-color", "rgba(255,138,61,1)");
-    }
-    function onLeaveLink() {
-      ringRef.current?.style.setProperty("width", "36px");
-      ringRef.current?.style.setProperty("height", "36px");
-      ringRef.current?.style.setProperty("border-color", "rgba(255,138,61,0.7)");
-    }
-
-    window.addEventListener("mousemove", onMove, { passive: true });
-    raf.current = requestAnimationFrame(tick);
-
-    // Attach to all interactive elements
-    const interactives = document.querySelectorAll("a, button, [role='button'], .service-card, .pillar-card, .port-item");
-    interactives.forEach((el) => {
-      el.addEventListener("mouseenter", onEnterLink);
-      el.addEventListener("mouseleave", onLeaveLink);
-    });
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf.current);
-      interactives.forEach((el) => {
-        el.removeEventListener("mouseenter", onEnterLink);
-        el.removeEventListener("mouseleave", onLeaveLink);
-      });
-    };
-  }, []);
-
-  return (
-    <>
-      <div
-        ref={dotRef}
-        className="gaia-cursor"
-        aria-hidden="true"
-        style={{ position: "fixed", pointerEvents: "none", zIndex: 99999 }}
-      >
-        <div className="gaia-cursor-dot" />
-      </div>
-      <div
-        ref={ringRef}
-        className="gaia-cursor"
-        aria-hidden="true"
-        style={{ position: "fixed", pointerEvents: "none", zIndex: 99998 }}
-      >
-        <div className="gaia-cursor-ring" />
-      </div>
-    </>
-  );
-}
+/* Custom cursor removed — using native system cursor throughout the site */
 
 /* ─── Scroll Y + direction ───────────────────────────── */
 function useScroll() {
@@ -243,7 +164,6 @@ const Index = () => {
         <meta property="og:title" content="Gaïa — Agence Branding &amp; Design Graphique à Douala" />
       </Helmet>
       <a href="#main-content" className="skip-link">Aller au contenu principal</a>
-      <CustomCursor />
       <GaiaNavbar />
       <main id="main-content">
         <GaiaHero scrollY={scrollY} />

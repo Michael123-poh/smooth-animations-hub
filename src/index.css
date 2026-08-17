@@ -117,7 +117,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none;
+  cursor: auto;
 }
 /* Pages qui gardent le curseur système normal (pas de curseur custom) */
 body.native-cursor { cursor: auto; }
