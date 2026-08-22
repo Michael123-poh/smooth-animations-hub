@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import { GaiaFooter } from "../components/site/GaiaFooter";
-import { GaiaCircleMotif } from "../components/site/GaiaCircleMotif";
-import { GaiaPillars } from "../components/site/GaiaPillars";
+import statueImg from "../assets/Cameroon Statue 2.png";
+import crowdImg from "../assets/Group of people walking (2) copie 2.png";
 
 function useScrollY() {
   const [y, setY] = useState(0);
@@ -27,13 +27,6 @@ function useReveal() {
   }, []);
 }
 
-const team = [
-  { name: "Amina K.", role: "Directrice créative & fondatrice", initials: "AK", color: "#FF8A3D" },
-  { name: "Thierry M.", role: "Designer identité visuelle", initials: "TM", color: "#16166A" },
-  { name: "Clarisse N.", role: "Stratège de marque", initials: "CN", color: "#20208A" },
-  { name: "Boris E.", role: "Designer UX/UI", initials: "BE", color: "#7B3F2A" },
-];
-
 export default function About() {
   const scrollY = useScrollY();
   useReveal();
@@ -44,7 +37,7 @@ export default function About() {
     <>
       <Helmet>
         <title>À propos — Gaïa Studio | Agence Branding &amp; Communication Douala</title>
-        <meta name="description" content="Découvrez Gaïa Studio, agence de branding et communication créative à Douala, Cameroun. Notre mission : connecter vos marques aux personnes avec une identité visuelle forte." />
+        <meta name="description" content="Découvrez l'histoire de Gaïa Studio, agence de branding et communication créative à Douala, Cameroun." />
         <link rel="canonical" href="https://gaiaimagine.com/a-propos" />
         <meta property="og:url" content="https://gaiaimagine.com/a-propos" />
         <meta property="og:title" content="À propos — Gaïa Studio | Agence Branding Douala" />
@@ -53,143 +46,79 @@ export default function About() {
       <GaiaNavbar solid={scrollY > 60} />
 
       <main id="main-content">
-        {/* Hero */}
-        <section
-          style={{
-            background: "var(--navy)",
-            minHeight: "60dvh",
-            display: "flex",
-            alignItems: "center",
-            padding: "140px 80px 100px",
-            position: "relative",
-            overflow: "hidden",
-          }}
-          aria-label="À propos de Gaïa"
-        >
-          <div style={{ position: "absolute", right: -80, top: "50%", transform: "translateY(-50%)", opacity: 0.15, pointerEvents: "none" }} aria-hidden="true">
-            <GaiaCircleMotif variant="dna" size={500} />
-          </div>
-          <div style={{ position: "relative", zIndex: 1, maxWidth: 720 }}>
-            <div className="section-label" style={{ color: "var(--orange)" }}>Notre histoire</div>
+        {/* Notre Histoire */}
+        <div style={{ position: "relative" }}>
+          {/* Bandeau navy du haut */}
+          <section
+            style={{
+              background: "var(--blue-navy)",
+              padding: "150px 80px 90px",
+              position: "relative",
+              overflow: "hidden",
+            }}
+            aria-label="Notre histoire"
+          >
+            <div className="section-label reveal" style={{ color: "var(--orange)" }}>Notre histoire</div>
             <h1
-              className="gaia-h2 on-dark reveal"
-              style={{ fontSize: "clamp(36px, 5vw, 72px)", marginBottom: 24 }}
+              className="gaia-h2 on-dark reveal d1"
+              style={{ fontSize: "clamp(34px, 4.2vw, 56px)", fontWeight: 800, maxWidth: 620, lineHeight: 1.05 }}
             >
-              Nous croyons que<br />chaque marque africaine<br />
-              <span style={{ color: "var(--orange)" }}>mérite de briller</span>
+              Une vision devenue<br />une réalité...
             </h1>
-            <p className="section-sub on-dark reveal d2" style={{ maxWidth: 560 }}>
-              Gaïa est née d'une conviction simple : les entreprises camerounaises ont des histoires
-              puissantes à raconter. Nous sommes là pour les mettre en lumière.
-            </p>
-          </div>
-        </section>
+          </section>
 
-        {/* Story */}
-        <section style={{ background: "var(--cream)", padding: "100px 80px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-            <div className="reveal-left">
-              <div className="section-label">Notre genèse</div>
-              <h2 className="gaia-h2" style={{ marginBottom: 24 }}>
-                Douala, 2018.<br />Une idée, une passion.
-              </h2>
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
-                Gaïa a été fondée par une équipe de créatifs passionnés qui partageaient un même constat :
-                les agences de branding au Cameroun étaient soit trop chères, soit trop génériques.
-                Il manquait un studio qui comprenne vraiment la culture locale, ses codes, ses aspirations.
-              </p>
-              <p style={{ fontSize: 16, lineHeight: 1.8, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
-                Le nom "Gaïa" — déesse grecque de la Terre — n'est pas un hasard. Comme la terre qui
-                nourrit les racines pour que les arbres grandissent, nous cultivons vos fondations
-                de marque pour que votre business s'épanouisse durablement.
-              </p>
-              <blockquote
-                style={{
-                  borderLeft: "3px solid var(--orange)",
-                  paddingLeft: 20,
-                  marginTop: 28,
-                }}
-              >
-                <p style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 17, fontStyle: "italic", fontWeight: 600, color: "var(--navy)", lineHeight: 1.6, maxWidth: "none" }}>
-                  "Nous façonnons des marques qui parlent au cœur, parce que votre histoire
-                  mérite d'être racontée avec excellence."
+          {/* Statue — chevauche le bandeau navy et la section blanche */}
+          <img
+            src={statueImg}
+            alt="Statue dorée symbolisant l'ambition des marques camerounaises"
+            className="reveal-right d2"
+            style={{
+              position: "absolute",
+              top: "6%",
+              right: "9%",
+              width: "24%",
+              maxWidth: 420,
+              height: "auto",
+              zIndex: 3,
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Texte sur fond blanc */}
+          <section style={{ background: "var(--cream)", padding: "0 80px 0", position: "relative" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+              <div className="reveal-left d1" style={{ paddingTop: 56, paddingBottom: 56 }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
+                  Tout a commencé par un constat simple, presque dérangeant. En parcourant les rues de nos villes, les rayons de nos supermarchés, les réseaux sociaux et internet, une question revenait sans cesse :
                 </p>
-              </blockquote>
-            </div>
-
-            <div className="reveal-right d2" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <GaiaCircleMotif variant="hero" size={420} />
-            </div>
-          </div>
-        </section>
-
-        {/* Team */}
-        <section style={{ background: "var(--beige)", padding: "100px 80px" }}>
-          <div style={{ marginBottom: 56 }}>
-            <div className="section-label">L'équipe</div>
-            <h2 className="gaia-h2 reveal" style={{ maxWidth: 480 }}>
-              Des humains derrière chaque création
-            </h2>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
-            {team.map((member, i) => (
-              <div
-                key={member.name}
-                className={`reveal d${i + 1}`}
-                style={{
-                  background: "white",
-                  border: "1px solid var(--border)",
-                  borderRadius: 20,
-                  padding: "36px 28px",
-                  textAlign: "center",
-                  transition: "transform 0.25s, box-shadow 0.25s",
-                  cursor: "default",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "var(--shadow-warm)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "";
-                  e.currentTarget.style.boxShadow = "";
-                }}
-              >
-                <div
-                  style={{
-                    width: 72,
-                    height: 72,
-                    borderRadius: 18,
-                    background: `linear-gradient(135deg, ${member.color}, var(--orange))`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontFamily: "'Nunito', 'Gotham Rounded', sans-serif",
-                    fontWeight: 800,
-                    fontSize: 22,
-                    color: "white",
-                    margin: "0 auto 20px",
-                  }}
-                  aria-hidden="true"
-                >
-                  {member.initials}
-                </div>
-                <div style={{ fontFamily: "'Nunito', 'Gotham Rounded', sans-serif", fontSize: 17, fontWeight: 700, color: "var(--navy)", marginBottom: 6 }}>
-                  {member.name}
-                </div>
-                <div style={{ fontSize: 13, color: "var(--text-muted)", fontWeight: 500 }}>
-                  {member.role}
-                </div>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
+                  Pourquoi les Entreprises et Produits Made in Cameroon sont si peu attirants ? Pourquoi nos marques, aussi pleines de promesses, semblent-elles inachevées ? Des identités visuelles inexistantes, des logotypes approximatifs, des messages sans cohérence. Des packagings ternes. Des marques qui existent, mais qui peinent à être remarquées, comprises et choisies.
+                </p>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 0, maxWidth: "none" }}>
+                  Et pourtant... derrière ces produits, il y a de la passion. Il y a des femmes et des hommes qui travaillent dur, qui croient en leurs rêves, qui portent une vision.
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* Values */}
-        <GaiaPillars />
+              <div className="reveal-right d2" style={{ paddingTop: 190, paddingBottom: 56 }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 24, maxWidth: "none" }}>
+                  Alors... qu'est-ce qui cloche ? C'est de cette idée qu'est née gaïa, un nom choisi en écho à la déesse de la Terre, celle qui nourrit, qui révèle, qui fait croître.
+                </p>
+                <p style={{ fontFamily: "'Gotham Rounded', 'Nunito', sans-serif", fontSize: 17, fontWeight: 700, color: "var(--blue-navy)", lineHeight: 1.5, maxWidth: "none" }}>
+                  Nous voulions faire de gaïa un terreau fertile où chaque marque pourrait éclore, grandir et se déployer.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Foule — pleine largeur */}
+          <img
+            src={crowdImg}
+            alt="Foule de personnes en mouvement, symbolisant les marques et les personnes qu'elles touchent"
+            className="reveal"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
       </main>
-
-      <GaiaFooter />
     </>
   );
 }

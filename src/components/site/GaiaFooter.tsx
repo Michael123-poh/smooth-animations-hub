@@ -91,7 +91,7 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
           <span className="footer-year">Gaïa © 2026</span>
         </div>
         <div className="footer-legal-center">
-          <span className="footer-tagline">Studio créatif basé à Douala-Cameroun | We build and connect <strong>brands to people.</strong></span>
+          <span className="footer-tagline"><span className="footer-tagline-white">Studio créatif basé à Douala-Cameroun |</span> <span className="footer-tagline-orange">We build and connect <strong>brands to people.</strong></span></span>
         </div>
         <div className="footer-legal-right">
           <a href="mailto:hello@gaiaimagine.com" className="footer-email-bottom">hello@gaiaimagine.com</a>

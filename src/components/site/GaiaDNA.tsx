@@ -62,7 +62,7 @@ export function GaiaDNA() {
         }}
       />
 
-      <div className="dna-top" style={{ position: "relative", zIndex: 1 }}>
+      <div className="dna-top" style={{ position: "relative", zIndex: 5 }}>
         {/* Gauche — photo dans le motif d'empreinte + titre */}
         <div className="dna-visual reveal-left">
           <img
