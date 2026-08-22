@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import echoWoman from "../../assets/Ressources Site Web 2/Notre Echo/Notre_Echo.png";
 import echoBg from "../../assets/Ressources Site Web 2/photo_2026-07-30_03-25-10.jpg";
 import logoOracle from "../../assets/smileyOrange.png";
-import logoIlma from "../../assets/ilma.jpg";
-import logoVitapro from "../../assets/smileyOrange.png";
-import logoInvestLink from "../../assets/Invest_Link.png";
-import logoIsabella from "../../assets/Residence_Isabella.png";
-import logoKCare from "../../assets/k-care.jpg";
+import logoIlma from "../../assets/smileyOrange3.png";
+import logoVitapro from "../../assets/smileyOrange2.png";
+import logoInvestLink from "../../assets/smileyOrange4.png";
+import logoIsabella from "../../assets/smileyOrange5.png";
+import logoKCare from "../../assets/smileyOrange6.png";
 
 const testimonials = [
   {
@@ -155,13 +155,6 @@ export function GaiaTestimonials() {
           ))}
         </div>
 
-        <div className="logos-strip" aria-hidden="true">
-          <div className="logos-track">
-            {logos.map((l, i) => (
-              <span key={i} className="logo-item">{l}</span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

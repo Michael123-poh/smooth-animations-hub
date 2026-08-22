@@ -65,7 +65,7 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
         <h1 className="hero-eye-h1">
           <span className="hero-h1-line hero-h1-line--1">Vos clients</span>
           <span className="hero-h1-line hero-h1-line--2">vous jugent</span>
-          <span className="hero-h1-line">en <em>07</em>s chrono.</span>
+          <span className="hero-h1-line">en <em>07s</em> chrono.</span>
           <span className="hero-h1-line hero-h1-line--accent">Que voient-ils&#8202;?</span>
         </h1>
 
@@ -84,7 +84,7 @@ export function GaiaHero({ scrollY: _scrollY = 0 }: GaiaHeroProps) {
           <button className="gaia-btn gaia-btn-ghost hero-cta-ghost" onClick={() => navigate("/portfolio")}>
             Découvrir nos récoltes
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M3.5 10.5L10.5 3.5M5 3.5h5.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3.5 10.5L10.5 3.5M5 3.5h5.5V9" stroke="var(--orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>

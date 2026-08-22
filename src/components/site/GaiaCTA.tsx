@@ -69,6 +69,13 @@ export function GaiaCTA() {
   return (
     <section className="gaia-cta" id="contact" aria-labelledby="cta-heading">
 
+      <div className="logos-strip" aria-hidden="true">
+        <div className="logos-track">
+          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span></span>
+          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span></span>
+        </div>
+      </div>
+
       <div className="cta-grid" style={{ position: "relative", zIndex: 1 }}>
         {/* Left — text */}
         <div className="reveal-left">

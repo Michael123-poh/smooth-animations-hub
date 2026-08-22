@@ -3,7 +3,7 @@ import bulbImg from "../../assets/bulb.png";
 import fingerImg from "../../assets/finger.png";
 import iconHuman from "../../assets/head_with_hearth_icon_5.svg";
 import iconCustom from "../../assets/hands_with_person_in_middle_icon_6.svg";
-import iconExpert from "../../assets/people_arrows_icon_3.svg";
+import iconExpert from "../../assets/chart_with_gear.svg";
 
 const steps = [
   {
