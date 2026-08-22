@@ -53,7 +53,7 @@ export function GaiaPillars() {
         animatedRef.current = true;
 
         // Image slides in from the left
-        img.style.transition = "transform 1.2s cubic-bezier(0.22, 1, 0.36, 1)";
+        img.style.transition = "transform 3s cubic-bezier(0.22, 1, 0.36, 1)";
         img.style.transform  = "translateX(0) rotate(30deg)";
 
         // Text appears after image lands

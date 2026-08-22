@@ -179,8 +179,8 @@ a {
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 1.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 2.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.in {
   opacity: 1;
@@ -189,8 +189,8 @@ a {
 .reveal-left {
   opacity: 0;
   transform: translateX(-28px);
-  transition: opacity 1.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 2.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal-left.in {
   opacity: 1;
@@ -199,18 +199,18 @@ a {
 .reveal-right {
   opacity: 0;
   transform: translateX(28px);
-  transition: opacity 1.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 1.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 2.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal-right.in {
   opacity: 1;
   transform: none;
 }
-.d1 { transition-delay: 0.25s; }
-.d2 { transition-delay: 0.45s; }
-.d3 { transition-delay: 0.65s; }
-.d4 { transition-delay: 0.85s; }
-.d5 { transition-delay: 1.05s; }
+.d1 { transition-delay: 0.35s; }
+.d2 { transition-delay: 0.6s; }
+.d3 { transition-delay: 0.85s; }
+.d4 { transition-delay: 1.1s; }
+.d5 { transition-delay: 1.35s; }
 
 
 /* â”€â”€â”€ GAIA NAVBAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -345,6 +345,9 @@ a {
   top: 20px; /* haut du logo aligné avec le haut du hamburger */
   left: 80px;
   z-index: calc(var(--z-nav) + 1);
+}
+body.mobile-menu-open .hero-logo {
+  visibility: hidden;
 }
 .hero-logo img {
   height: 68px;
@@ -2912,7 +2915,6 @@ textarea.form-input {
   line-height: 1.6;
 }
 .footer-legal-center strong {
-  color: white;
   font-weight: 600;
 }
 .footer-legal-right {

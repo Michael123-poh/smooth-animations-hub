@@ -93,6 +93,11 @@ export function GaiaNavbar() {
     return () => window.removeEventListener("scroll", handler);
   }, [menuOpen]);
 
+  useEffect(() => {
+    document.body.classList.toggle("mobile-menu-open", menuOpen);
+    return () => { document.body.classList.remove("mobile-menu-open"); };
+  }, [menuOpen]);
+
   if (!visible && !menuOpen) return null;
 
   // Pages avec un haut sombre (hero accueil, portfolio, contact) → logo blanc + barres blanches
