@@ -6,15 +6,15 @@ import backgroundOrange from "../../assets/back.png";
 const socialLinks = [
   {
     label: "Facebook",
-    href: "#",
+    href: "https://www.facebook.com/share/1Nuq9GWasr/?mibextid=wwXIfr",
   },
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/gaia_imagine/?__pwa=1#",
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/company/gaiaimagine/",
   },
 ];
 

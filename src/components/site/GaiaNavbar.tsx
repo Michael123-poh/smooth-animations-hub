@@ -198,7 +198,7 @@ export function GaiaNavbar() {
         </ul>
 
         <div className="nav-social-row">
-          <a href="#" className="nav-social-link" aria-label="Facebook">
+          <a href="https://www.facebook.com/share/1Nuq9GWasr/?mibextid=wwXIfr" className="nav-social-link" aria-label="Facebook">
             <span className="nav-social-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -206,7 +206,7 @@ export function GaiaNavbar() {
             </span>
             <span>Facebook</span>
           </a>
-          <a href="#" className="nav-social-link" aria-label="Instagram">
+          <a href="https://www.instagram.com/gaia_imagine/?__pwa=1#" className="nav-social-link" aria-label="Instagram">
             <span className="nav-social-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.6"/>

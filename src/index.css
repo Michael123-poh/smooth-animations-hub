@@ -1118,6 +1118,14 @@ body.mobile-menu-open .hero-logo {
   margin-bottom: 48px;
 }
 
+/* â”€â”€â”€ ABOUT: NOTRE HISTOIRE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.about-story-top {
+  padding: 150px 80px 90px;
+}
+.about-story-bottom {
+  padding: 0 80px 0;
+}
+
 /* â”€â”€â”€ GAIA BRIDGE (hero â†’ services) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-bridge {
   background: var(--beige);
@@ -4469,6 +4477,11 @@ textarea.form-input {
   /* Padding instead of margin â†’ background extends edge-to-edge */
   .gaia-nav {
     padding-left: 250px;
+  }
+  .about-story-top,
+  .about-story-bottom {
+    padding-left: 180px;
+    padding-right: 180px;
   }
   .gaia-dna,
   .gaia-portfolio,

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import gsap from "gsap";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
-import { GaiaFooter } from "../components/site/GaiaFooter";
 import statueImg from "../assets/Cameroon Statue 2.png";
-import crowdImg from "../assets/Group of people walking (2) copie 2.png";
+import crowdImg from "../assets/Group of people walking forward 1.webp";
+import crowdImgBW from "../assets/Group of people walking forward 1.jpg";
 
 function useScrollY() {
   const [y, setY] = useState(0);
@@ -19,7 +20,13 @@ function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        }),
       { threshold: 0.12 }
     );
     els.forEach((el) => io.observe(el));
@@ -27,96 +34,289 @@ function useReveal() {
   }, []);
 }
 
+function CrowdRevealImage({ colorSrc, bwSrc }: { colorSrc: string; bwSrc: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const bwRef = useRef<HTMLImageElement>(null);
+
+  const xTo = useRef<((value: number) => void) | null>(null);
+  const yTo = useRef<((value: number) => void) | null>(null);
+  const rotateXTo = useRef<((value: number) => void) | null>(null);
+  const rotateYTo = useRef<((value: number) => void) | null>(null);
+
+  const REVEAL_RADIUS = 250;
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    xTo.current = gsap.quickTo(containerRef.current, "x", { duration: 0.5, ease: "power2.out" });
+    yTo.current = gsap.quickTo(containerRef.current, "y", { duration: 0.5, ease: "power2.out" });
+    rotateXTo.current = gsap.quickTo(containerRef.current, "rotateX", { duration: 0.5, ease: "power2.out" });
+    rotateYTo.current = gsap.quickTo(containerRef.current, "rotateY", { duration: 0.5, ease: "power2.out" });
+  }, []);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const bwEl = bwRef.current;
+    if (bwEl) {
+      bwEl.style.webkitMaskImage = `radial-gradient(circle ${REVEAL_RADIUS}px at ${x}px ${y}px, transparent 0%, transparent 40%, black 100%)`;
+      bwEl.style.maskImage = `radial-gradient(circle ${REVEAL_RADIUS}px at ${x}px ${y}px, transparent 0%, transparent 40%, black 100%)`;
+    }
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const deltaX = (x - centerX) / centerX;
+    const deltaY = (y - centerY) / centerY;
+
+    const moveAmount = 15;
+    const tiltAmount = 6;
+
+    if (xTo.current && yTo.current && rotateXTo.current && rotateYTo.current) {
+      xTo.current(deltaX * moveAmount);
+      yTo.current(deltaY * moveAmount);
+      rotateXTo.current(-deltaY * tiltAmount);
+      rotateYTo.current(deltaX * tiltAmount);
+    }
+  }
+
+  function handleMouseLeave() {
+    if (bwRef.current) {
+      bwRef.current.style.webkitMaskImage = "none";
+      bwRef.current.style.maskImage = "none";
+    }
+
+    if (xTo.current && yTo.current && rotateXTo.current && rotateYTo.current) {
+      xTo.current(0);
+      yTo.current(0);
+      rotateXTo.current(0);
+      rotateYTo.current(0);
+    }
+  }
+
+  return (
+    <div className="reveal" style={{ perspective: "1000px", overflow: "hidden", width: "100%", background: "transparent" }}>
+      <div
+        ref={containerRef}
+        style={{
+          position: "relative",
+          width: "100%",
+          willChange: "transform",
+          transformStyle: "preserve-3d",
+          background: "transparent",
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
+        <img
+          src={colorSrc}
+          alt="Foule de personnes en mouvement"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            backfaceVisibility: "hidden",
+          }}
+        />
+        <img
+          ref={bwRef}
+          src={bwSrc}
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            display: "block",
+            pointerEvents: "none",
+            backfaceVisibility: "hidden",
+            WebkitMaskImage: "none",
+            maskImage: "none",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function About() {
   const scrollY = useScrollY();
   useReveal();
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       <Helmet>
         <title>À propos — Gaïa Studio | Agence Branding &amp; Communication Douala</title>
-        <meta name="description" content="Découvrez l'histoire de Gaïa Studio, agence de branding et communication créative à Douala, Cameroun." />
+        <meta
+          name="description"
+          content="Découvrez l'histoire de Gaïa Studio, agence de branding et communication créative à Douala, Cameroun."
+        />
         <link rel="canonical" href="https://gaiaimagine.com/a-propos" />
         <meta property="og:url" content="https://gaiaimagine.com/a-propos" />
         <meta property="og:title" content="À propos — Gaïa Studio | Agence Branding Douala" />
       </Helmet>
-      <a href="#main-content" className="skip-link">Aller au contenu principal</a>
+      <a href="#main-content" className="skip-link">
+        Aller au contenu principal
+      </a>
       <GaiaNavbar solid={scrollY > 60} />
 
       <main id="main-content">
-        {/* Notre Histoire */}
-        <div style={{ position: "relative" }}>
-          {/* Bandeau navy du haut */}
+        <div style={{ position: "relative", background: "var(--cream)" }}>
+          {/* Section du haut : zIndex: 10 pour rester AU-DESSUS de la foule */}
           <section
+            className="about-story-top"
             style={{
-              background: "var(--blue-navy)",
-              padding: "150px 80px 90px",
               position: "relative",
               overflow: "hidden",
+              background: "var(--blue-navy)",
+              zIndex: 10,
             }}
             aria-label="Notre histoire"
           >
-            <div className="section-label reveal" style={{ color: "var(--orange)" }}>Notre histoire</div>
+            <div className="section-label reveal" style={{ color: "var(--orange)" }}>
+              Notre histoire
+            </div>
             <h1
-              className="gaia-h2 on-dark reveal d1"
-              style={{ fontSize: "clamp(34px, 4.2vw, 56px)", fontWeight: 800, maxWidth: 620, lineHeight: 1.05 }}
+              className="gaia-h2 reveal d1"
+              style={{
+                fontSize: "clamp(34px, 4.2vw, 56px)",
+                fontWeight: 800,
+                maxWidth: 620,
+                lineHeight: 1.05,
+                color: "var(--cream)",
+              }}
             >
-              Une vision devenue<br />une réalité...
+              Une vision devenue
+              <br />
+              une réalité...
             </h1>
           </section>
 
-          {/* Statue — chevauche le bandeau navy et la section blanche */}
+          {/* Statue : zIndex: 12 */}
           <img
             src={statueImg}
             alt="Statue dorée symbolisant l'ambition des marques camerounaises"
             className="reveal-right d2"
             style={{
               position: "absolute",
-              top: "6%",
-              right: "9%",
-              width: "24%",
-              maxWidth: 420,
+              top: "80px",
+              right: "14%",
+              width: "70%",
+              maxWidth: 650,
               height: "auto",
-              zIndex: 3,
+              zIndex: 12,
               pointerEvents: "none",
             }}
           />
 
-          {/* Texte sur fond blanc */}
-          <section style={{ background: "var(--cream)", padding: "0 80px 0", position: "relative" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
-              <div className="reveal-left d1" style={{ paddingTop: 56, paddingBottom: 56 }}>
-                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
-                  Tout a commencé par un constat simple, presque dérangeant. En parcourant les rues de nos villes, les rayons de nos supermarchés, les réseaux sociaux et internet, une question revenait sans cesse :
+          {/* Texte : zIndex: 8 pour flotter au-dessus de la foule */}
+          <section
+            className="about-story-bottom"
+            style={{ background: "transparent", position: "relative", zIndex: 8, pointerEvents: "none" }}
+          >
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, pointerEvents: "auto" }}>
+              <div className="reveal-left d1" style={{ paddingTop: 50, paddingBottom: 0 }}>
+                <p
+                  style={{
+                    fontWeight: 300,
+                    fontSize: 20,
+                    lineHeight: 1.1,
+                    color: "var(--text-mid)",
+                    marginBottom: 12,
+                    maxWidth: 500,
+                  }}
+                >
+                  Tout a commencé par un constat simple, <br /> presque dérangeant. En parcourant les <br />
+                  rues de nos villes, les rayons de nos su-<br /> permarchés, les réseaux sociaux et inter-<br />
+                  net, une question revenait sans cesse :
                 </p>
-                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 20, maxWidth: "none" }}>
-                  Pourquoi les Entreprises et Produits Made in Cameroon sont si peu attirants ? Pourquoi nos marques, aussi pleines de promesses, semblent-elles inachevées ? Des identités visuelles inexistantes, des logotypes approximatifs, des messages sans cohérence. Des packagings ternes. Des marques qui existent, mais qui peinent à être remarquées, comprises et choisies.
+
+                <p
+                  style={{
+                    fontWeight: 300,
+                    fontSize: 20,
+                    lineHeight: 1.1,
+                    color: "var(--text-mid)",
+                    marginBottom: 12,
+                    maxWidth: 500,
+                  }}
+                >
+                  Pourquoi les Entreprises et Produits <br /> Made in Cameroon sont si peu attirants ? <br />
+                  Pourquoi nos marques, aussi pleines de <br /> promesses, semblent-elles inachevées ? <br />
+                  Des identités visuelles inexistantes, des <br /> logotypes approximatifs, des messages <br />
+                  sans cohérence. Des packagings ternes. <br /> Des marques qui existent, mais qui <br />
+                  peinent à être remarquées, comprises et <br /> choisies.
                 </p>
-                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 0, maxWidth: "none" }}>
-                  Et pourtant... derrière ces produits, il y a de la passion. Il y a des femmes et des hommes qui travaillent dur, qui croient en leurs rêves, qui portent une vision.
+
+                <p
+                  style={{
+                    fontWeight: 300,
+                    fontSize: 20,
+                    lineHeight: 1.1,
+                    color: "var(--text-mid)",
+                    marginBottom: 0,
+                    maxWidth: 500,
+                  }}
+                >
+                  Et Pourtant... derrière ces produits, il y a <br /> de la passion. Il y a des femmes et des <br />
+                  hommes qui travaillent dur, qui croient en <br /> leurs rêves, qui portent une vision.
                 </p>
               </div>
 
-              <div className="reveal-right d2" style={{ paddingTop: 190, paddingBottom: 56 }}>
-                <p style={{ fontSize: 16, lineHeight: 1.75, color: "var(--text-mid)", marginBottom: 24, maxWidth: "none" }}>
-                  Alors... qu'est-ce qui cloche ? C'est de cette idée qu'est née gaïa, un nom choisi en écho à la déesse de la Terre, celle qui nourrit, qui révèle, qui fait croître.
+              <div className="reveal-right d2" style={{ paddingTop: 220, paddingBottom: 0 }}>
+                <p
+                  style={{
+                    fontWeight: 300,
+                    fontSize: 20,
+                    lineHeight: 1.1,
+                    color: "var(--text-mid)",
+                    marginBottom: 22,
+                    maxWidth: 500,
+                  }}
+                >
+                  Alors... qu'est-ce qui cloche ? C'est de cette <br />
+                  idée qu'est née gaïa, un nom choisi en écho <br />
+                  à la déesse de la Terre, celle qui nourrit, qui <br />
+                  révèle, qui fait croître.
                 </p>
-                <p style={{ fontFamily: "'Gotham Rounded', 'Nunito', sans-serif", fontSize: 17, fontWeight: 700, color: "var(--blue-navy)", lineHeight: 1.5, maxWidth: "none" }}>
-                  Nous voulions faire de gaïa un terreau fertile où chaque marque pourrait éclore, grandir et se déployer.
+
+                <p
+                  style={{
+                    fontFamily: "'Gotham Rounded', 'Nunito', sans-serif",
+                    fontSize: 20,
+                    fontWeight: 700,
+                    color: "var(--blue-navy)",
+                    lineHeight: 1.1,
+                    maxWidth: 500,
+                  }}
+                >
+                  Nous voulions faire de gaïa un terreau <br />
+                  fertile où chaque marque pourrait éclore,
+                  <br />
+                  grandir et se déployer.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Foule — pleine largeur */}
-          <img
-            src={crowdImg}
-            alt="Foule de personnes en mouvement, symbolisant les marques et les personnes qu'elles touchent"
-            className="reveal"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
+          {/* Foule : zIndex: 1 (Reste sous le texte et sous la bande bleue) */}
+          <div
+            style={{
+              marginTop: "-1100px",
+              position: "relative",
+              zIndex: 1,
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 60px, black 100%)",
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 60px, black 100%)",
+            }}
+          >
+            <CrowdRevealImage colorSrc={crowdImg} bwSrc={crowdImgBW} />
+          </div>
         </div>
       </main>
     </>
