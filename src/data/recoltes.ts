@@ -27,6 +27,34 @@ import kc4 from "../assets/Ressources Site Web 2/Nos Récoltes/K-Care Cosmetics/
 import kc5 from "../assets/Ressources Site Web 2/Nos Récoltes/K-Care Cosmetics/K_Care_Cosmetics_5.jpg";
 import kc6 from "../assets/Ressources Site Web 2/Nos Récoltes/K-Care Cosmetics/K_Care_Cosmetics_6.jpg";
 
+import adm1 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_1.jpg";
+import adm2 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_2.jpg";
+import adm3 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_3.jpg";
+import adm4 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_4.jpg";
+import adm5 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_5.jpg";
+import adm6 from "../assets/Ressources Site Web 2/Nos Récoltes/ADM/ADM/1x/Afric_Decor_6.jpg";
+
+import oec1 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_1.jpg";
+import oec2 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_2.jpg";
+import oec3 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_3.jpg";
+import oec4 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_4.jpg";
+import oec5 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_5.jpg";
+import oec6 from "../assets/Ressources Site Web 2/Nos Récoltes/Oracle Education Consultancy/Oracle Education Consultancy/1x/Oracle_Education_6.jpg";
+
+import rtl1 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_1.jpg";
+import rtl2 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_2.jpg";
+import rtl3 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_3.jpg";
+import rtl4 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_4.jpg";
+import rtl5 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_5.jpg";
+import rtl6 from "../assets/Ressources Site Web 2/Nos Récoltes/Route Livraison/Route Livraison/1x/Route_Livraison_6.jpg";
+
+import sgl1 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_1.jpg";
+import sgl2 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_2.jpg";
+import sgl3 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_3.jpg";
+import sgl4 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_4.jpg";
+import sgl5 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_5.jpg";
+import sgl6 from "../assets/Ressources Site Web 2/Nos Récoltes/Stage Live/Stage Live/1x/Stage_Live_6.jpg";
+
 export type Recolte = {
   slug: string;
   label: string;
@@ -36,8 +64,8 @@ export type Recolte = {
 // `images` vide = catégorie sans projet pour l'instant.
 export const recoltes: Recolte[] = [
   { slug: "business-finance", label: "Business & Finance", images: [ilma1, ilma2, ilma3, ilma4, ilma5, ilma6, inv1, inv2, inv3, inv4, inv5, inv6] },
-  { slug: "logistique-transport", label: "Logistique & Transport", images: [otl1, otl2, otl3, otl4, otl5, otl6] },
-  { slug: "prestations-services", label: "Prestations de services", images: [] },
+  { slug: "logistique-transport", label: "Logistique & Transport", images: [otl1, otl2, otl3, otl4, otl5, otl6, rtl1, rtl2, rtl3, rtl4, rtl5, rtl6] },
+  { slug: "prestations-services", label: "Prestations de services", images: [adm1, adm2, adm3, adm4, adm5, adm6, oec1, oec2, oec3, oec4, oec5, oec6, sgl1, sgl2, sgl3, sgl4, sgl5, sgl6 ] },
   { slug: "cosmetique-bien-etre", label: "Cosmétique & Bien-être", images: [kc1, kc2, kc3, kc4, kc5, kc6] },
   { slug: "industrie-manufacture", label: "Industrie & Manufacture", images: [] },
   { slug: "divers", label: "Divers", images: [] },
