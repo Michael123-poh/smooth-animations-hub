@@ -94,8 +94,8 @@ export function GaiaCTA() {
 
       <div className="logos-strip" aria-hidden="true">
         <div className="logos-track">
-          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span></span>
-          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span></span>
+          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span>{" "}</span>
+          <span className="logo-item">Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span> Connecting brands 2 people <span className="logo-copyright">©️</span> b2p <span className="logo-copyright">©️</span>{" "}</span>
         </div>
       </div>
 
@@ -274,12 +274,9 @@ export function GaiaCTA() {
                   type="button"
                   onClick={sendViaWhatsApp}
                   className="gaia-btn form-submit-btn"
-                  style={{ marginTop: 10, background: "#25D366" }}
+                  style={{ marginTop: 10, background: "#fd7534" }}
                 >
-                  Envoyer par WhatsApp
-                  <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                    <path d="M8 1.5a6.5 6.5 0 00-5.6 9.78L1.5 14.5l3.32-.87A6.5 6.5 0 108 1.5zm0 1.3a5.2 5.2 0 014.4 7.96l-.16.25.7 2.56-2.62-.69-.25.15A5.2 5.2 0 118 2.8zm-2.5 2.4c-.14 0-.36.05-.55.27-.19.22-.72.7-.72 1.72s.74 2 .84 2.13c.1.14 1.44 2.3 3.6 3.13 1.8.7 2.16.56 2.55.53.39-.04 1.26-.51 1.44-1.01.18-.5.18-.92.13-1.01-.05-.1-.19-.15-.4-.26-.2-.1-1.26-.62-1.46-.69-.2-.07-.34-.1-.48.1-.14.2-.55.69-.68.83-.12.14-.25.16-.46.05-.2-.1-.87-.32-1.65-1.02-.61-.54-1.02-1.21-1.14-1.42-.12-.2-.01-.31.09-.41.09-.09.2-.24.3-.36.1-.12.13-.2.2-.34.06-.14.03-.26-.02-.36-.05-.1-.48-1.17-.66-1.6-.17-.42-.35-.36-.48-.37h-.4z"/>
-                  </svg>
+                  Envoyer
                 </button>
               </form>
             )}
