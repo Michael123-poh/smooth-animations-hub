@@ -4492,6 +4492,11 @@ textarea.form-input {
     padding-left: 180px;
     padding-right: 180px;
   }
+  .contact-hero,
+  .faq-section {
+    padding-left: 180px !important;
+    padding-right: 180px !important;
+  }
   .gaia-dna,
   .gaia-portfolio,
   .gaia-process,

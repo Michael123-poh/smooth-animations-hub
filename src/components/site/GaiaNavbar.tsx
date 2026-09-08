@@ -100,11 +100,12 @@ export function GaiaNavbar() {
 
   if (!visible && !menuOpen) return null;
 
-  // Pages avec un haut sombre (hero accueil, portfolio, contact) → logo blanc + barres blanches
+  // Pages avec un haut sombre (hero accueil, portfolio, contact, à propos) → logo blanc + barres blanches
   const darkTopPage =
     location.pathname === "/" ||
     location.pathname === "/portfolio" ||
-    location.pathname === "/contact";
+    location.pathname === "/contact" ||
+    location.pathname === "/a-propos";
 
   // Menu ouvert → fond bleu : logo + barres en blanc.
   // Sinon : barres blanches sur les pages à haut sombre non défilées.
@@ -112,9 +113,9 @@ export function GaiaNavbar() {
 
   // Logo dans la navbar : menu ouvert (toutes pages), ou pages non-accueil en haut
   const showNavLogo = menuOpen || (location.pathname !== "/" && !solid);
-  // Fond sombre (menu ouvert, contact, portfolio) → logo clair ; sinon logo principal
+  // Fond sombre (menu ouvert, contact, portfolio, à propos) → logo clair ; sinon logo principal
   const navLogoSrc =
-    menuOpen || location.pathname === "/contact" || location.pathname === "/portfolio"
+    menuOpen || location.pathname === "/contact" || location.pathname === "/portfolio" || location.pathname === "/a-propos"
       ? logoSombre
       : logoPrincipal;
 
@@ -216,7 +217,7 @@ export function GaiaNavbar() {
             </span>
             <span>Instagram</span>
           </a>
-          <a href="#" className="nav-social-link" aria-label="WhatsApp">
+          <a href="https://wa.me/237674410693" target="_blank" rel="noopener noreferrer" className="nav-social-link" aria-label="WhatsApp">
             <span className="nav-social-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>

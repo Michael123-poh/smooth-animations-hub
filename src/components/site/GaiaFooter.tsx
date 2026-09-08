@@ -5,6 +5,10 @@ import backgroundOrange from "../../assets/back.png";
 
 const socialLinks = [
   {
+    label: "WhatsApp",
+    href: "https://wa.me/237674410693",
+  },
+  {
     label: "Facebook",
     href: "https://www.facebook.com/share/1Nuq9GWasr/?mibextid=wwXIfr",
   },

@@ -29,6 +29,17 @@ export function GaiaCTA() {
   const [form, setForm] = useState<FormData>({ nom: "", email: "", projet: "", message: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<FormState>("idle");
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText("hello@gaiaimagine.com");
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      // silencieux — le lien mailto reste disponible en secours
+    }
+  }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
@@ -64,6 +75,18 @@ export function GaiaCTA() {
     } catch {
       setStatus("error");
     }
+  }
+
+  function sendViaWhatsApp() {
+    const lignes = [
+      `Nom : ${form.nom || "—"}`,
+      `Email : ${form.email || "—"}`,
+      `Type de projet : ${form.projet || "—"}`,
+      "",
+      form.message || "Bonjour, je souhaite en savoir plus sur vos services.",
+    ];
+    const texte = encodeURIComponent(lignes.join("\n"));
+    window.open(`https://wa.me/237674410693?text=${texte}`, "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -119,7 +142,29 @@ export function GaiaCTA() {
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 600, color: "var(--text-mid)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{c.label}</div>
                   {c.href ? (
-                    <a href={c.href} style={{ fontSize: 15, fontWeight: 500, color: "var(--text-dark)", marginTop: 2, display: "block", textDecoration: "none" }}>{c.value}</a>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <a href={c.href} style={{ fontSize: 15, fontWeight: 500, color: "var(--text-dark)", marginTop: 2, display: "block", textDecoration: "none" }}>{c.value}</a>
+                      {c.label === "Email" && (
+                        <button
+                          type="button"
+                          onClick={copyEmail}
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: emailCopied ? "var(--orange)" : "var(--text-mid)",
+                            background: "none",
+                            border: "1px solid var(--border)",
+                            borderRadius: 6,
+                            padding: "3px 8px",
+                            cursor: "pointer",
+                            marginTop: 2,
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {emailCopied ? "Copié !" : "Copier"}
+                        </button>
+                      )}
+                    </div>
                   ) : (
                     <div style={{ fontSize: 15, fontWeight: 500, color: "var(--text-dark)", marginTop: 2 }}>{c.value}</div>
                   )}
@@ -224,17 +269,17 @@ export function GaiaCTA() {
                     L'envoi a échoué. Réessayez ou écrivez-nous directement à hello@gaiaimagine.com
                   </p>
                 )}
+
                 <button
-                  type="submit"
+                  type="button"
+                  onClick={sendViaWhatsApp}
                   className="gaia-btn form-submit-btn"
-                  disabled={status === "submitting"}
+                  style={{ marginTop: 10, background: "#25D366" }}
                 >
-                  {status === "submitting" ? "Envoi en cours..." : "Envoyer"}
-                  {status !== "submitting" && (
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
+                  Envoyer par WhatsApp
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 1.5a6.5 6.5 0 00-5.6 9.78L1.5 14.5l3.32-.87A6.5 6.5 0 108 1.5zm0 1.3a5.2 5.2 0 014.4 7.96l-.16.25.7 2.56-2.62-.69-.25.15A5.2 5.2 0 118 2.8zm-2.5 2.4c-.14 0-.36.05-.55.27-.19.22-.72.7-.72 1.72s.74 2 .84 2.13c.1.14 1.44 2.3 3.6 3.13 1.8.7 2.16.56 2.55.53.39-.04 1.26-.51 1.44-1.01.18-.5.18-.92.13-1.01-.05-.1-.19-.15-.4-.26-.2-.1-1.26-.62-1.46-.69-.2-.07-.34-.1-.48.1-.14.2-.55.69-.68.83-.12.14-.25.16-.46.05-.2-.1-.87-.32-1.65-1.02-.61-.54-1.02-1.21-1.14-1.42-.12-.2-.01-.31.09-.41.09-.09.2-.24.3-.36.1-.12.13-.2.2-.34.06-.14.03-.26-.02-.36-.05-.1-.48-1.17-.66-1.6-.17-.42-.35-.36-.48-.37h-.4z"/>
+                  </svg>
                 </button>
               </form>
             )}
