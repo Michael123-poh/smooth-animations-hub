@@ -225,7 +225,7 @@ export default function About() {
                 <p
                   style={{
                     fontWeight: 300,
-                    fontSize: 20,
+                    fontSize: 17,
                     lineHeight: 1.1,
                     color: "var(--text-mid)",
                     marginBottom: 12,
@@ -240,7 +240,7 @@ export default function About() {
                 <p
                   style={{
                     fontWeight: 300,
-                    fontSize: 20,
+                    fontSize: 17,
                     lineHeight: 1.1,
                     color: "var(--text-mid)",
                     marginBottom: 12,
@@ -257,7 +257,7 @@ export default function About() {
                 <p
                   style={{
                     fontWeight: 300,
-                    fontSize: 20,
+                    fontSize: 17,
                     lineHeight: 1.1,
                     color: "var(--text-mid)",
                     marginBottom: 0,
@@ -273,7 +273,7 @@ export default function About() {
                 <p
                   style={{
                     fontWeight: 300,
-                    fontSize: 20,
+                    fontSize: 17,
                     lineHeight: 1.1,
                     color: "var(--text-mid)",
                     marginBottom: 22,
@@ -289,7 +289,7 @@ export default function About() {
                 <p
                   style={{
                     fontFamily: "'Gotham Rounded', 'Nunito', sans-serif",
-                    fontSize: 20,
+                    fontSize: 17,
                     fontWeight: 700,
                     color: "var(--blue-navy)",
                     lineHeight: 1.1,

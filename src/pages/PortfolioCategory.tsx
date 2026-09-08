@@ -97,34 +97,36 @@ export default function PortfolioCategory() {
           >
             ×
           </button>
-          {total > 1 && (
-            <button
-              type="button"
-              className="recolte-lightbox-nav prev"
-              onClick={(e) => { e.stopPropagation(); goPrev(); }}
-              aria-label="Image précédente"
-            >
-              ‹
-            </button>
-          )}
           <img
             src={cat.images[lightbox]}
             alt={`${cat.label} — réalisation ${lightbox + 1}`}
             className="recolte-lightbox-img"
             onClick={(e) => e.stopPropagation()}
           />
-          {total > 1 && (
-            <button
-              type="button"
-              className="recolte-lightbox-nav next"
-              onClick={(e) => { e.stopPropagation(); goNext(); }}
-              aria-label="Image suivante"
-            >
-              ›
-            </button>
-          )}
-          <div className="recolte-lightbox-count" aria-hidden="true">
-            {lightbox + 1} / {total}
+          <div className="recolte-lightbox-controls" onClick={(e) => e.stopPropagation()}>
+            {total > 1 && (
+              <button
+                type="button"
+                className="recolte-lightbox-nav prev"
+                onClick={goPrev}
+                aria-label="Image précédente"
+              >
+                ‹
+              </button>
+            )}
+            <div className="recolte-lightbox-count" aria-hidden="true">
+              {lightbox + 1} / {total}
+            </div>
+            {total > 1 && (
+              <button
+                type="button"
+                className="recolte-lightbox-nav next"
+                onClick={goNext}
+                aria-label="Image suivante"
+              >
+                ›
+              </button>
+            )}
           </div>
         </div>
       )}

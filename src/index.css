@@ -2516,8 +2516,10 @@ textarea.form-input {
   z-index: 9998;
   background: rgba(8, 8, 24, 0.92);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
   padding: 40px;
   cursor: zoom-out;
   animation: recolteLightboxIn 0.2s ease;
@@ -2528,7 +2530,7 @@ textarea.form-input {
 }
 .recolte-lightbox-img {
   max-width: 92vw;
-  max-height: 88vh;
+  max-height: 76vh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -2556,12 +2558,17 @@ textarea.form-input {
   transition: background 0.2s ease;
 }
 .recolte-lightbox-close:hover { background: var(--orange); }
-/* Flèches de navigation gauche/droite */
+/* Barre de contrôle sous l'image : flèche précédente, compteur, flèche suivante */
+.recolte-lightbox-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  cursor: default;
+}
 .recolte-lightbox-nav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 9999;
+  position: static;
+  transform: none;
   width: 56px;
   height: 56px;
   border: none;
@@ -2576,20 +2583,15 @@ textarea.form-input {
   justify-content: center;
   transition: background 0.2s ease;
 }
-.recolte-lightbox-nav.prev { left: 28px; }
-.recolte-lightbox-nav.next { right: 28px; }
 .recolte-lightbox-nav:hover { background: var(--orange); }
 .recolte-lightbox-count {
-  position: fixed;
-  bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
   color: rgba(255, 255, 255, 0.75);
   font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.05em;
+  min-width: 60px;
+  text-align: center;
 }
 
 /* Carte photo-first â€” pas de description */
@@ -2674,7 +2676,14 @@ textarea.form-input {
   .recolte-pills { max-width: 100%; }
   /* Page catégorie */
   .recolte-cat { padding: 110px 24px 64px; }
-  .recolte-cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .recolte-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* Chaque image : bloc carré pleine largeur (2 colonnes) */
+  .recolte-cat-grid .recolte-cat-cell {
+    grid-column: 1 / 3;
+    aspect-ratio: 1 / 1;
+  }
 }
 @media (max-width: 480px) {
   .portfolio-page-hero { padding: 90px 20px 40px; }
