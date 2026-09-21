@@ -1126,6 +1126,40 @@ body.mobile-menu-open .hero-logo {
   padding: 0 80px 0;
 }
 
+@media (max-width: 767px) {
+  /* Statue : retirée en mobile */
+  .about-statue-img {
+    display: none !important;
+  }
+  /* Grille de texte : 2 blocs égaux, espacement resserré */
+  .about-text-grid {
+    gap: 20px !important;
+  }
+  .about-text-col--left {
+    padding-top: 24px !important;
+  }
+  .about-text-col--right {
+    padding-top: 24px !important;
+  }
+  /* Texte drastiquement réduit, les retours à la ligne codés en dur pour le desktop sont neutralisés pour laisser le texte se reformer naturellement dans un bloc étroit */
+  .about-text-p {
+    font-size: 10px !important;
+    line-height: 1.35 !important;
+    max-width: 100% !important;
+  }
+  .about-text-p br {
+    display: none;
+  }
+  /* Colonne de gauche : seul le premier paragraphe reste visible, tout ce qui suit "Pourquoi..." est retiré */
+  .about-text-p--hide-mobile {
+    display: none !important;
+  }
+  /* La foule est réajustée pour suivre la hauteur du texte, bien plus courte en mobile */
+  .about-crowd-wrap {
+    margin-top: -160px !important;
+  }
+}
+
 /* â”€â”€â”€ GAIA BRIDGE (hero â†’ services) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .gaia-bridge {
   background: var(--beige);

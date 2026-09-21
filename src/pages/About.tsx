@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import gsap from "gsap";
 import { GaiaNavbar } from "../components/site/GaiaNavbar";
 import statueImg from "../assets/Cameroon Statue 2.png";
 import crowdImg from "../assets/Group of people walking forward 1.webp";
-import crowdImgBW from "../assets/Group of people walking forward 1.jpg";
 
 function useScrollY() {
   const [y, setY] = useState(0);
@@ -32,113 +30,6 @@ function useReveal() {
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
-}
-
-function CrowdRevealImage({ colorSrc, bwSrc }: { colorSrc: string; bwSrc: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bwRef = useRef<HTMLImageElement>(null);
-
-  const xTo = useRef<((value: number) => void) | null>(null);
-  const yTo = useRef<((value: number) => void) | null>(null);
-  const rotateXTo = useRef<((value: number) => void) | null>(null);
-  const rotateYTo = useRef<((value: number) => void) | null>(null);
-
-  const REVEAL_RADIUS = 250;
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    xTo.current = gsap.quickTo(containerRef.current, "x", { duration: 0.5, ease: "power2.out" });
-    yTo.current = gsap.quickTo(containerRef.current, "y", { duration: 0.5, ease: "power2.out" });
-    rotateXTo.current = gsap.quickTo(containerRef.current, "rotateX", { duration: 0.5, ease: "power2.out" });
-    rotateYTo.current = gsap.quickTo(containerRef.current, "rotateY", { duration: 0.5, ease: "power2.out" });
-  }, []);
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const bwEl = bwRef.current;
-    if (bwEl) {
-      bwEl.style.webkitMaskImage = `radial-gradient(circle ${REVEAL_RADIUS}px at ${x}px ${y}px, transparent 0%, transparent 40%, black 100%)`;
-      bwEl.style.maskImage = `radial-gradient(circle ${REVEAL_RADIUS}px at ${x}px ${y}px, transparent 0%, transparent 40%, black 100%)`;
-    }
-
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const deltaX = (x - centerX) / centerX;
-    const deltaY = (y - centerY) / centerY;
-
-    const moveAmount = 15;
-    const tiltAmount = 6;
-
-    if (xTo.current && yTo.current && rotateXTo.current && rotateYTo.current) {
-      xTo.current(deltaX * moveAmount);
-      yTo.current(deltaY * moveAmount);
-      rotateXTo.current(-deltaY * tiltAmount);
-      rotateYTo.current(deltaX * tiltAmount);
-    }
-  }
-
-  function handleMouseLeave() {
-    if (bwRef.current) {
-      bwRef.current.style.webkitMaskImage = "none";
-      bwRef.current.style.maskImage = "none";
-    }
-
-    if (xTo.current && yTo.current && rotateXTo.current && rotateYTo.current) {
-      xTo.current(0);
-      yTo.current(0);
-      rotateXTo.current(0);
-      rotateYTo.current(0);
-    }
-  }
-
-  return (
-    <div className="reveal" style={{ perspective: "1000px", overflow: "hidden", width: "100%", background: "transparent" }}>
-      <div
-        ref={containerRef}
-        style={{
-          position: "relative",
-          width: "100%",
-          willChange: "transform",
-          transformStyle: "preserve-3d",
-          background: "transparent",
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <img
-          src={colorSrc}
-          alt="Foule de personnes en mouvement"
-          style={{
-            width: "100%",
-            height: "auto",
-            display: "block",
-            backfaceVisibility: "hidden",
-          }}
-        />
-        <img
-          ref={bwRef}
-          src={bwSrc}
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            inset: 0,
-            width: "100%",
-            height: "100%",
-            display: "block",
-            pointerEvents: "none",
-            backfaceVisibility: "hidden",
-            WebkitMaskImage: "none",
-            maskImage: "none",
-          }}
-        />
-      </div>
-    </div>
-  );
 }
 
 export default function About() {
@@ -202,7 +93,7 @@ export default function About() {
           <img
             src={statueImg}
             alt="Statue dorée symbolisant l'ambition des marques camerounaises"
-            className="reveal-right d2"
+            className="reveal-right d2 about-statue-img"
             style={{
               position: "absolute",
               top: "80px",
@@ -220,9 +111,10 @@ export default function About() {
             className="about-story-bottom"
             style={{ background: "transparent", position: "relative", zIndex: 8, pointerEvents: "none" }}
           >
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, pointerEvents: "auto" }}>
-              <div className="reveal-left d1" style={{ paddingTop: 50, paddingBottom: 0 }}>
+            <div className="about-text-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, pointerEvents: "auto" }}>
+              <div className="reveal-left d1 about-text-col about-text-col--left" style={{ paddingTop: 50, paddingBottom: 0 }}>
                 <p
+                  className="about-text-p"
                   style={{
                     fontWeight: 300,
                     fontSize: 17,
@@ -238,6 +130,7 @@ export default function About() {
                 </p>
 
                 <p
+                  className="about-text-p about-text-p--hide-mobile"
                   style={{
                     fontWeight: 300,
                     fontSize: 17,
@@ -255,6 +148,7 @@ export default function About() {
                 </p>
 
                 <p
+                  className="about-text-p about-text-p--hide-mobile"
                   style={{
                     fontWeight: 300,
                     fontSize: 17,
@@ -269,8 +163,9 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="reveal-right d2" style={{ paddingTop: 220, paddingBottom: 0 }}>
+              <div className="reveal-right d2 about-text-col about-text-col--right" style={{ paddingTop: 220, paddingBottom: 0 }}>
                 <p
+                  className="about-text-p"
                   style={{
                     fontWeight: 300,
                     fontSize: 17,
@@ -287,6 +182,7 @@ export default function About() {
                 </p>
 
                 <p
+                  className="about-text-p"
                   style={{
                     fontFamily: "'Gotham Rounded', 'Nunito', sans-serif",
                     fontSize: 17,
@@ -307,6 +203,7 @@ export default function About() {
 
           {/* Foule : zIndex: 1 (Reste sous le texte et sous la bande bleue) */}
           <div
+            className="about-crowd-wrap"
             style={{
               marginTop: "-1100px",
               position: "relative",
@@ -315,7 +212,12 @@ export default function About() {
               maskImage: "linear-gradient(to bottom, transparent 0%, black 60px, black 100%)",
             }}
           >
-            <CrowdRevealImage colorSrc={crowdImg} bwSrc={crowdImgBW} />
+            <img
+              src={crowdImg}
+              alt="Foule de personnes en mouvement"
+              className="reveal"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
           </div>
         </div>
       </main>
