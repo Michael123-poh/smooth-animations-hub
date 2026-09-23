@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
+import { forwardRef, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import logoSombre from "../../assets/logos/Gaia_logo_principal_declinaison_sur_fond_sombre@3x.png";
 import backgroundOrange from "../../assets/back.png";
+import backgroundOrangeMobile from "../../assets/Background Dark Orange Mobile 2.jpg";
 
 const socialLinks = [
   {
@@ -43,11 +44,13 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
       ref={ref} 
       role="contentinfo"
       style={{
-        backgroundImage: `url(${backgroundOrange})`,
+        "--footer-bg-desktop": `url(${backgroundOrange})`,
+        "--footer-bg-mobile": `url(${backgroundOrangeMobile})`,
+        backgroundImage: "var(--footer-bg-desktop)",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
-      }}
+      } as CSSProperties}
     >
       
       {/* ── TOP: Socials + Logo + Nav ── */}
@@ -86,7 +89,7 @@ export const GaiaFooter = forwardRef<HTMLElement>(function GaiaFooter(_, ref) {
 
       {/* ── CENTER: Big "Get in Touch" ── */}
       <div className="footer-center">
-        <p className="footer-main-title">Get in Touch</p>
+        <p className="footer-main-title"><span className="footer-main-title-line">Get in</span> <span className="footer-main-title-line">Touch</span></p>
       </div>
 
       {/* ── BOTTOM: Legal ── */}

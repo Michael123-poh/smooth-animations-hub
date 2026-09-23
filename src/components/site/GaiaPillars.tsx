@@ -24,7 +24,7 @@ const pillars = [
   {
     title: "Transparence",
     icon: iconTransparence,
-    desc: "Nous sommes pleinement investis dans chaque projet, avec un souci constant de répondre aux attentes de nos clients et d'aller au-delà de leurs exigences. Chaque mission est une promesse que nous tenons avec passion et détermination.",
+    desc: "Nous privilégions une communication claire, honnête et ouverte à chaque étape de nos collaborations. Nous informons nos clients avec précision sur nos démarches, nos choix et nos délais, afin d'instaurer une relation de confiance durable.",
   },
 ];
 

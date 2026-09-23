@@ -2809,6 +2809,11 @@ textarea.form-input {
   padding: 40px 60px;
   align-items: start;
 }
+@media (max-width: 767px) {
+  .gaia-footer {
+    background-image: var(--footer-bg-mobile) !important;
+  }
+}
 
 /* ── TOP ROW: Socials Top ── */
 .footer-top {
@@ -4008,6 +4013,100 @@ textarea.form-input {
 }
 
 /* â”€â”€â”€ 480px â€” Phone â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€â”€ FOOTER: mobile & tablette (jusqu'Ã  767px) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+@media (max-width: 767px) {
+  .gaia-footer {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto auto !important;
+    padding: 20px 50px !important;
+    gap: 10px !important;
+    justify-items: start !important;
+  }
+  .footer-top {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+    justify-content: flex-start !important;
+    margin-bottom: 0 !important;
+  }
+  .footer-socials-top {
+    font-size: 12px !important;
+    gap: 0 !important;
+  }
+  .footer-social-sep {
+    margin: 0 6px !important;
+    color: #FF8A3D;
+  }
+  .footer-left-col {
+    grid-row: 1 !important;
+    grid-column: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin-bottom: 190px !important;
+  }
+  .footer-logo {
+    height: 60px !important;
+    margin-top: 50px !important;
+    align-self: flex-start !important;
+  }
+  .footer-nav ul {
+    gap: 14px !important;
+    align-items: flex-start !important;
+    margin-top: 0px !important;
+  }
+  .footer-nav a {
+    font-size: 20px !important;
+    font-weight: 300 !important;
+  }
+  .footer-center {
+    grid-row: 2 !important;
+    grid-column: 1 !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    padding: 1px 0 !important;
+    width: 70% !important;
+    height: auto !important;
+  }
+  .footer-main-title {
+    font-size: clamp(64px, 25vw, 180px) !important;
+    line-height: 0.82 !important;
+    white-space: normal !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .footer-main-title-line {
+    display: block !important;
+  }
+  .footer-right-col {
+    display: none !important;
+  }
+  .footer-bottom {
+    grid-column: 1 / -1 !important;
+    grid-row: 4 !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.2px !important;
+    padding-top: 14px !important;
+    margin-top: 0 !important;
+  }
+  .footer-legal-left,
+  .footer-legal-center,
+  .footer-legal-right {
+    text-align: left !important;
+    width: 90% !important;
+    justify-content: flex-start !important;
+  }
+  .footer-legal-center { order: 1; }
+  .footer-legal-right { order: 2; margin-top: 0; }
+  .footer-legal-left { order: 3; margin-top: 0; }
+  .footer-email-bottom {
+    font-size: 12px !important;
+  }
+}
+
 @media (max-width: 480px) {
 
   /* Typography: tighter but still impactful */
@@ -4376,69 +4475,7 @@ textarea.form-input {
     grid-template-columns: 1fr;
   }
 
-  /* FOOTER: phone */
-  .gaia-footer {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto auto auto;
-    padding: 20px 16px;
-    gap: 24px;
-  }
-  .footer-top {
-    grid-column: 1 / -1;
-    justify-content: flex-start;
-    margin-bottom: 16px;
-  }
-  .footer-socials-top {
-    font-size: 11px;
-    gap: 0;
-  }
-  .footer-social-sep {
-    margin: 0 6px;
-  }
-  .footer-left-col {
-    grid-row: 2;
-    grid-column: 1;
-    gap: 12px;
-  }
-  .footer-logo {
-    height: 28px;
-  }
-  .footer-nav ul {
-    gap: 10px;
-  }
-  .footer-nav a {
-    font-size: 14px;
-  }
-  .footer-center {
-    grid-row: 3;
-    grid-column: 1;
-    padding: 24px 0;
-  }
-  .footer-main-title {
-    font-size: clamp(32px, 9vw, 56px);
-    line-height: 1.1;
-  }
-  .footer-right-col {
-    display: none;
-  }
-  .footer-bottom {
-    grid-column: 1 / -1;
-    grid-row: 5;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding-top: 20px;
-    margin-top: 20px;
-  }
-  .footer-legal-left,
-  .footer-legal-center,
-  .footer-legal-right {
-    text-align: center;
-    width: 100%;
-    justify-content: center;
-  }
-  .footer-email-bottom {
-    font-size: 11px;
-  }
+  /* FOOTER: phone — voir bloc dédié @media (max-width: 767px) plus haut dans le fichier */
 
   /* FORM */
   .form-row {
